@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>The following comment was received from post: <a href="$macros.FullUrl($comment.Url)">$comment.Title</a></p>
+<p>Comment stats:
+	<ul>
+		<li>Published: $comment.IsPublished</li>
+		<li>Spam Score: $comment.SpamScore</li>
+		<li>Author: $comment.User.ProperName</li>
+		<li>WebSite: $comment.User.WebSite</li>
+	</ul>
+</p>
+<p><strong>Comment:</strong></p>
+$comment.Body
+</body>
+</html>

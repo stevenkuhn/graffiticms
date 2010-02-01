@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>$title</title>
+	
+	$macros.Style("screen.css","screen")
+	$macros.Style("print.css","print")
+
+	<!--[if lt IE 7]>
+	$macros.JavaScript("utils/pngfix.js")
+	<![endif]-->
+	
+	$macros.Head()
+</head>
+<body>
+	<div id="container">
+
+		<div id="masthead">
+			<h1>$data.Site.Title</h1>
+
+			<ul id="accessibility-links">
+				<li><a href="#navigation">Skip to navigation</a></li>
+				<li><a href="#content">Skip to primary content</a></li>
+				<li><a href="#secondary-content">Skip to secondary content</a></li>
+			</ul>
+		</div>
+		<!-- / masthead -->
+	
+		<hr />
+	
+		<div id="navigation">
+			<ol>
+				#foreach($link in $macros.NavigationLinks())
+
+				<li>
+					<a href="$link.Url">
+						<span style="font-weight: bold; font-size: 110%;">$link.Text</span>
+					</a>
+				</li>
+				
+				#end
+			</ol>
+			
+			<div class="search">
+				<form method="get" id="search_form" action="$macros.SearchUrl">
+					<input type="image" src='$macros.ThemeFile("images/btn_search.png")' class="submit" alt="Search" />
+					<input type="text" class="search_input" value="Search this site" name="q" id="q" onfocus="if (this.value == 'Search this site') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site';}" />
+					<input type="hidden" id="searchsubmit" value="Search" />
+				</form>
+			</div>
+		</div>
+		<!-- / navigation -->
+		
+		<h2 class="tagline">$data.Site.TagLine</h2>
+
+		#if($macros.Variable("SiteLogo") != "")
+			<img class="logo" src='$macros.Variable("SiteLogo")' />
+		#end
+		
+		<hr />
+		
+		<div id="content" class="default">
+			
+		$childContent
+			
+		</div>
+		<!-- / content -->
+		
+		<hr />
+	
+		<div id="secondary-content">
+			$macros.LeftSideBar("%{beforeWidget='<div class=\"section\">', afterWidget='</div>', beforeLastWidget='<div class=\"section no-border\">' beforeTitle='<h3 class=\"in\">', afterTitle='</h3>'}")
+		</div>
+		
+		<hr />
+	
+		<div id="footer">
+			<ol class="sub-navigation">
+				#foreach($link in $macros.NavigationLinks())
+
+				<li>
+					<a href="$link.Url">
+						<span>$link.Text</span>
+					</a>
+				</li>
+				
+				#end
+			</ol>
+		
+			<div style="float: right;">
+			
+			
+			#if ($macros.IsNotNull($user))
+			
+			#if($macros.CanViewControlPanel($user))
+				$user.ProperName - 
+				<a href="$urls.Home./graffiti-admin">Control Panel</a>
+			#end
+			
+			#else
+				You are not logged in - 
+				<a href="$urls.Home./graffiti-admin">Login</a>	
+			#end
+			
+			</div>
+			
+			<p style="float: left; clear: left; padding-left: 1px;">$!data.Site.Copyright</p>
+			
+
+			<div style="clear: both;"></div>
+			<div style="text-align: center;">
+				$macros.Logo
+			</div>
+		</div>
+		<!-- / footer -->
+
+	</div>
+	<!-- / container -->
+$!data.Site.WebStatistics
+</body>
+</html>

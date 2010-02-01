@@ -1,0 +1,20 @@
+<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <link href="css/main.css" runat="Server" type="text/css" media="all" rel="Stylesheet" />
+    <%= new Macros().GraffitiJavaScript %>
+    <asp:ContentPlaceHolder runat="Server" id="HeaderRegion" />
+</head>
+<body id="modalbody">
+    <form id="ModalMasterForm" runat="server">
+        <div id="modalcontent">
+            <div class="modalgutter">
+                <asp:ContentPlaceHolder runat="Server" id="BodyRegion" />
+            </div>
+        </div>
+    </form>
+</body>
+</html>

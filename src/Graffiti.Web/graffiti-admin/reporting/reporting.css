@@ -1,0 +1,145 @@
+﻿/*
+Text Button
+*/
+
+.CommonTextButton
+{
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	margin: 1px;
+	padding: 4px;
+	border: solid 1px #999;
+	border-top-color: #ccc;
+	border-left-color: #ccc;
+	background-color: #eee;
+	color: #333;
+	font-size: 80%;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.CommonTextButton:LINK, .CommonTextButton:VISITED
+{
+	text-decoration: none;
+	color: #333;
+	background-color: #eee;
+}
+
+.CommonTextButton:ACTIVE
+{
+	text-decoration: none;
+	color: #333;
+}
+
+.CommonTextButton:HOVER
+{
+	text-decoration: underline;
+	color: #333;
+	background-color: #ddd;
+}
+
+.CommonTextButton.Big
+{
+	padding: 10px;
+	font-size: 120%;
+}
+
+.CommonTextButtonHighlight
+{
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	margin: 1px;
+	padding: 4px;
+	border: solid 1px #999;
+	border-top-color: #ccc;
+	border-left-color: #ccc;
+	background-color: #bbb;
+	color: #333;
+	font-size: 80%;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.CommonTextButtonHighlight:LINK, .CommonTextButtonHighlight:VISITED, .CommonTextButtonHighlight:ACTIVE, .CommonTextButtonHighlight:HOVER
+{
+	text-decoration: none;
+	background-color: #bbb;
+	color: #333;
+}
+
+.CommonImageTextButton
+{
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	margin: 1px;
+	border: solid 1px #999;
+	border-top-color: #ccc;
+	border-left-color: #ccc;
+	background-color: #eee;
+	color: #333;
+	font-size: 80%;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding: 4px 4px 4px 22px;
+	line-height: normal;
+	white-space: nowrap;
+}
+
+.CommonImageTextButton:LINK, .CommonImageTextButton:VISITED
+{
+	text-decoration: none;
+	color: #333;
+	margin: 1px;
+}
+
+.CommonImageTextButton:ACTIVE
+{
+	text-decoration: none;
+	color: #333;
+}
+
+.CommonImageTextButton:HOVER
+{
+	text-decoration: underline;
+	color: #333;
+	background-color: #ddd;
+}
+
+.CommonImageTextButton.Big
+{
+	font-size: 130%;
+	background-position: 4px center;
+	padding-left: 30px;
+	padding-right: 10px;
+}
+
+.CommonImageTextButtonHighlight
+{
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	margin: 1px;
+	border: solid 1px #999;
+	border-top-color: #ccc;
+	border-left-color: #ccc;
+	background-color: #bbb;
+	color: #333;
+	font-size: 80%;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding: 4px 4px 4px 22px;
+	line-height: normal;
+	white-space: nowrap;
+}
+
+.CommonImageTextButtonHighlight:LINK, .CommonImageTextButtonHighlight:VISITED, .CommonImageTextButtonHighlight:ACTIVE, .CommonImageTextButtonHighlight:HOVER
+{
+	text-decoration: none;
+	background-color: #bbb;
+	color: #333;
+}

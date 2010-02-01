@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		$macros.Head()
+	</head>
+	<body>
+
+	<div id="header">
+
+		<div class="headerleft">
+			<a href="$urls.Home">$data.Site.Title</a>
+		</div>
+		
+		<div class="headerright" onclick="location.href='$urls.Rss';" style="cursor: pointer;">
+		</div>
+		
+	</div>
+
+	<div id="navbar">
+
+		<div class="navbarleft">
+			$data.Site.TagLine
+		</div>
+		
+		<div class="navbarright">
+			<ul>
+				<!-- Pages Can Go Here -->
+			</ul>
+		</div>
+		
+	</div>
+
+	<div id="content">
+		<div id="contentleft">
+				$childContent
+		</div>
+
+	<div id="l_sidebar">
+		<ul id="l_sidebarwidgeted">
+		 $macros.LeftSideBar("%{beforeWidget='<li>', afterWidget='</li>', beforeTitle='<h2>', afterTitle='</h2>'}")
+		</ul>
+	</div>
+
+	<div id="r_sidebar">
+		<ul id="r_sidebarwidgeted">
+		$macros.RightSideBar("%{beforeWidget='<li>', afterWidget='</li>', beforeTitle='<h2>', afterTitle='</h2>'}")
+	  </ul>
+	</div>
+	</div>
+
+		<div style="clear:both;"></div>
+		<div style="clear:both;"></div>
+
+		<div id="footer">
+			$data.Site.Copyright			
+		<p>Using <a href="http://themes.performancing.com" >Modernpaper</a> theme created by <a href="http://performancing.com" >Brian Gardner</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
+		<p>$macros.Logo</p>	
+		</div>
+
+		$!data.Site.WebStatistics
+</body>
+
+</html>

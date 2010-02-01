@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		$macros.Head()
+	</head>
+	<body>
+		<div id="tools">
+			<form action="$urls.Search">
+				<div>
+					<input type="text" class="textfield" name="q" /><input type="submit" value="SEARCH" class="submitbutton" />
+				</div>
+			</form>
+			<p><a href="$urls.Rss">Syndicate</a></p>
+		</div>
+
+		<div id="branding">
+			<h1><a href="$urls.Home">$data.Site.Title</a></h1>
+		</div>
+
+		<div class="contentarea">	
+			<div class="wide">
+				$childContent
+			</div>
+
+			<div class="narrow">
+				#if($where == "home")
+					<p class="title"><em>Oldies, but Goodies!</em></p>
+					#foreach($rp in $data.PopularPosts(5))
+						<h3><a href="$rp.Url">$rp.Title</a></h3>
+						<p>$rp.CustomExcerpt(100)</p>
+					#end
+				#else
+					<p class="title"><em>Recent Posts</em></p>
+					<ul class="linkage">
+					#foreach($rp in $data.RecentPosts(5))
+						<li><a href="$rp.Url">$rp.Title</a> <br />by $rp.User</li>
+					#end
+					</ul>
+				#end
+			</div>
+
+			<div class="narrow">
+				<p class="title"><em>What's the dilly, yo?</em></p>
+				<p>$data.Site.TagLine</p>
+
+				#if($isUser) 			
+					<p class="title"><em>Site Options</em></p>
+					<ul class="linkage">
+						<li><a href="$urls.Admin">Control Panel</a></li>
+						<li><a href="$urls.Write">Write New Post</a></li>
+						<li><a href="$urls.Logout">Logout</a></li>
+					</ul>
+				#end
+
+				<p class="title"><em>Categories</em></p>
+					<ul class="linkage">
+						$macros.ULCategories()
+					</ul>
+			</div>
+	</div>
+
+	<div class="contentarea">
+		<div class="wide">
+			<p class="title"><em>$data.Site.Title Authors</em></p>
+				<ul class="linkage">
+					#foreach($the_user in $users)
+						<li><strong>$the_user</strong> $the_user.Bio</li>
+					#end
+				</ul>
+		</div>
+
+		<div class="narrow">
+			<p class="title"><em>More Information</em></p>
+			<ul class="linkage">
+
+			</ul>
+		</div>
+
+		<div class="narrow">
+			<p class="title"><em>Our Friends</em></p>
+				<ul class="linkage">
+				</ul>
+		</div>		
+
+	</div>
+		<div id="footer">
+			<p>&copy; $data.Site.Title &#8212; <a href="http://themes.performancing.com/themes/gangway-theme-for-wordpress/">GangWay</a> theme design by <a href="http://www.fortymedia.com/">Fourty Media</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
+			$data.Site.Copyright
+			<p>$macros.Logo</p>
+		</div>
+
+		$!data.Site.WebStatistics
+</body>
+
+</html>

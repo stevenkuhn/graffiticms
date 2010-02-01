@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		<!--[if lte IE 7]>
+		$macros.Style("ie7.css","screen")
+		<![endif]-->
+		<!--[if lte IE 6]>
+		$macros.Style("ie6","screen")
+		<![endif]-->		
+		
+		$macros.Head()
+		
+	</head>
+	<body class="custom">
+	<div id="header">
+		<div id="logo">
+			<a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a>
+			#if($where == "home")
+			<h1>$data.Site.TagLine</h1>
+			#else	
+			<p id="tagline">$data.Site.TagLine</p>
+			#end
+		</div>
+	</div>	
+	
+	<div id="container">
+		<div id="nav">
+			<ul>
+				$macros.NavBar()
+				<li></li>
+			</ul>
+		</div>	
+		
+		<div id="content_box">
+			<div id="content">	
+				$childContent
+			</div>
+		
+		<div id="sidebar">
+		
+		<ul class="sidebar_list">
+		
+			<p id="rss"><a href="$urls.Rss" title="Subscribe to this site's feed"></a></p>
+		
+			$macros.RightSideBar("%{beforeWidget='<li class=\"widget\">', afterWidget='</li>', beforeTitle='<h2>', afterTitle='</h2>'}")
+	
+		</ul>	
+		
+		</div>
+
+	</div>
+
+<div id="footer">
+	<p>&copy; $data.Site.Title &#8212; <a href="http://www.copyblogger.com">Copyblogger</a> theme design by <a href="http://pearsonified.com">Chris Pearson</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
+	<p>$!data.Site.Copyright</p>
+	<br />
+	<p>$macros.Logo</p>
+</div>
+
+	$!data.Site.WebStatistics
+	</body>
+
+</html>

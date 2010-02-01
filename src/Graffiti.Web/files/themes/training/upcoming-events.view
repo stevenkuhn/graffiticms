@@ -1,0 +1,7 @@
+#foreach ($post in $posts)
+<h3>$post.Title</h3>
+<strong>
+	<p>$post.Custom("Location") | $post.Custom("Date")</p>
+</strong>
+$post.Excerpt("<p>", "</p>" ,"$post.Title &rarr;", 300)
+#end

@@ -1,0 +1,87 @@
+<h1>$post.Title</h1>
+
+<p class="post-meta">
+	$macros.FormattedDate($post.Published)
+</p>
+
+
+<div class="entry-content">
+
+	$post.Body
+
+</div>
+<!-- / post -->
+
+<!-- / comment-list -->
+<div class="comment-list">
+	<h2>$post.CommentCount comment(s) #if($post.EnableNewComments) so far #end</h2>
+
+	<ol>
+		#foreach($comment in $comments)
+		<li id="comment-$count">
+			<ul class="comment-meta">
+				<li class="comment-author vcard">
+					<strong class="fn">
+						$macros.CommentLink($comment)
+					</strong>
+				</li>
+				<li class="comment-date">
+					<a href="#comment-$comment.Id" title="Permanent link to this comment" rel="bookmark">January 23, 2008</a>
+				</li>
+			</ul>
+
+			<div class="comment-body">
+				$comment.Body
+			</div>
+		</li>
+		#end
+	</ol>
+</div>
+
+#if($post.EnableNewComments)
+<form action="$url" method="post" id="comment_form">
+	<div class="comment-form">
+		<h2>Post your comment</h2>
+		<div class="note">
+			<p>
+				<strong>Thanks for your comments</strong>
+			</p>
+			<p>
+				<br />Be nice ;)</p>
+		</div>
+
+		<ul class="f1">
+			#if($isUser)
+			<li>
+				Logged in as $user.ProperName <a href="$urls.Logout">Logout</a>
+			</li>
+			#else
+			<li>
+				<label for="author">Name</label>
+				<input type="text" class="text" name="author" id="author" value="" tabindex="1" />
+			</li>
+			<li>
+				<label for="email">Mail</label>
+				<input type="text" class="text"  name="email" id="email" value="" tabindex="2" />
+			</li>
+			<li>
+				<label for="url">Website</label>
+				<input type="text" class="text" name="url" id="url" value="" tabindex="3" />
+			</li>
+			#end
+			<li>
+				<label for="comment">Comment</label>
+				<textarea cols="15" rows="5" name="comment" id="comment" ></textarea>
+			</li>
+			<li class="submit">
+				<img id="commentbutton" name="commentbutton"  src='$macros.ThemeFile("images/btn_comment.png")' alt="Comment" onclick="Comments.submitComment('$urls.Ajax');" />
+			</li>
+			<li style="padding: 10px;">
+				<span class="commentstatus" style="display:none;" id="comment_status"></span>
+			</li>
+		</ul>
+	</div>
+	<input type="hidden" name="comment_post_ID" value="$post.Id" />
+</form>
+<!-- / comment_form -->
+#end

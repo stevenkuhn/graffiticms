@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graffiti.Core", "..\src\Graffiti.Core\Graffiti.Core.csproj", "{7C676AF7-35BE-4F98-953F-69769ED4175B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBuddy", "..\src\DataBuddy\DataBuddy.csproj", "{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graffiti.Web", "..\src\Graffiti.Web\Graffiti.Web.csproj", "{86D1C434-6096-43BE-86D9-364A79109858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graffiti.Core.API", "..\src\Graffiti.Core.API\Graffiti.Core.API.csproj", "{523002D7-5FFF-4734-8345-7A759A677C92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graffiti.BlogExtensions", "BlogExtensions\Graffiti.BlogExtensions.csproj", "{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release_Obfuscate|Any CPU = Release_Obfuscate|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Release_Obfuscate|Any CPU.ActiveCfg = Release_Obfuscate|Any CPU
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Release_Obfuscate|Any CPU.Build.0 = Release_Obfuscate|Any CPU
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C676AF7-35BE-4F98-953F-69769ED4175B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Release_Obfuscate|Any CPU.ActiveCfg = Release|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Release_Obfuscate|Any CPU.Build.0 = Release|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Release_Obfuscate|Any CPU.ActiveCfg = Release_Obfuscate|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Release_Obfuscate|Any CPU.Build.0 = Release_Obfuscate|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D1C434-6096-43BE-86D9-364A79109858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Release_Obfuscate|Any CPU.ActiveCfg = Release_Obfuscate|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Release_Obfuscate|Any CPU.Build.0 = Release_Obfuscate|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523002D7-5FFF-4734-8345-7A759A677C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Release_Obfuscate|Any CPU.ActiveCfg = Release|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Release_Obfuscate|Any CPU.Build.0 = Release|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B38A2FB-77AE-44D8-94CB-D57D905D6CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

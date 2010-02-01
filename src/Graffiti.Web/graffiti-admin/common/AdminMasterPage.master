@@ -1,0 +1,134 @@
+<%@ Master Language="C#" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Import Namespace="System.Reflection" %>
+<%@ Import Namespace="System.Xml" %>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head id="Head1" runat="server">
+        <title>Graffiti Control Panel</title>
+        <link id="Link1" href="css/main.css" runat="Server" type="text/css" media="all" rel="Stylesheet" />
+        <%= new Macros().GraffitiJavaScript %>
+        <asp:ContentPlaceHolder runat = "Server" id = "HeaderRegion" />
+        <script language="javascript" type="text/javascript">
+        function RunScript(script)
+        {   
+            var element = document.createElement("script");
+            element.type = "text/javascript";
+            element.innerHTML = script;
+            document.body.appendChild(element);
+        }
+        </script>
+   </head>
+
+    <body>
+		<Glow:Modal runat="server" CssClasses="Modal,Modal1,Modal2,Modal3,Modal4,Modal5" TitleCssClasses="ModalTitle" CloseCssClasses="ModalClose" ContentCssClasses="ModalContent" FooterCssClasses="ModalFooter" ResizeCssClasses="ModalResize" MaskCssClasses="ModalMask" LoadingUrl="~/graffiti-admin/loading.htm" />			
+        <div id="wrap">
+        
+            <div id="header">
+                <div class="left">
+                    <h1><asp:HyperLink runat="server" NavigateUrl="~/"><%= SiteSettings.Get().Title%>&nbsp;<span><%= SiteSettings.Get().TagLine%>&nbsp;</span></asp:HyperLink></h1>
+                </div>
+                <div class="right" style="color:#ccc; font-size: 80%;">
+                    Signed in as <a href="<%= VirtualPathUtility.ToAbsolute("~/graffiti-admin/user-management/users/") + "?user=" + GraffitiUsers.Current.Name %>"><%= Graffiti.Core.GraffitiUsers.Current.ProperName %></a> | <asp:HyperLink runat="Server" NavigateUrl="~/graffiti-admin/logout/" Text = "Log Off" /> |
+                    <asp:HyperLink ID="HyperLink6" runat="Server" NavigateUrl="~/" Text ="Go back to site" />
+                </div>
+                <div style="clear: both;"></div>
+                <div id="tabs">
+                    <ul id="tabnav">
+                        <Z:LiHyperLink runat="Server" Text = "Dashboard" NavigateUrl="~/graffiti-admin/" />
+                        <Z:LiHyperLink runat="Server" Text = "Write" NavigateUrl="~/graffiti-admin/posts/write/" />
+                        <Z:LiHyperLink runat="Server" Text = "Posts" NavigateUrl="~/graffiti-admin/posts/" />
+                        <Z:LiHyperLink runat="Server" ID = "CategoriesLink" Text = "Categories" NavigateUrl="~/graffiti-admin/categories/" />
+                        <Z:LiHyperLink runat="Server" Text = "Comments" NavigateUrl="~/graffiti-admin/comments/" />
+                    </ul>
+                    <ul id="sitesettings">
+                        <Z:LiHyperLink runat="Server" ID = "SettingsLink" Name="settings" Text = "Site Options" NavigateUrl="~/graffiti-admin/site-options/" />
+                        <Z:LiHyperLink runat="Server" ID="PresentationLink" Name="presentation" Text = "Presentation" NavigateUrl="~/graffiti-admin/presentation/" />
+                        <Z:LiHyperLink runat="Server" Text = "User Management" ID = "UserManagementLink" Name="UserManagement"  NavigateUrl="~/graffiti-admin/user-management/" />
+                        <Z:LiHyperLink runat="Server" Text = "Reporting" ID = "ReportingLink" Name="reporting" NavigateUrl="~/graffiti-admin/reporting/" />
+                        <li><a href="http://docs.graffiticms.com" title="Visit docs.GraffitiCMS.com for help" target="_new" />Help</a></li>
+                    </ul>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+            
+            <form id="Form1" runat="Server" style="padding:0;margin:0;">
+                
+                <asp:ContentPlaceHolder runat="Server" ID="SideBarRegion">
+                </asp:ContentPlaceHolder>
+                        
+                <div id="content">
+                    <div class="gutter"><div class="gutter2">
+                        <asp:ContentPlaceHolder runat="Server" ID="MainRegion">
+                        </asp:ContentPlaceHolder>
+                        <div style="clear: both;"></div>
+                    </div></div>
+                </div>
+            </form>
+            
+            <div id="footer">
+                <div class="left">Powered by <a href="http://graffiticms.com">Graffiti CMS</a> <asp:Literal ID="version" runat="server" /></div>
+                <div class="left" style="clear: left; line-height: 20px;"><asp:Literal ID="newerVersion" runat="server" /></div>
+                <div class="right"></div>
+            </div>
+            
+            <div style="clear: both;">&nbsp;</div>
+        </div> 
+    </body>
+</html>
+<script runat="Server">
+
+    void Page_Load(object sender, EventArgs e)
+    {
+        GetGraffitiVersion();
+        
+        IGraffitiUser user = GraffitiUsers.Current;
+        bool isEditor = GraffitiUsers.IsAdmin(user);
+
+        CategoriesLink.Visible = (isEditor);
+        PresentationLink.Visible = isEditor;
+        SettingsLink.Visible = isEditor;
+
+        if(!isEditor)
+        {
+            UserManagementLink.Text = "Your Account";
+            UserManagementLink.NavigateUrl = "~/graffiti-admin/user-management/users/";
+        }
+
+        if(!isEditor && !RolePermissionManager.CanViewControlPanel(user))
+            Response.Redirect("~/login/");
+        
+    }
+
+    void GetGraffitiVersion()
+    {
+        // user's version
+        string oldVersion = Assembly.LoadFile(Server.MapPath(ResolveUrl("~/bin/Graffiti.Core.dll"))).GetName().Version.ToString();
+        version.Text = SiteSettings.Version;
+        oldVersion = oldVersion.Replace(".", "");
+
+        try
+        {
+            // get the latest version
+            XmlDocument document = new XmlDocument();
+            document.Load("http://graffiticms.com/currentversion.xml");
+
+            string newVersion = document.SelectSingleNode("currentversion/assembly").InnerText.Replace(".", "");
+
+            int longestVersion = newVersion.Length > oldVersion.Length ? newVersion.Length : oldVersion.Length;
+
+            newVersion = newVersion.PadRight(longestVersion, '0');
+            oldVersion = oldVersion.PadRight(longestVersion, '0');
+
+            if (Convert.ToDecimal(oldVersion) < Convert.ToDecimal(newVersion))
+					newerVersion.Text = "The latest version is <strong>" + document.SelectSingleNode("currentversion/assembly").InnerText + "</strong>. Get it <a href=\"http://graffiticms.codeplex.com\">here.";
+            else
+                newerVersion.Text = "";
+        }
+        catch
+        {
+            // cannot access file online
+            newerVersion.Text = "";
+        }
+    }
+
+</script>

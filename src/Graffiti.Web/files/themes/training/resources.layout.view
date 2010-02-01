@@ -1,0 +1,31 @@
+$header
+<div class="main-container" style="background: #f0f0f0;">
+	<div class="container" style="text-align: left; width: 950px; margin: auto; background: #fff;">
+		<div id="content" style="padding-right: 10px;">
+			$childContent
+		</div>
+		<!-- / content -->
+		<hr />
+		<div id="sidebar">
+			<div class="section">
+				<ul class="secondary-navigation">
+					#set ($cat = $data.GetCategory("Resources"))
+					
+					#if ($cat.HasChildren)
+						#foreach ($cat in $cat.Children)
+							#if ($cat.Name == $category.Name)
+								<li class="current"><a href="$cat.Url"><span>$cat.Name</span></a>
+							#else
+								<li><a href="$cat.Url"><span>$cat.Name</span></a>
+							#end
+						#end
+					#end
+				</ul>
+			</div>
+			<!-- / secondary navigation -->
+		</div>
+		<!-- / sidebar -->
+		<hr />
+	</div>
+</div>
+$footer

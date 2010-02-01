@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		<!--[if lte IE 7]>
+		$macros.Style("ie7.css","screen")
+		<![endif]-->
+		<!--[if lte IE 6]>
+		$macros.Style("ie6","screen")
+		<![endif]-->		
+		
+		$macros.Head()
+		
+	</head>
+	<body class="custom">
+		<div id="container">
+
+			<div id="masthead">
+				<h1><a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a></h1>
+				<h3>$data.Site.TagLine</h3>
+			</div>	
+
+				<ul id="nav">
+					$macros.NavBar()
+					<li class="rss"><a href="$urls.Rss">RSS</a></li>
+				</ul>
+			
+
+			<div id="header_img">
+				<img src="$macros.RandomImage("images", "header_*.jpg")" width="770" height="140" alt="$data.Site.Title" title="header image" />
+			</div>
+
+			<div id="content_box" class="posts">
+				<div id="content">	
+					$childContent
+				</div>
+
+				<div id="sidebar">
+
+					<ul class="sidebar_list">
+						$macros.RightSideBar("%{beforeWidget='<li class=\"widget\">', afterWidget='</li>', beforeTitle='<h2>', afterTitle='</h2>'}")
+					</ul>	
+				</div>
+
+			</div>
+
+	
+		<div id="footer">
+			<p>&copy; $data.Site.Title &#8212; <a href="http://cutline.tubetorial.com/">Cutline</a> theme design by <a href="http://pearsonified.com">Chris Pearson</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
+			$!data.Site.Copyright
+			<p>$macros.Logo</p>
+		</div>
+
+		</div>
+		$!data.Site.WebStatistics
+		
+	</body>
+
+</html>

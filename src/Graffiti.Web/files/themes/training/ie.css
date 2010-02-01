@@ -1,0 +1,29 @@
+
+body {
+	behavior: url(utils/csshover.htc);
+}
+
+#header {
+	height: 150px;
+}
+
+.home #header {
+	height: 250px;
+}
+
+#navigation li div div, 
+#navigation li:hover div div {
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/bg_navigation_dropdown.png', sizingMethod='crop');
+}
+
+.home #header .upcoming-events {
+	height: 230px;
+}
+
+.rss-feed {
+	height: 130px;
+}
+
+
+

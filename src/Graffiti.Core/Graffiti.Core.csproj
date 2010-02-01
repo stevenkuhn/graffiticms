@@ -1,0 +1,275 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C676AF7-35BE-4F98-953F-69769ED4175B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Graffiti.Core</RootNamespace>
+    <AssemblyName>Graffiti.Core</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Graffiti.Core.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Obfuscate|AnyCPU' ">
+    <OutputPath>bin\Release_Obfuscate\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Highlighter.Net, Version=2.3.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Highlighter.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Identicon, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Identicon.dll</HintPath>
+    </Reference>
+    <Reference Include="Joel.Net.Akismet, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Joel.Net.Akismet.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=2.4.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="RssToolkit, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\RssToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Telligent.DynamicConfiguration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telligent.DynamicConfiguration.dll</HintPath>
+    </Reference>
+    <Reference Include="Telligent.Glow, Version=1.0.30404.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telligent.Glow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telligent.Glow.Editor, Version=2.5.0.21213, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telligent.Glow.Editor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\IMetaWeblog.cs" />
+    <Compile Include="API\MetaWeblog.cs" />
+    <Compile Include="API\RSS.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Breadcrumbs.cs" />
+    <Compile Include="Controls\FileBrowser.cs" />
+    <Compile Include="Controls\FilePropertyControl.cs" />
+    <Compile Include="Controls\HtmlPropertyControl.cs" />
+    <Compile Include="Controls\LiHyperLink.cs" />
+    <Compile Include="Controls\Menu.cs" />
+    <Compile Include="Controls\RepeaterPlusNone.cs" />
+    <Compile Include="Controls\StatusMessage.cs" />
+    <Compile Include="Controls\TagTextBox.cs" />
+    <Compile Include="Data\databuddy.cs" />
+    <Compile Include="Data\DataBuddyBase.cs" />
+    <Compile Include="Data\IMenuItem.cs" />
+    <Compile Include="Data\RolePermissionManager.cs" />
+    <Compile Include="Data\VersionStore.cs" />
+    <Compile Include="Events\GraffitiEventArgs.cs" />
+    <Compile Include="Marketplace\CatalogInfo.cs" />
+    <Compile Include="Marketplace\CategoryInfo.cs" />
+    <Compile Include="Marketplace\CategoryInfoCollection.cs" />
+    <Compile Include="Marketplace\MessageInfoCollection.cs" />
+    <Compile Include="Marketplace\MessageInfo.cs" />
+    <Compile Include="Marketplace\Marketplace.cs" />
+    <Compile Include="Marketplace\CatalogInfoCollection.cs" />
+    <Compile Include="Marketplace\CreatorInfoCollection.cs" />
+    <Compile Include="Marketplace\CreatorInfo.cs" />
+    <Compile Include="Marketplace\ItemInfo.cs" />
+    <Compile Include="Marketplace\ItemInfoCollection.cs" />
+    <Compile Include="Marketplace\PurchaseInfo.cs" />
+    <Compile Include="Marketplace\StatisticsInfo.cs" />
+    <Compile Include="Options\Package.cs" />
+    <Compile Include="Options\PackageSettings.cs" />
+    <Compile Include="Routing\CategoryAndPostHandler.cs" />
+    <Compile Include="Routing\RssHandler.cs" />
+    <Compile Include="Routing\TagHandler.cs" />
+    <Compile Include="Routing\UrlRouting.cs" />
+    <Compile Include="UI\DisplayEntities\CategoryCount.cs" />
+    <Compile Include="UI\DisplayEntities\AuthorCount.cs" />
+    <Compile Include="UI\DisplayEntities\PostCount.cs" />
+    <Compile Include="UI\NavigationConfirmation.cs" />
+    <Compile Include="UI\Pages\ControlPanelPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\TemplatedThemePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ThemeConfigurationData.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\ChalkWidget.cs" />
+    <Compile Include="UI\Widgets\Forms\DateTimeFormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\EditableForm.cs" />
+    <Compile Include="Util\EmailTemplate.cs" />
+    <Compile Include="Util\FileFilters.cs" />
+    <Compile Include="Util\GRequest.cs" />
+    <Compile Include="Util\ManagedThreadPool.cs" />
+    <Compile Include="Util\Merger.cs" />
+    <Compile Include="Util\Migrator.cs" />
+    <Compile Include="Util\PostRevisionManager.cs" />
+    <Compile Include="Data\Users\AnonymousUser.cs" />
+    <Compile Include="Data\Users\ASPNetGraffitiUserController.cs" />
+    <Compile Include="Data\Users\ASPNetMembershipGraffitiUser.cs" />
+    <Compile Include="Data\Category.cs" />
+    <Compile Include="Data\Comments.cs" />
+    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\Users\GraffitiCoreUserController.cs" />
+    <Compile Include="Data\Users\GraffitiUser.cs" />
+    <Compile Include="Data\Users\GraffitiUsers.cs" />
+    <Compile Include="Data\Users\IGraffitiUser.cs" />
+    <Compile Include="Data\Users\IGraffitiUserController.cs" />
+    <Compile Include="Data\Log.cs" />
+    <Compile Include="Data\ObjectStore.cs" />
+    <Compile Include="Data\Post.cs" />
+    <Compile Include="Data\Reports.cs" />
+    <Compile Include="Data\SearchIndex.cs" />
+    <Compile Include="Data\Tag.cs" />
+    <Compile Include="Data\TagWeight.cs" />
+    <Compile Include="Data\TagWeightCloud.cs" />
+    <Compile Include="Data\Users\IUser.cs" />
+    <Compile Include="Data\Users\User.cs" />
+    <Compile Include="Events\EventDetails.cs" />
+    <Compile Include="Events\GraffitiApplication.cs" />
+    <Compile Include="Events\GraffitiEvent.cs">
+    </Compile>
+    <Compile Include="Options\CommentSettings.cs" />
+    <Compile Include="Options\CustomField.cs" />
+    <Compile Include="Options\CustomFormSettings.cs" />
+    <Compile Include="Options\NavigationSettings.cs" />
+    <Compile Include="Options\SiteSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MenuItem.cs" />
+    <Compile Include="Util\Emailer.cs" />
+    <Compile Include="UI\Macros.cs" />
+    <Compile Include="UI\Pages\CategoryPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PostPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\TagPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\PageWriter.cs" />
+    <Compile Include="UI\TemplateEngine.cs" />
+    <Compile Include="UI\ToolboxAttribute.cs" />
+    <Compile Include="UI\ToolboxManager.cs" />
+    <Compile Include="UI\Urls.cs" />
+    <Compile Include="UI\ViewManager.cs" />
+    <Compile Include="UI\GraffitiContext.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\AmazonItemWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\CategoryLink.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\CategoryWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\DeliciousWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\PageWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\PlainTextBox.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\PopulartPostWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\RecentCommentsWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\RecentPostWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\GenericFeedWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\SearchWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\SiteOptionWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\TagCloudWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\TitleAndBody.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\TitleAndPlainText.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\XBox360GamerTagWidget.cs" />
+    <Compile Include="UI\Widgets\Forms\CheckFormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\FileFormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\FormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\ListFormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\TextAreaFormElement.cs" />
+    <Compile Include="UI\Widgets\Forms\TextFormElement.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\TwitterWidget.cs" />
+    <Compile Include="UI\Widgets\Forms\WYWIWYGFormElement.cs" />
+    <Compile Include="UI\Widgets\Widget.cs" />
+    <Compile Include="UI\Widgets\WidgetDescription.cs" />
+    <Compile Include="UI\Widgets\WidgetFeed.cs" />
+    <Compile Include="UI\Widgets\WidgetInfoAttribute.cs" />
+    <Compile Include="UI\Widgets\WidgetLocation.cs" />
+    <Compile Include="UI\Widgets\Widgets.cs" />
+    <Compile Include="Util\DateRange.cs" />
+    <Compile Include="Events\Events.cs" />
+    <Compile Include="Util\Feed.cs" />
+    <Compile Include="Util\FeedManager.cs" />
+    <Compile Include="Util\Feeds.cs" />
+    <Compile Include="Util\ObjectManager.cs" />
+    <Compile Include="Util\Theme.cs" />
+    <Compile Include="Util\ThemeConverter.cs" />
+    <Compile Include="Util\ThemeFile.cs" />
+    <Compile Include="Util\UploadFileManager.cs" />
+    <Compile Include="Util\Util.cs" />
+    <Compile Include="Util\ZCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\TagTextBox.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataBuddy\DataBuddy.csproj">
+      <Project>{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}</Project>
+      <Name>DataBuddy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

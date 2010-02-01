@@ -1,0 +1,9 @@
+<h2>$category.Name</h2>
+#if ($category.Name == "Resources")
+	This is the resources area! Choose sub-categories on the left or from the drop down menu above.
+#else
+	#foreach ($post in $posts)
+	<h3>$post.Title</h3>
+	<p>$post.Body</p>
+	#end
+#end

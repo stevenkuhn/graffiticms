@@ -1,0 +1,7 @@
+$header
+<div class="main-container" style="background: #f0f0f0;">
+	<div style="padding: 25px; text-align: left; width: 900px; margin: auto; background: #fff;">
+		$childContent
+	</div>
+</div>
+$footer

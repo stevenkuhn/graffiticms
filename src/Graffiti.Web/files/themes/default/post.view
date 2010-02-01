@@ -1,0 +1,15 @@
+<h1>$post.Title</h1>
+
+<p class="post-meta">
+	$macros.FormattedDate($post.Published)
+</p>
+
+
+<div class="entry-content">
+	#if ($post.ImageUrl != "")
+	<img style="float: left; padding: 0px 10px 2px 0px;" src='$macros.Link($post.ImageUrl)' />
+	#end
+	$post.Body
+
+</div>
+<!-- / post -->

@@ -1,0 +1,20 @@
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Graffiti.Core.PostPage" %>
+<%-- 
+This file was generated at $date and should not be manually edited.
+--%>
+
+<script runat="Server">
+
+protected override void Initialize()
+{
+	base.Initialize();
+	PostId = $PostId;
+	CategoryID = $CategoryId;
+	CategoryName = @"${CategoryName.Replace("\"", "\"\"")}";
+	PostName = @"${PostName.Replace("\"", "\"\"")}";
+	Name = @"${PostName.Replace("\"", "\"\"")}";
+	MetaDescription = @"$!{MetaDescription.Replace("\"", "\"\"")}";
+	MetaKeywords = @"$!{MetaKeywords.Replace("\"", "\"\"")}";
+}
+
+</script>

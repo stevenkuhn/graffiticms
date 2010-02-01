@@ -1,0 +1,518 @@
+/* 
+	Theme Name: Modernpaper
+	Theme URL: http://themes.performancing.com
+	Description: Modernpaper 1.0 is a modern theme created for Wordpress.
+	Author: Performancing
+	Author URI: http://performancing.com
+	Version: 1.0
+		
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+	
+	Changelog:
+		v1.0 - 04.13.07
+			First Release of Modernpaper 1.0
+*/
+
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font-size: 12px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+	
+#wrap {
+	background: #FFFFFF;
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+	
+/************************************************
+*	Hyperlinks									*
+************************************************/
+
+a, a:visited {
+	color: #0066CC;
+	text-decoration: none;
+	}
+	
+a:hover {
+	text-decoration: underline;
+	}
+	
+/************************************************
+*	Header  									*
+************************************************/
+
+#header {
+	background: #000000;
+	width: 960px;
+	height: 100px;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+
+#header a, #header a:visited {
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-size: 48px;
+	color: #3399FF;
+	text-decoration: none;
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#header a:hover {
+	color: #FA9C3A;
+	text-decoration: none;
+	}
+	
+.headerleft {
+	background: #000000;
+	width: 840px;
+	float: left;
+	margin: 0px;
+	padding: 20px 0px 0px 10px;
+	}
+	
+.headerright {
+	background: #000000 url(images/feed.gif);
+	width: 84px;
+	height: 100px;
+	float: right;
+	}
+	
+#headerright li {
+	display: inline;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	}
+		
+#headerright ul {
+	margin: 0px;
+	padding: 0px;
+	}
+		
+#headerright a, #navbarright a:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	margin: 0px;
+	padding: 6px 10px 6px 10px;
+	text-decoration: none;
+	}
+		
+#headerright a:hover {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: underline;
+	}
+	
+/************************************************
+*	Navbar  									*
+************************************************/
+
+#navbar {
+	background: #000000 url(images/navbar.gif);
+	width: 960px;
+	height: 30px;
+	color: #FFFFFF;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+
+.navbarleft {
+	width: 440px;
+	float: left;
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0px;
+	padding: 6px 0px 0px 10px;
+	}
+	
+.navbarright {
+	width: 500px;
+	float: right;
+	text-align: right;
+	margin: 0px;
+	padding: 8px 0px 0px 0px;
+	}
+	
+.navbarright li {
+	display: inline;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	}
+		
+.navbarright ul {
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	}
+	
+.navbarright ul li a {
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-size: 14px;
+	color: #FFFFFF;
+	padding: 0px;
+	margin: 0px 10px 0px 10px;
+	text-decoration: none;
+	}
+
+.navbarright ul li a:hover {
+	color: #3399FF;
+	text-decoration: none;
+	}
+	
+/************************************************
+*	Content 					     		    * 
+************************************************/
+
+#content {
+	width: 960px;
+	margin: 0px auto 0px;
+	padding: 0px;
+	}
+
+#content p{
+	padding: 0px 0px 15px 0px;
+	margin: 0px;
+	line-height: 20px;
+	}
+	
+#content h1 {
+	color: #333333;
+	font-size: 26px;
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-weight: normal;
+	margin: 25px 0px 0px 0px;
+	padding: 20px 0px 10px 0px;
+	border-top: 2px solid #000000;
+	}
+	
+#content h1 a  {
+	color: #000000;
+	text-decoration: none;
+	}
+
+#content h1 a:hover {
+	color: #FA9C3A;
+	text-decoration: none;
+	}
+	
+#content p img{
+	float: left;
+	border: none;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	}
+	
+#content h2 {
+	color: #333333;
+	font-size: 14px;
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-weight: bold;
+	padding: 20px 0px 5px 0px;
+	margin: 0px;
+	border-bottom: 1px dotted #C0C0C0;
+	}
+	
+#content img.wp-smiley {
+	float: none;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	}
+
+#content img.wp-wink {
+	float: none;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#contentleft {
+	float: left;
+	width: 470px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 20px 0px;
+	}
+	
+#contentleft ol{
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+#contentleft ol li{
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 0px 0px;
+	}
+	
+#contentleft ul{
+	list-style-type: square;
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+#contentleft ul li{
+	list-style-type: square;
+	margin: 0px 0px 0px 20px;
+	padding: 0px 0px 0px 0px;
+	}
+	
+blockquote{
+	margin: 0px 25px 10px 25px;
+	padding: 0px 25px 0px 10px;
+	background: #E8E8E8;
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #000000;
+	}
+	
+#content blockquote p{
+	margin: 0px 0px 10px 0px;
+	padding: 10px 0px 0px 0px;
+	}
+	
+/************************************************
+*	Left Sidebar 					     	    * 
+************************************************/
+
+#l_sidebar {
+	float: left;
+	width: 225px;
+	margin: 25px 0px 0px 20px;
+	padding: 0px 0px 20px 0px;
+	border-top: 2px solid #000000;
+	}
+	
+#l_sidebar ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	}
+
+#l_sidebar ul li {
+	display: inline;
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#l_sidebar ul li a {
+	display: block;
+	color: #000000;
+	text-decoration: none;
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
+	border-bottom: 1px dotted #C0C0C0;
+	}
+
+#l_sidebar ul li a:hover {
+	background: #EFEFEF;
+	color: #0066CC;
+	}
+	
+#l_sidebar p{
+	padding: 3px 0px 0px 0px;
+	margin: 0px;
+	line-height: 20px;
+	}
+	
+/************************************************
+*	Right Sidebar 					     	    * 
+************************************************/
+	
+#r_sidebar {
+	float: right;
+	width: 225px;
+	margin: 25px 0px 0px 0px;
+	padding: 0px 0px 20px 0px;
+	border-top: 2px solid #000000;
+	}
+
+#r_sidebar ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	}
+
+#r_sidebar ul li {
+	display: inline;
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#r_sidebar ul li a {
+	display: block;
+	color: #000000;
+	text-decoration: none;
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
+	border-bottom: 1px dotted #C0C0C0;
+	}
+
+#r_sidebar ul li a:hover {
+	background: #EFEFEF;
+	color: #0066CC;
+	}
+	
+#r_sidebar p{
+	padding: 3px 0px 0px 0px;
+	margin: 0px;
+	line-height: 20px;
+	}
+	
+
+	
+	#l_sidebar ul li .tagCloud a
+{
+	display:inline;
+	border:0;
+	padding:3px;
+}
+	
+/************************************************
+*	Footer      								*
+************************************************/
+
+#footer {
+	background: #404040;
+	width: 960px;
+	color: #FFFFFF;
+	font-family: Times New Roman, Helvetica, Sans-Serif;
+	font-size: 14px;
+	margin: 0px auto 0px;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+	}
+	
+#footer a, #footer a:visited {
+	color: #C0C0C0;
+	text-decoration: underline;
+	}
+	
+#footer a:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+	}
+
+/************************************************
+*	Search Form									*
+************************************************/
+
+#searchdiv {
+	margin: 0px;
+	padding 0px;
+	}
+	
+#searchform {
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	}
+	
+#q {
+	background: #EFEFEF;
+	width: 200px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	padding: 4px;
+	margin: 8px 0px 0px 0px;
+	border-top: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #F5F5F5;
+	border-bottom: 1px solid #F5F5F5;
+	}
+	
+/************************************************
+*	Comments									*
+************************************************/
+	
+#commentblock {
+	width: 430px;
+	background: #E8E8E8;
+	color: #000000;
+	float: left;
+	padding: 20px 20px 10px 20px;
+	margin: 10px 0px 0px 0px;
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #000000;
+	}
+	
+#commentblock ol{
+	list-style-type: square;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 10px 0px;
+	}
+	
+.commentdate {
+	font-size: 12px;
+	padding-left: 0px;
+	}
+	
+#commentlist li p{
+	margin-bottom: 8px;
+	line-height: 20px;
+	padding: 0px;
+	}
+
+.commentname {
+	color: #333333;
+	margin: 0px;
+	padding: 5px 5px 5px 0px;
+	}
+
+.commentinfo{
+	clear: both;
+	}
+
+.commenttext {
+	clear: both;
+	margin: 3px 0px 10px 0px;
+	padding: 20px 10px 5px 10px;
+	width: 380px;
+	background: #FFFFFF url(images/comment.gif) no-repeat top;
+	}
+
+.commenttext-admin {
+	clear: both;
+	margin: 3px 0px 10px 0px;
+	padding: 20px 10px 5px 10px;
+	width: 380px;
+	background: #FFFFFF url(images/comment.gif) no-repeat top;
+	}
+
+#commentsformheader{
+	padding-left: 0px;
+	}
+
+#comment_form{
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	margin: 0px;
+	}
+
+#comment_form .form_field_pair {
+	margin: 1em 0;
+	}
+	
+#comment_form .comment .form_field_name { display: none; }
+
+#comment_form textarea{
+	width: 99%;
+	}
+	
+.commentstatus { background: #FFFFCC; position:absolute; font-size: 95%; margin-left: 8px; margin-top: 0px; padding: 2px; border: solid 1px #eee; }
+	
+p.comments_link  img{
+	margin: 0px;
+	padding: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	}

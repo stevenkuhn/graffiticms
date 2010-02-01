@@ -1,0 +1,5 @@
+<h3>$post.Title</h3>
+<strong>
+	<p>$post.Custom("Location") | $post.Custom("Date")</p>
+</strong>
+<p>$post.Body</p>

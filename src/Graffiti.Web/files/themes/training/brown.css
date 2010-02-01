@@ -1,0 +1,308 @@
+/**********************************************************************************************
+
+	Title: Graffiti CMS
+	Theme: Training and Education
+	Author: XHTMLized
+	Date: January 2008 
+
+***********************************************************************************************
+
+	1.  GENERAL
+			1.1 Headings and paragraphs
+			1.2 Forms
+			1.3 Links
+			1.4 Miscellaneous
+		
+	2. GENERAL ELEMEMENTS
+	
+	3. LAYOUT
+			3.1 Accessibility links
+			3.2 Masthead
+			3.3 Navigation
+			3.4 Search
+			3.5 Header
+			3.6 Content
+			3.7 Sidebar
+			3.8 Footer
+					
+	4. LAYOUT ELEMENTS
+
+***********************************************************************************************/
+
+
+/* 1. GENERAL
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+body {
+	background: #444034;
+	color: #42474a;
+}
+
+/* 1.1	Headings and paragraphs
+-----------------------------------------------------------------------------------------------*/	
+
+h2 {
+	color: #716f63;
+}
+
+h3 {
+	color: #b58928;
+}
+
+/* 1.2	Forms
+-----------------------------------------------------------------------------------------------*/	
+
+
+/* 1.3	Links
+-----------------------------------------------------------------------------------------------*/	
+
+a {
+	color: #a63a1d;
+}
+
+
+/* 1.4	Miscellaneous
+-----------------------------------------------------------------------------------------------*/	
+
+
+/* 2. GENERAL ELEMENTS
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+
+/* 3. LAYOUT
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+#header {
+	background: #c5761b url(images/bg_header.jpg) no-repeat;
+}
+
+.main-container {
+	background-color: #fff;
+	border-bottom: 3px solid #ebe8df;
+}
+
+.main-container .container {
+	background: url(images/faux_column_sidebar.png) repeat-y;
+}
+
+.footer-container {
+	border-top: 1px solid #dad6c8;
+	background-color: #f3f1e6;
+}
+
+#sidebar {
+	background-color: #eeebc8;
+}
+
+/* Homepage layout */
+
+.home #header {
+	background-image: url(images/bg_header_home.jpg);
+}
+
+.home #content {
+	width: 950px;
+}
+.home .main-container .container {
+	background-image: none;
+}
+
+
+/* 3.1	Accessibility links
+-----------------------------------------------------------------------------------------------*/	
+
+
+
+/* 3.2	Masthead
+-----------------------------------------------------------------------------------------------*/	
+
+#masthead h1 span,
+#masthead a span {
+	background-image:	url(images/logo.png);
+}
+
+#masthead a {
+	color: #fff;
+}
+
+/* 3.3	Navigation
+-----------------------------------------------------------------------------------------------*/
+
+#navigation ol {
+	background-image: url(images/bg_navigation.png);
+}
+
+
+/* 3.4	Search
+-----------------------------------------------------------------------------------------------*/	
+
+.search input.field {
+	border-color: #2a2822;
+}
+
+
+/* 3.5	Header
+-----------------------------------------------------------------------------------------------*/	
+
+#header p {
+	color: #fff;
+}
+
+.home #header p {
+	right: 320px;
+}
+		
+.home #header .upcoming-events {
+	width: 250px;
+	padding: 20px 20px 0 20px;
+	background: #774b15;
+}	
+
+.home #header .upcoming-events, 
+.home #header .upcoming-events h2 {
+	color: #f6f5f1;
+}
+
+.home #header .upcoming-events p {
+	font-size: 1.2em;
+}
+
+
+/* 3.6	Content
+-----------------------------------------------------------------------------------------------*/	
+
+#content table {
+	color: #4a4942;
+}
+
+#content th {
+	background: #f2f2eb url(images/bg_tablehead.png) repeat-x;
+}
+
+#content tr.odd td {
+	background-color: #f9f8f3;
+}
+
+.inner-content-container {
+	width: 620px;
+	float: left;
+}
+
+.inner-content-left {
+	width: 288px;
+}
+
+.inner-content-right {
+	width: 288px;
+}
+
+
+/* 3.7	Sidebar
+-----------------------------------------------------------------------------------------------*/
+
+.secondary-navigation a {
+	color: #444034;
+}
+
+.secondary-navigation li {
+	background-color: #faf9e9;
+	border-bottom: 1px solid #eeebc8;
+}
+
+.secondary-navigation li.current {
+	background-color: #e5d69a;
+	border-bottom-color: #c0b06f;
+}
+
+#sidebar .newsletter input.field {
+	width: 157px;
+}
+
+
+/* 3.8	Footer
+-----------------------------------------------------------------------------------------------*/	
+
+.sub-navigation a {
+	color: #7f753c;
+}
+
+
+/* 4. LAYOUT ELEMENTS
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+.vevent a {
+	color: #b58928;
+}
+
+.upcoming-events {
+	clear: both;
+	background-color: #eeebc8;
+	border-top: 5px solid #dddaba;
+}
+
+.upcoming-events a {
+	color: #7f753c;
+}
+
+.upcoming-events ul {
+	width: 950px;
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.upcoming-events li {
+	float: left;
+	width: 290px;
+	color: #7f753c;
+	padding: 0 0 20px 0;
+}
+
+.upcoming-events li.second-event {
+	padding: 0 40px;
+}
+
+.upcoming-events li .description {
+	color: #2d2d2b;
+}
+
+.upcoming-events img {
+	border-color: #c0b991
+}
+
+.newsletter p {
+	color: #ca4b1f;
+}
+
+.newsletter input.field {
+	width: 197px;
+}
+
+.rss-feed {
+	background: url(images/bg_rss_feed.png) no-repeat;
+}
+
+.rss-feed a {
+	color: #b58928;
+}
+
+.news-and-updates a {
+	color: #b58928;
+}
+
+.news-and-updates p a {
+	color: #2d2d2b;
+}
+
+.testimonial {
+	width: 288px;
+	float: right;
+}
+
+.address h4 {
+	font-weight: bold;
+}

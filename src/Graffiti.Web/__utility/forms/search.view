@@ -1,0 +1,4 @@
+<form method="get" id="search_form" action="$macros.SearchUrl">
+	<input type="text" class="search_input" value="Search this site" name="q" id="q" onfocus="if (this.value == 'Search this site') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site';}" />
+	<input type="hidden" id="searchsubmit" value="Search" />
+</form>

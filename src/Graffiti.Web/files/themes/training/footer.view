@@ -1,0 +1,36 @@
+<div class="footer-container">
+	<div id="footer">
+		<div class="sponsors">
+			<h2>Sponsors</h2>
+			<ul>
+				<li><a href="http://graffiticms.com">$macros.Image("images/graffiticms.png", "alt='Graffiti'")</a></li>
+				<li><a href="http://communityserver.org">$macros.Image("images/cs.png", "alt='Community Server'")</a></li>
+				<li><a href="http://telligent.com">$macros.Image("images/telligent.jpeg", "alt='Telligent'")</a></li>
+			</ul>
+		</div>
+		<ol class="sub-navigation">
+			#foreach($cat in $data.Categories())
+			#if ($macros.IsInNavigation($cat.Url))
+				<li><a href="$cat.Url"><span>$cat.Name</span></a>
+			#end
+			#end
+		</ol>
+		<p class="copyright">$!data.Site.Copyright</p>
+		<div style="margin-top: -5px; font-size: 125%;">
+			#if ($macros.IsNotNull($user))
+				$user.ProperName - 
+				<a href="$urls.Home./graffiti-admin">Control Panel</a>
+			#else
+				You are not logged in - 
+				<a href="$urls.Home./graffiti-admin">Login</a>	
+			#end
+		</div>
+		<div style="clear: both;"></div>
+		<div style="text-align: center;">
+			$macros.Logo
+		</div>
+	</div>
+</div>
+$!data.Site.WebStatistics
+</body>
+</html>

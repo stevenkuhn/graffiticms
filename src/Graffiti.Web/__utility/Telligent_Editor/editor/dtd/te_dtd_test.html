@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>DTD Test Page</title>
+	<script type="text/javascript">
+
+	// Define an object for this test page, so the assignment to TE.DTD works
+	var TE = {} ;
+	</script>
+	<script type="text/javascript" src="../_source/internals/tetools.js"></script>
+	<script type="text/javascript" src="te_xhtml10transitional.js"></script>
+</head>
+<body>
+	<h1>
+		DTD Contents
+	</h1>
+	<table border="1">
+		<script type="text/javascript">
+
+    alert(TE.DTD);
+
+for ( var p in TE.DTD )
+{
+	document.write( '<tr><td><b>' + p + '</b></td><td>' ) ;
+
+	var isFirst = true ;
+
+	for ( var c in TE.DTD[p] )
+	{
+		if ( !isFirst )
+			document.write( ', ' ) ;
+		isFirst = false ;
+
+		document.write( c ) ;
+	}
+
+
+	document.write( '</td></tr>' ) ;
+}
+		</script>
+	</table>
+</body>
+</html>

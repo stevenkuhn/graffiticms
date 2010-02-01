@@ -1,0 +1,21 @@
+<html>
+<body>
+	<h1>You have content to approve!</h1>
+	<h3>There is content for  <a href="$home">$sitesettings.Title</a> ready to be published.</h3>
+	<p>
+		<a href="$macros.FullUrl($adminUrl)">Edit this Revision</a> | <a href="$adminApprovalUrl">Publish this Revision</a>
+	</p>
+	<div style="text-align:center;">
+		<div style="text-align:left;width:90%;border:1px solid #000;padding:10px;">
+			<p>
+				<strong>$post.Title</strong> <br />
+				By: $user.ProperName ($user.Name, $user.Email)<br />
+				Revision: $post.Version
+			</p>
+
+			$post.Body
+	</div>
+</div>
+<p style="color:gray">This revision of the post will not be viewable by the public until an administrator or publisher approves it. If a revision of this post has been previously published, users will continue to see that revision until this one is approved</p>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>$title</title>
+
+$macros.Head()
+
+<!-- CSS -->
+$macros.Style("screen.css", "screen")
+$macros.Style("print.css", "print")
+
+<!--[if lte IE 6]>
+	$macros.Style("ie6.css", "screen")
+<![endif]-->
+</head>
+<body>
+<div class="container">
+	<div id="masthead">
+		<h1>$title <span style="background-image: url($macros.Variable("SiteLogo"));" title="Site Name Title"></span></h1>
+		<!-- Below is for interior pages -->
+		<!-- <a href="#" rel="home">Site Name <span title="Site Name: home"></span></a> -->
+		<ul id="accessibility-links">
+			<li><a href="#navigation">Skip to navigation</a></li>
+			<li><a href="#content">Skip to primary content</a></li>
+			<li><a href="#secondary-content">Skip to secondary content</a></li>
+		</ul>
+	</div>
+	<!-- / masthead -->
+	<hr />
+	<ol id="navigation">
+		#foreach($link in $macros.NavigationLinks())
+			#if ($category.Id == $link.CategoryId)
+			<li class="current">
+			#elseif ($where == 'home' && $link.Text == 'Home')
+			<li class="current">
+			#else
+			<li>
+			#end
+			
+			#if ($macros.IsNull($request.tag))
+			<a href="$link.Url"><span>$link.Text</span></a></li>
+			#else
+			<a href="$link.Url?tag=$request.Tag"><span>$link.Text</span></a></li>
+			#end
+		#end
+	</ol>
+	<!-- / navigation -->
+	<hr />
+	<div id="top-bar">
+		<p class="login">Hello 
+		#if ($macros.IsNotNull($user))
+			$user.ProperName!  
+			<a href="$urls.Home./graffiti-admin">Control Panel</a>
+		#else
+			Guest!  
+			<a href="$urls.Home./graffiti-admin">Login</a>	
+		#end
+		</p>
+		<!-- / login -->
+		<div class="search">
+			<form method="get" id="search_form" action="$macros.SearchUrl">
+				<input type="text" value="Search this site" name="q" id="q" class="text" />
+				<input type="image" src='$macros.ThemeFile("images/btn_go.png")' class="button" alt="Search" />
+				<input type="hidden" id="searchsubmit" value="Search" />
+			</form>
+		</div>
+		<!-- / search -->
+	</div>
+	<hr />
+	<div class="content-container">
+		<div id="content">
+			$childContent
+		</div>
+		<!-- / content -->
+		<hr />
+		#if ($category.Name != 'Uncategorized')
+		<div id="secondary-content">
+			#if ($where == 'home')
+			#set ($url = $urls.Home)
+			#else
+			#set ($url = $category.Url)	
+			#end
+			<ul class="secondary-navigation">
+				#if($macros.IsNull($request.tag))
+				<li class="current">
+				#else
+				<li>
+				#end
+				<a href="$url">All Games</a></li>
+				#foreach($tag in $data.GetAllTags())
+				#if($request.tag == $tag.Name)
+				<li class="current">
+				#else
+				<li>
+				#end
+				<a href="$url?tag=$tag.Name">$tag.Name</a></li>
+				#end	
+			</ul>
+			<!-- / secondary navigation -->
+			<div class="module">
+				<h3>Latest News</h3>
+				<a href='$urls.GetFeedUrl($data.GetCategory("News"))' class="rss">$macros.Image("images/ico_rss.png", "width='16' height='16'")</a>
+				<ol class="news hfeed">
+					#foreach ($post in $data.PostsByCategory("News", 3))
+					<li class="hentry"> <span class="published">$post.Published.ToString("D")</span>
+						<h4 class="entry-title"><a rel="bookmark" href="$post.Url">$post.Title</a></h4>
+						<p class="entry-content">$post.PostBody</p>
+					</li>
+					#end
+				</ol>
+				<p><a href="$data.GetCategory("News").Url">News Archive</a></p>
+			</div>
+			<!-- / module -->
+		</div>
+		<!-- / secondary content -->
+		#end
+		#if ($post.Name == "contact-us")
+		<div id="secondary-content">
+			<div class="map-placeholder">$macros.Image("media/map.png", "width='230' height='135' alt='Map'")</div>
+			<div class="address vcard">
+				<h3 class="fn org">Gaming, Inc.</h3>
+				<p class="adr"> <span class="street-address">200 Keystone Crossing Suite</span><br />
+					<span class="region">Indianapolis, IN <span class="postal-code">46240-3730</span></span></p>
+				<p class="tel"> <abbr class="type" title="pref">Phone:</abbr> <span class="value">234-567-8912</span> </p>
+				<p class="tel"> <abbr class="type" title="fax">Fax:</abbr> <span class="value">234-567-8912</span> </p>
+				<p> Mail: <a class="email" href="mailto:hello@gaming.com">hello@gaming.com</a> </p>
+			</div>
+		</div>
+		<!-- / secondary content -->
+		#end
+		<hr />
+	</div>
+	<div class="footer-container">
+		<div id="footer">
+			<ul class="sub-navigation">
+				<li>
+					#set ($url == $category.Url)
+					<ul style="text-transform: uppercase;">
+						<li><a href="$url">All Games</a></li>
+						#foreach($tag in $data.GetAllTags())
+						<li><a href="$url?tag=$tag.Name">$tag.Name</a></li>
+						#end
+					</ul>	
+				</li>
+				<li>
+					<ul>
+					#foreach($link in $macros.NavigationLinks())
+						<li><a href="$link.Url"><span>$link.Text</span></a></li>
+					#end
+						<li><a href="$urls.Home./contact-us/">Contact Us</a></li>
+					</ul>
+				</li>
+			</ul>
+			<p class="copyright">$!data.Site.Copyright</p>
+		</div>
+	</div>
+	<!-- / footer -->
+</div>
+$!data.Site.WebStatistics
+</body>
+</html>

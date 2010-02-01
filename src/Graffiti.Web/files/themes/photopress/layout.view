@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		$macros.Head()
+	</head>
+	<body>
+		<div id="header">
+			<a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a><br />
+			$data.Site.TagLine
+		</div>
+
+		<div id="navbar">
+			<ul>
+				<li><a href="$urls.Home">Home</a></li>
+				<!-- Other Links Here -->
+				<li><a href="$urls.Rss">RSS</a></li>
+			</ul>
+		</div>	
+
+		<div id="wrap">
+			<div id="contenttop"></div>
+				<div id="content">
+					$childContent
+				</div>
+				
+				<div id="contentbottom"></div>
+			</div>
+
+		<div style="clear:both;"></div>	
+
+
+	<div id="footer">
+	
+	<div class="footerleft">
+		<h2>Recently Published</h2>
+			<ul>
+				#foreach($rp in $data.RecentPosts(5))
+					<li><a href="$rp.Url">$rp.Title</a></li>
+				#end
+			</ul><br />
+
+	</div>	
+	
+	<div class="footermiddle">
+	
+		
+		<h2>Categories</h2>
+			<ul>
+				$macros.ULCategories()
+			</ul><br />
+			
+			<h2>Search</h2>
+			<form method="get" id="search_form" action="$urls.Search">
+					<input type="text" size="30" class="search_input" value="Search this site" name="q" id="q" onfocus="if (this.value == 'Search this site') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this site';}" />
+					<input type="hidden" id="searchsubmit" value="Search" />
+				</form>			
+
+	</div>	
+	
+	<div class="footerright">
+
+			#if($isUser) 
+				<h2>Site Options</h2>
+				<ul>
+					<li><a href="$urls.Admin">Control Panel</a></li>
+					<li><a href="$urls.Write">Write New Post</a></li>
+					<li><a href="$urls.Logout">Logout</a></li>
+				</ul>
+				<br />
+			#end	
+	
+			<h2>Site Info</h2>
+			<ul>
+				<li><a href="$urls.Home">Home</a></li>
+				<li><a href="http://graffiticms.com/">Graffiti CMS</a></li>
+				<li><a href="http://validator.w3.org/check?uri=referer">XHTML</a></li>
+			</ul>
+			
+		<h2>Credits</h2>
+			<p><a href="http://performancing.com">Performancing</a>'s <a href="http://themes.performancing.com">Photopress theme</a> is a <a href="http://fusilly.com">Funny T-Shirt</a> Production designed by <a href="http://www.briangardner.com">Brian Gardner</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>	
+			<p>$macros.Logo</p>
+			$data.Site.Copyright
+	</div>
+
+$!data.Site.WebStatistics
+</body>
+
+</html>

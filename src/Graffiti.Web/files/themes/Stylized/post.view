@@ -1,0 +1,100 @@
+<div class="post">
+	<h1 class="title">$post.Title</h1>
+	<div class="meta">
+		<small>
+			$post.Published.ToString("dddd, MMMM dd yyyy")
+		</small>
+	</div>
+	<div class="entry">
+		$post.Body
+<p style="font-size: 150%;">
+$macros.EditLink($post)
+</p>
+	</div>
+	<div class="footer">
+		<small>$!macros.TagList($post.TagList)</small>
+	</div>
+</div>
+
+#foreach($comment in $feedback)
+
+#beforeall
+<div id="comments">
+	<h1 class="title">Comments</h1>
+	#nodata
+	#if($post.EnableNewComments)
+	<h1 class="title">Comments</h1>
+	<div class="entry">
+		<p>There are no comments yet...Kick things off by filling out the form below.</p>
+	</div>
+	#end
+	
+	#each
+	<div id="comment-$comment.Id" #if($comment.CreatedBy == $post.CreatedBy) class="owner comment" #else class="comment" #end>
+		<span class="comment_num">
+			<a href="#comment-$comment.Id" title="Permalink to this comment"></a>
+		</span>
+		<h2>$macros.CommentLink($comment) said <span class="descr">on $comment.Published.ToString("M.dd.yyyy") at $comment.Published.ToString("h:mm tt")</span></h2>
+		
+	
+	<div id="comment-body-$comment.Id" class="commentBody">
+		   $comment.Body #if($isUser)<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $comment.Id,'comment-$comment.Id','comment-body-$comment.Id'); return false">Delete Comment</a>#end
+	</div>
+		<hr />
+	</div>
+#afterall
+</div>
+#end
+
+#if($post.EnableNewComments)
+<h1 id="respond" class="title">Leave a Comment</h1>
+<div id="CommentForm">
+	<form action="$url" method="post" id="comment_form">
+		<dl>
+			#if($isUser)
+			<dt>
+				Logged in as $user.ProperName <a href="$urls.Logout">Logout</a><br /><br />
+			</dt>
+			#else
+			<dt>
+			<label for="author">
+				Name
+			</label>
+			</dt>
+			<dd>
+				<input class="text_input" type="text" name="author" id="author" value="" tabindex="1" />
+			</dd>
+			<dt>
+				<label for="email">
+					Email
+				</label>
+			</dt>
+			<dd>
+				<input class="text_input" type="text" name="email" id="email" value="" tabindex="2" />		 
+				 </dd>
+			<dt>
+				<label for="url">
+					Website
+				</label>
+			</dt>
+			<dd>
+				<input class="text_input" type="text" name="url" id="url" value="" tabindex="3" />
+			</dd>
+					#end
+			<dt>
+			<label for="comment">
+				Comment
+			</label>
+		</dt>
+			<dd>
+				<textarea class="text_input text_area" name="comment" id="comment" rows="7" tabindex="4"></textarea>
+			</dd>
+
+						<dt>
+							$macros.CommentButton("%{class='form_submit', tabindex='5', value='Submit'}") <div style="display:none;" id="comment_status"></div>
+							<input type="hidden" name="comment_post_ID" value="$post.Id" />
+						</dt>
+		</dl>
+	</form>
+</div>
+#end

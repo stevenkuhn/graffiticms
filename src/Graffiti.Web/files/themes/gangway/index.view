@@ -1,0 +1,29 @@
+
+
+<p class="title"><em>
+	#if($where == "category")
+		Entries categorized '$category.Name'
+	#elseif($where == "tag")
+		Entries tagged '$tag'
+	#elseif($where == "search")
+		Search Results for '$macros.SearchQuery'
+	#else
+		Featured Articles
+	#end
+</em></p>
+
+
+	#foreach($post in $posts)
+		<h2 id="post-$post.Id"><a href="$post.Url" rel="bookmark">$post.Title</a></h2>
+		<p class="postinfo">$macros.FormattedDate($post.Published) - <a href="$post.Category.Url">$post.Category.Name</a></p>
+		$post.Excerpt("<p>", "</p>" ,"$post.Title &rarr;", 300)
+		<p class="posttools">$macros.CommentUrl($post, "%{anchor='comment_list'}")</p>
+
+		#nodata
+		<p>Sorry, there are no posts matching your request.</p>
+	#end
+
+	#if($where == "category" || $where=="home")
+		$macros.Pager("navlinks")
+	#end
+

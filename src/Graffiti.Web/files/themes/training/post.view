@@ -1,0 +1,2 @@
+<h3>$post.Title</h3>
+<p>$post.Body</p>

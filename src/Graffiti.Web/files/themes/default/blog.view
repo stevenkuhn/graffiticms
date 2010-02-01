@@ -1,0 +1,24 @@
+<ol class="blog hfeed">
+	#foreach($post in $posts)
+	<li class="hentry">
+
+		<h2 class="entry-title"><a href="$post.Url" title="$post.Title" rel="bookmark">$post.Title</a></h2>
+		<p class="post-meta"><abbr class="published" title="$macros.FormattedDate($post.Published)">$macros.FormattedDate($post.Published)</abbr> on <a href="$post.Category.Url" rel="tag">$post.Category.Name</a></p>
+
+		<div class="entry-content">
+			<p>
+				$post.Excerpt("<p>", "</p>" ,"", 300)
+			</p>
+		</div>
+		
+		<ul class="post-links">
+			<li class="more"><a href="$post.Url">$post.Title</a></li>
+			<li class="comments">
+				<a href="$post.Url#comments">($post.CommentCount) comments</a>
+			</li>
+		</ul>
+	</li>
+	#end
+</ol>
+
+$macros.Pager("pagination")

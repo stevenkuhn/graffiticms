@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /search
+Disallow: /files
+Disallow: /api
+Disallow: /feed
+Disallow: /tags
+Disallow: /error.htm

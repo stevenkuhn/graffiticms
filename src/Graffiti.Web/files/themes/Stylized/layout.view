@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>$title</title>
+		$macros.Style("style.css","screen")
+		$macros.Head()
+	</head>
+	<body>
+	
+	<div id="logo">
+	    <h1><a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a></h1>
+	    <h2>$!data.Site.TagLine</h2>
+    </div>
+	<div id="menu">
+	    <ul>
+	        $macros.NavBar()
+	    </ul>
+	    <hr />
+    </div>
+	<div id="bg">
+	    <div id="page">
+		    <div id="content">
+		        $childContent
+		    </div>
+		    <div id="sidebar">
+		        $macros.RightSideBar("%{beforeWidget='<div class=\"box\">', afterWidget='<div class=\"clear\"></div></div>', beforeTitle='<h2 class=\"title\">', afterTitle='</h2>', beforeContent='<div class=\"content\">', afterContent='</div>'}")					
+		    </div>
+        </div>
+        <div style="clear: both; height: 20px;">&nbsp;</div>
+    </div>
+    <div id="footer">
+	    <hr />
+	    <p>	$!data.Site.Copyright Designed by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> for <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. Ported to Graffiti by <a href="http://richmercer.com/">Rich Mercer</a>.</p>
+	    <div class="poweredby">$macros.Logo</div>
+    </div>
+	$!data.Site.WebStatistics
+</body>
+</html>

@@ -1,0 +1,11 @@
+/*---:[ ie6.css for the Cutline Theme for WordPress ]:---*/
+/*---:[ ------------------------------------------- ]:---*/
+/*---:[ by Chris Pearson of pearsonified.com        ]:---*/
+
+#content, #sidebar { overflow: hidden; }
+
+.clear { margin: 0 0 4.0em 0; }
+
+.flat { margin: 0 0 1.0em 0 !important; }
+
+.whitespace { margin: 0 0 2.0em 0 !important; }

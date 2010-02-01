@@ -1,0 +1,17 @@
+<html>
+<body>
+	<h1>You have contact request!</h1>
+	<div style="text-align:center;">
+		<div style="text-align:left;width:90%;border:1px solid #000;padding:10px;">
+			<p>
+				<strong>$subject</strong> <br />
+				From: $name ($email)<br />
+				IPAddress: $ip
+			</p>
+
+			$message
+	</div>
+</div>
+<p style="color:gray">You were sent this message because you are listed as an Editor on the site $settings.Title</p>
+</body>
+</html>

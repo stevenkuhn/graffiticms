@@ -1,0 +1,48 @@
+<h1 id="post-$post.Id">
+	<a href="$post.Url" rel="bookmark">$post.Title</a>
+</h1>
+<p>
+	Posted on $post.Published.ToString("dddd, MMMM dd yyyy")<br />Filed Under <a href="$post.Category.Url">$post.Category.Name</a> | $macros.CommentUrl($post, "%{anchor='comment_list'}")
+</p>
+$post.Body
+<p class="post_meta">
+	<span class="tag_list">
+		$macros.TagList($post.TagList)
+	</span>
+</p>
+<div style="clear:both;"></div>
+
+<div id="commentblock">
+	<p id="comments"><b>#if($comments.Count == 0)No Responses #elseif($comments.Count == 1) One Comment #else $comments.Count Comments #end to &#8220;$post.Title&#8221;</b></p>
+
+#foreach($comment in $feedback)
+
+#beforeall
+<ol id="commentlist">
+
+	#nodata
+	
+	#if($post.EnableNewComments)
+	<div class="entry">
+		<p>There are no comments yet...Kick things off by filling out the form below.</p>
+	</div>
+	#end
+
+	#each
+	<li #if(($count % 2) > 0) class="alt" #end  id="comment-$comment.Id" #if($comment.CreatedBy == $post.CreatedBy) class="author" #end>
+		$macros.CommentLink($comment) &#8212; $macros.FormattedDate($comment.Published) @ <a href="#comment-$comment.Id">$macros.FormattedTime($comment.Published)</a>
+		<div class="commenttext">
+		$comment.Body #if($isUser)<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $comment.Id,'comment-$comment.Id','comment-body-$comment.Id'); return false">Delete Comment</a>#end
+		</div>
+	</li>
+	
+#afterall
+	</ol>
+#end
+
+
+
+#if($post.EnableNewComments)
+<h2 id="postcomment">Leave a Comment</h2>
+$macros.CommentForm
+#end

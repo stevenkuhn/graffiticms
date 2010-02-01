@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+ * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * This is the configuration file to be used with TEpackager to generate the
+ * compressed code files in the "js" folder.
+ *
+ * Please check http://www.Telligent_Editor.net for more info.
+-->
+<Package>
+	<Header><![CDATA[/*
+
+ * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ * 
+ * == BEGIN LICENSE ==
+ * 
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ * 
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ * 
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ * 
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ * 
+ * == END LICENSE ==
+ * 
+ * This file has been compressed for better performance. The original source
+ * can be found at "editor/_source".
+ */
+]]></Header>
+	<Constants removeDeclaration="false">
+		<Constant name="TE_STATUS_NOTLOADED" value="0" />
+		<Constant name="TE_STATUS_ACTIVE" value="1" />
+		<Constant name="TE_STATUS_COMPLETE" value="2" />
+		<Constant name="TE_TRISTATE_OFF" value="0" />
+		<Constant name="TE_TRISTATE_ON" value="1" />
+		<Constant name="TE_TRISTATE_DISABLED" value="-1" />
+		<Constant name="TE_UNKNOWN" value="-9" />
+		<Constant name="TE_TOOLBARITEM_ONLYICON" value="0" />
+		<Constant name="TE_TOOLBARITEM_ONLYTEXT" value="1" />
+		<Constant name="TE_TOOLBARITEM_ICONTEXT" value="2" />
+		<Constant name="TE_EDITMODE_WYSIWYG" value="0" />
+		<Constant name="TE_EDITMODE_SOURCE" value="1" />
+		<Constant name="TE_STYLE_BLOCK" value="0" />
+		<Constant name="TE_STYLE_INLINE" value="1" />
+		<Constant name="TE_STYLE_OBJECT" value="2" />
+	</Constants>
+	<PackageFile path="editor/js/Telligent_Editorcode_ie.js">
+		<File path="editor/_source/teconstants.js" />
+		<File path="editor/_source/tejscoreextensions.js" />
+		<File path="editor/_source/classes/teiecleanup.js" />
+		<File path="editor/_source/internals/tebrowserinfo.js" />
+		<File path="editor/_source/internals/teurlparams.js" />
+		<File path="editor/_source/classes/teevents.js" />
+		<File path="editor/_source/classes/tedataprocessor.js" />
+		<File path="editor/_source/internals/te.js" />
+		<File path="editor/_source/internals/te_ie.js" />
+		<File path="editor/_source/internals/teconfig.js" />
+		<File path="editor/_source/internals/tedebug.js" />
+		<File path="editor/_source/internals/tedomtools.js" />
+		<File path="editor/_source/internals/tetools.js" />
+		<File path="editor/_source/internals/tetools_ie.js" />
+		<File path="editor/_source/Telligent_Editorapi.js" />
+		<File path="editor/_source/classes/teimagepreloader.js" />
+
+		<File path="editor/_source/internals/teregexlib.js" />
+		<File path="editor/_source/internals/telistslib.js" />
+		<File path="editor/_source/internals/telanguagemanager.js" />
+		<File path="editor/_source/internals/texhtmlentities.js" />
+		<File path="editor/_source/internals/texhtml.js" />
+		<File path="editor/_source/internals/texhtml_ie.js" />
+		<File path="editor/_source/internals/tecodeformatter.js" />
+		<File path="editor/_source/internals/teundo.js" />
+		<File path="editor/_source/classes/teeditingarea.js" />
+		<File path="editor/_source/classes/tekeystrokehandler.js" />
+
+		<File path="editor/dtd/te_xhtml10transitional.js" />
+		<File path="editor/_source/classes/testyle.js" />
+		<File path="editor/_source/internals/testyles.js" />
+			  
+		<File path="editor/_source/internals/telisthandler.js" />
+		<File path="editor/_source/classes/teelementpath.js" />
+		<File path="editor/_source/classes/tedomrange.js" />
+		<File path="editor/_source/classes/tedomrange_ie.js" />
+		<File path="editor/_source/classes/tedomrangeiterator.js" />
+		<File path="editor/_source/classes/tedocumentfragment_ie.js" />
+		<File path="editor/_source/classes/tew3crange.js" />
+		<File path="editor/_source/classes/teenterkey.js" />
+
+		<File path="editor/_source/internals/tedocumentprocessor.js" />
+		<File path="editor/_source/internals/teselection.js" />
+		<File path="editor/_source/internals/teselection_ie.js" />
+
+		<File path="editor/_source/internals/tetablehandler.js" />
+		<File path="editor/_source/internals/tetablehandler_ie.js" />
+		<File path="editor/_source/classes/texml.js" />
+		<File path="editor/_source/classes/texml_ie.js" />
+
+		<File path="editor/_source/commandclasses/tenamedcommand.js" />
+		<File path="editor/_source/commandclasses/testylecommand.js" />
+		<File path="editor/_source/commandclasses/te_othercommands.js" />
+		<File path="editor/_source/commandclasses/teshowblocks.js" />
+		<File path="editor/_source/commandclasses/tespellcheckcommand_ie.js" />
+		<File path="editor/_source/commandclasses/tetextcolorcommand.js" />
+		<File path="editor/_source/commandclasses/tepasteplaintextcommand.js" />
+		<File path="editor/_source/commandclasses/tepastewordcommand.js" />
+		<File path="editor/_source/commandclasses/tetablecommand.js" />
+		<File path="editor/_source/commandclasses/tefitwindow.js" />
+		<File path="editor/_source/commandclasses/telistcommands.js" />
+		<File path="editor/_source/commandclasses/tejustifycommands.js" />
+		<File path="editor/_source/commandclasses/teindentcommands.js" />
+		<File path="editor/_source/commandclasses/teblockquotecommand.js" />
+		<File path="editor/_source/commandclasses/tecorestylecommand.js" />
+		<File path="editor/_source/commandclasses/teremoveformatcommand.js" />
+		<File path="editor/_source/internals/tecommands.js" />
+
+		<File path="editor/_source/classes/tepanel.js" />
+		<File path="editor/_source/classes/teicon.js" />
+		<File path="editor/_source/classes/tetoolbarbuttonui.js" />
+		<File path="editor/_source/classes/tetoolbarbutton.js" />
+		<File path="editor/_source/classes/tespecialcombo.js" />
+		<File path="editor/_source/classes/tetoolbarspecialcombo.js" />
+		<File path="editor/_source/classes/tetoolbarstylecombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontformatcombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontscombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontsizecombo.js" />
+		<File path="editor/_source/classes/tetoolbarpanelbutton.js" />
+		<File path="editor/_source/internals/tetoolbaritems.js" />
+		<File path="editor/_source/classes/tetoolbar.js" />
+		<File path="editor/_source/classes/tetoolbarbreak_ie.js" />
+		<File path="editor/_source/internals/tetoolbarset.js" />
+		<File path="editor/_source/internals/tedialog.js" />
+		<File path="editor/_source/internals/tedialog_ie.js" />
+
+		<File path="editor/_source/classes/temenuitem.js" />
+		<File path="editor/_source/classes/temenublock.js" />
+		<File path="editor/_source/classes/temenublockpanel.js" />
+		<File path="editor/_source/classes/tecontextmenu.js" />
+		<File path="editor/_source/internals/te_contextmenu.js" />
+
+		<File path="editor/_source/classes/teplugin.js" />
+		<File path="editor/_source/internals/teplugins.js" />
+	</PackageFile>
+
+	<PackageFile path="editor/js/Telligent_Editorcode_gecko.js">
+		<File path="editor/_source/teconstants.js" />
+		<File path="editor/_source/tejscoreextensions.js" />
+		<File path="editor/_source/internals/tebrowserinfo.js" />
+		<File path="editor/_source/internals/teurlparams.js" />
+		<File path="editor/_source/classes/teevents.js" />
+		<File path="editor/_source/classes/tedataprocessor.js" />
+		<File path="editor/_source/internals/te.js" />
+		<File path="editor/_source/internals/te_gecko.js" />
+		<File path="editor/_source/internals/teconfig.js" />
+		<File path="editor/_source/internals/tedebug.js" />
+		<File path="editor/_source/internals/tedomtools.js" />
+		<File path="editor/_source/internals/tetools.js" />
+		<File path="editor/_source/internals/tetools_gecko.js" />
+		<File path="editor/_source/Telligent_Editorapi.js" />
+		<File path="editor/_source/classes/teimagepreloader.js" />
+
+		<File path="editor/_source/internals/teregexlib.js" />
+		<File path="editor/_source/internals/telistslib.js" />
+		<File path="editor/_source/internals/telanguagemanager.js" />
+		<File path="editor/_source/internals/texhtmlentities.js" />
+		<File path="editor/_source/internals/texhtml.js" />
+		<File path="editor/_source/internals/texhtml_gecko.js" />
+		<File path="editor/_source/internals/tecodeformatter.js" />
+		<File path="editor/_source/internals/teundo.js" />
+		<File path="editor/_source/classes/teeditingarea.js" />
+		<File path="editor/_source/classes/tekeystrokehandler.js" />
+
+		<File path="editor/dtd/te_xhtml10transitional.js" />
+		<File path="editor/_source/classes/testyle.js" />
+		<File path="editor/_source/internals/testyles.js" />
+
+		<File path="editor/_source/internals/telisthandler.js" />
+		<File path="editor/_source/classes/teelementpath.js" />
+		<File path="editor/_source/classes/tedomrange.js" />
+		<File path="editor/_source/classes/tedomrange_gecko.js" />
+		<File path="editor/_source/classes/tedomrangeiterator.js" />
+		<File path="editor/_source/classes/tedocumentfragment_gecko.js" />
+		<File path="editor/_source/classes/tew3crange.js" />
+		<File path="editor/_source/classes/teenterkey.js" />
+
+		<File path="editor/_source/internals/tedocumentprocessor.js" />
+		<File path="editor/_source/internals/teselection.js" />
+		<File path="editor/_source/internals/teselection_gecko.js" />
+
+		<File path="editor/_source/internals/tetablehandler.js" />
+		<File path="editor/_source/internals/tetablehandler_gecko.js" />
+		<File path="editor/_source/classes/texml.js" />
+		<File path="editor/_source/classes/texml_gecko.js" />
+
+		<File path="editor/_source/commandclasses/tenamedcommand.js" />
+		<File path="editor/_source/commandclasses/testylecommand.js" />
+		<File path="editor/_source/commandclasses/te_othercommands.js" />
+		<File path="editor/_source/commandclasses/teshowblocks.js" />
+		<File path="editor/_source/commandclasses/tespellcheckcommand_gecko.js" />
+		<File path="editor/_source/commandclasses/tetextcolorcommand.js" />
+		<File path="editor/_source/commandclasses/tepasteplaintextcommand.js" />
+		<File path="editor/_source/commandclasses/tepastewordcommand.js" />
+		<File path="editor/_source/commandclasses/tetablecommand.js" />
+		<File path="editor/_source/commandclasses/tefitwindow.js" />
+		<File path="editor/_source/commandclasses/telistcommands.js" />
+		<File path="editor/_source/commandclasses/tejustifycommands.js" />
+		<File path="editor/_source/commandclasses/teindentcommands.js" />
+		<File path="editor/_source/commandclasses/teblockquotecommand.js" />
+		<File path="editor/_source/commandclasses/tecorestylecommand.js" />
+		<File path="editor/_source/commandclasses/teremoveformatcommand.js" />
+		<File path="editor/_source/internals/tecommands.js" />
+
+		<File path="editor/_source/classes/tepanel.js" />
+		<File path="editor/_source/classes/teicon.js" />
+		<File path="editor/_source/classes/tetoolbarbuttonui.js" />
+		<File path="editor/_source/classes/tetoolbarbutton.js" />
+		<File path="editor/_source/classes/tespecialcombo.js" />
+		<File path="editor/_source/classes/tetoolbarspecialcombo.js" />
+		<File path="editor/_source/classes/tetoolbarstylecombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontformatcombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontscombo.js" />
+		<File path="editor/_source/classes/tetoolbarfontsizecombo.js" />
+		<File path="editor/_source/classes/tetoolbarpanelbutton.js" />
+		<File path="editor/_source/internals/tetoolbaritems.js" />
+		<File path="editor/_source/classes/tetoolbar.js" />
+		<File path="editor/_source/classes/tetoolbarbreak_gecko.js" />
+		<File path="editor/_source/internals/tetoolbarset.js" />
+		<File path="editor/_source/internals/tedialog.js" />
+		<File path="editor/_source/internals/tedialog_gecko.js" />
+
+		<File path="editor/_source/classes/temenuitem.js" />
+		<File path="editor/_source/classes/temenublock.js" />
+		<File path="editor/_source/classes/temenublockpanel.js" />
+		<File path="editor/_source/classes/tecontextmenu.js" />
+		<File path="editor/_source/internals/te_contextmenu.js" />
+
+		<File path="editor/_source/classes/teplugin.js" />
+		<File path="editor/_source/internals/teplugins.js" />
+	</PackageFile>
+
+</Package>

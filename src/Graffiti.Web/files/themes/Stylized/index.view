@@ -1,0 +1,33 @@
+#if($where == "tag")
+<h1 class="archive_head">Entries tagged '$tag'</h1>
+#elseif($where == "search")
+<h1 class="archive_head">Search Results for '$macros.SearchQuery'</h1>
+#end
+
+#foreach($post in $posts)
+<div class="post">
+	<h1 class="title"><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h1>
+	<div class="meta">
+		<small>
+			$post.Published.ToString("dddd, MMMM dd yyyy")
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="add_comment">$macros.CommentUrl($post, "%{anchor='comments'}")</span>
+		</small>
+	</div>
+	<div class="entry">
+		$post.PostBody
+	</div>
+	#if($post.Body.Length > $post.PostBody.Length)
+	<div><a href="$post.Url">Read more....</a></div>
+	#end
+</div>
+#nodata
+<div class="entry">
+	Sorry, there are no posts matching your request.
+</div>
+
+#end
+
+#if($where == "category" || $where=="home")
+$macros.Pager("navigation")
+<div class="clear flat"></div>
+#end

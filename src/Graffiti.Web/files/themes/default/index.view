@@ -1,0 +1,25 @@
+<ol class="blog hfeed">
+	#foreach($post in $posts)
+	<li class="hentry">
+
+		<h2 class="entry-title"><a href="$post.Url" title="$post.Title" rel="bookmark">$post.Title</a></h2>
+		<p class="post-meta"><abbr class="published" title="$macros.FormattedDate($post.Published)">$macros.FormattedDate($post.Published)</abbr> on <a href="$post.Category.Url" rel="tag">$post.Category.Name</a></p>
+
+		<div class="entry-content">
+			<p>
+				#if ($post.ImageUrl != "")
+					<img style="float: left; padding: 0px 10px 2px 0px;" src='$macros.Link($post.ImageUrl)' />			
+				#end
+
+				$post.Excerpt("<p>", "</p>" ,"", 600)
+			</p>
+		</div>
+		
+		<ul class="post-links">
+			<li class="more"><a href="$post.Url">$post.Title</a></li>
+		</ul>
+	</li>
+	#end
+</ol>
+
+$macros.Pager("pagination")

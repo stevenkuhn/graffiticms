@@ -1,0 +1,321 @@
+/* 
+	Theme Name: Gangway
+	Theme URL: http://themes.performancing.com
+	Description: Gangway 1.0 is an awesome theme for group blogs.
+	Author: Forty
+	Author URI: http://www.fortymedia.com
+	Version: 1.0
+		
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+	
+	Changelog:
+		v1.0 - 03.27.07
+			First Release of Gangway 1.0
+*/
+
+a:link, a:visited{
+	color: #3366CC;
+	text-decoration: none;
+}
+
+a:hover, a:active{
+	color: #336699;
+	text-decoration: underline;
+}
+
+body{
+	background: url(img/bg.gif) #FFFFFF repeat top;
+	font: 82%/1.5 Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	padding: 0;
+	text-align: left;
+	width: 975px;
+}
+
+div, dl, dt, dd, ul, ol, lo,
+h1, h2, h3, h4, h5, h6,
+form, blockquote{
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	font-weight: normal;
+}
+
+h2 {
+
+}
+
+html{
+	text-align: center;
+}
+
+img{
+	border: none;
+}
+
+ol, ul{
+	list-style: none;
+}
+
+p{
+	margin: 10px 0 10px 0;
+	padding: 0 15px 0 15px;
+}
+
+.addbar{
+	border-bottom: 2px solid #333333;
+	border-top: 2px solid #333333;
+	clear: both;
+	float: left;
+	padding: 10px 0;
+	width: 100%;
+}
+
+.addbar .narrow{
+	float: right;
+	width: 230px;
+}
+
+.addbar .wide{
+	float: left;
+	width: 728px;
+}
+
+.addbar img{
+	display: block;
+}
+
+.contentarea{
+	float: left;
+	width: 100%;
+}
+
+.contentarea .narrow{
+	color: #666666;
+	float: left;
+	width: 230px;
+}
+
+.contentarea .narrow h3{
+	font-size: 110%;
+	font-weight: bold;
+	padding: 5px 15px 0 15px;
+}
+
+.contentarea .narrow p.addspace{
+	padding: 0 0 10px 0;
+}
+
+.contentarea .narrow p.addspace img{
+	display: block;
+}
+
+.contentarea .narrow p.title{
+	background: url(img/cornernarrow.gif) #EEEEEE no-repeat bottom;
+	border-top: 1px solid #999999;
+	font-size: 85%;
+	margin: 0 0 10px 0;
+	padding: 4px 15px 5px 15px;
+}
+
+.contentarea .narrow ul.fresh{
+	padding: 5px 0 10px 0;
+}
+
+.contentarea .narrow ul.fresh li{
+	font-size: 110%;
+	font-weight: bold;
+	line-height: 1.25em;
+	padding: 0 15px 10px 15px;
+}
+
+.contentarea .narrow ul.linkage li,
+.contentarea .wide ul.linkage li{
+	color: #666666;
+	font-size: 110%;
+	line-height: 1.25em;
+	padding: 0 15px 10px 15px;
+}
+
+.contentarea .narrow ul.linkage,
+.contentarea .wide ul.linkage{
+	padding: 0 0 10px 0;
+	margin: 0;
+	list-style: none;
+}
+
+.contentarea .wide{
+	float: left;
+	width: 515px;
+}
+
+.contentarea .wide ul,
+.contentarea .narrow ul{
+	padding: 0 0 10px 20px;
+	margin: 0 0 0 20px;
+	list-style: disc;
+}
+
+.contentarea .wide ol,
+.contentarea .narrow ol{
+	list-style: decimal;
+	padding: 0 0 10px 20px;
+	margin: 0 0 0 20px;
+}
+
+.contentarea .wide .navlinks{
+	padding: 10px 0 20px 0;
+}
+
+.contentarea .wide .navlinks a{
+	margin: 0 0 0 15px;
+}
+
+.contentarea .wide h2{
+	background: url(img/cornerwide.gif) #DDDDDD no-repeat top;
+	font-size: 150%;
+	font-weight: bold;
+	padding: 15px 15px 5px 15px;
+}
+
+.contentarea .wide p.postimage{
+	background: url(img/cornerwide.gif) #DDDDDD no-repeat bottom;
+	margin: 0 0 10px 0;
+	padding: 0 0 5px 0;
+}
+
+.contentarea .wide p.postimage img{
+	display: block;
+}
+
+.contentarea .wide p.postinfo{
+	background: url(img/cornerwide.gif) #DDDDDD no-repeat bottom;
+	color: #666666;
+	font-size: 85%;
+	margin: 0 0 10px 0;
+	padding: 0 15px 15px 15px;
+}
+
+.contentarea .wide p.posttools{
+	font-size: 85%;
+	padding: 0 15px 0px 15px;
+}
+
+.contentarea .wide p.title{
+	background: url(img/cornerwide.gif) #333333 no-repeat bottom;
+	color: #FFFFFF;
+	font-size: 85%;
+	margin: 0 0 10px 0;
+	padding: 5px 15px;
+}
+
+.commentstatus { background: #FFFFCC; position:absolute; margin-left: 8px; margin-top: -2px; padding: 2px; border: solid 1px #eee; }
+
+#branding{
+	float: left;
+	width: 100%;
+}
+
+#branding h1{
+	font-size: 250%;
+	font-weight: bold;
+	padding: 10px 15px;
+}
+
+#branding h1 a{
+	color: #333333;
+}
+
+#branding ul{
+	float: right;
+	font-size: 250%;
+	padding: 10px 15px;
+}
+
+#branding ul li{
+	display: inline;
+	text-transform: lowercase;
+}
+
+#branding ul li#about,
+#branding ul li#advertise,
+#branding ul li#contact{
+	margin: 0 0 0 15px;
+}
+
+#footer{
+	border-top: 1px solid #333333;
+	clear: both;
+	color: #666666;
+	padding: 10px 0 20px 0;
+}
+
+#footer p{
+	font-size: 85%;
+	padding: 0 15px 5px 15px;
+}
+
+#tools{
+	background: url(img/cornertools.gif) #333333 no-repeat bottom;
+	float: left;
+	width: 100%;
+}
+
+#tools form{
+	float: right;
+	padding: 5px 0;
+	width: 230px;
+}
+
+#tools form input.submitbutton{
+	font-size: 85%;
+	margin: 0 0 0 5px;
+}
+
+#tools form input.textfield{
+	font-size: 85%;
+	width: 125px;
+}
+
+#tools p{
+	background: url(img/rss.gif) no-repeat left;
+	font-weight: bold;
+	margin: 0 230px 0 7px;
+	padding: 5px 5px 5px 20px;
+	text-transform: uppercase;
+}
+
+#tools p a:link, #tools p a:visited, #tools p a:hover, #tools p a:active{
+	color: #FFFFFF;
+}
+
+textarea {
+width: 450px;
+}
+
+#comment_form { width: 500px; padding: 1em 0 0 1em; }
+
+    #comment_form .form_field_pair { position: relative; height: 40px; }
+	
+	    #comment_form .form_field_name { position: absolute; left: 200px; }
+	    
+	    #comment_form .form_field { position: absolute; left: 0px; }
+	
+		#comment_form label { padding: 0 0 0 10px; }
+		
+		#comment_form .form_field input { width: 191px; }
+
+		#comment_form .form_field_pair.comment { height: auto; }
+		
+		#comment_form .comment .form_field { position: static; }
+		
+		#comment_form .comment .form_field_name { display: none; }
+		
+		#comment_form textarea { width: 321px !important; }
+		
+		#comment_form .form_buttons { padding: 1em 0; }

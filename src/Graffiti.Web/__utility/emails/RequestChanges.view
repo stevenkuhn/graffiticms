@@ -1,0 +1,21 @@
+<html>
+<body>
+	<h1>You have content requiring changes!</h1>
+	<p>
+		<a href="$macros.FullUrl($adminUrl)">Edit this Revision</a>
+	</p>
+	<div style="text-align:center;">
+		<div style="text-align:left;width:90%;border:1px solid #000;padding:10px;">
+			<p>
+				<strong>$post.Title</strong> <br />
+				Editor: $user.ProperName ($user.Name, $user.Email)<br />
+				Revision: $post.Version<br />
+				Notes: $post.Notes
+			</p>
+
+			$post.Body
+	</div>
+</div>
+<p style="color:gray">This revision of the post will not be viewable by the public until an administrator or publisher approves it. If a revision of this post has been previously published, users will continue to see that revision until this one is approved</p>
+</body>
+</html>

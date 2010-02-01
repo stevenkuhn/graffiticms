@@ -1,0 +1,34 @@
+#if($where == "category")
+<h2 class="archive_head">Entries categorized '$category.Name'</h2>
+#elseif($where == "tag")
+<h2 class="archive_head">Entries tagged '$tag'</h2>
+#elseif($where == "search")
+<h2 class="archive_head">Search Results for '$macros.SearchQuery'</h2>
+#end
+
+#foreach($post in $posts)
+
+<h2><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h2>
+<h4>
+	$macros.FormattedDate($post.Published) - $macros.CategoryLink($post.Category)
+</h4>
+<div class="entry">
+	$post.Excerpt("<p>", "</p>" ,"$post.Title &rarr;", 300)
+</div>
+<p class="tagged">
+	<span class="add_comment">$macros.CommentUrl($post, "%{anchor='comment_list'}")</span>
+	$!macros.TagList($post.TagList)
+</p>
+<div class="clear"></div>
+
+#nodata
+<div class="entry">
+	Sorry, there are no posts matching your request.
+</div>
+
+#end
+
+#if($where == "category" || $where=="home")
+$macros.Pager("navigation")
+<div class="clear flat"></div>
+#end

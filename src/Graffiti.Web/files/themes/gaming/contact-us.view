@@ -1,0 +1,3 @@
+<h2>$post.Title</h2>
+<p>$post.Body</p>
+$macros.ContactForm()

@@ -1,0 +1,33 @@
+
+<form action="$url" method="post" id="comment_form">
+
+#if($isUser)
+<div class="form_field_pair name">
+	<div class="form_field">Logged in as $user.ProperName <a href="$urls.Logout">Logout</a></div>
+</div>
+#else
+<div class="form_field_pair author">
+	<div class="form_field_name"><label for="author">Name</label></div>
+	<div class="form_field"><input type="text" name="author" id="author" value="" tabindex="1" /></div>
+</div>
+<div class="form_field_pair email">
+	<div class="form_field_name"><label for="email">Mail</label></div>
+	<div class="form_field"><input type="text" name="email" id="email" value="" tabindex="2" /></div>
+</div>
+<div class="form_field_pair url">
+	<div class="form_field_name"><label for="url">Website</label></div>
+	<div class="form_field"><input type="text" name="url" id="url" value="" tabindex="3" /></div>
+</div>
+#end
+<div class="form_field_pair comment">
+	<div class="form_field_name"><label for="comment">Comment</label></div>
+	<div class="form_field"><textarea class="text_input text_area" name="comment" id="comment" rows="7" tabindex="4"></textarea></div>
+</div>
+<div class="form_buttons">
+	$macros.CommentButton("%{class='submit_button', tabindex='5', value='Submit'}")
+	<br />
+	<span class="commentstatus" style="display:none;" id="comment_status"></span>
+	<input type="hidden" name="comment_post_ID" value="$post.Id" />
+</div>
+
+</form>

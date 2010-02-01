@@ -1,0 +1,12 @@
+
+a[href]:after {
+   content: " (" attr(href) ") ";
+   font-size: 90%; 
+}
+
+a[href^="/"]:after {
+   content: " (http://domain.com" attr(href) ") "; }
+	 
+#accessibility-menu, #navigation { 
+	display:none !important; }
+

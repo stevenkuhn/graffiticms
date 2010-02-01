@@ -1,0 +1,14 @@
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Graffiti.Core.RSS" %>
+<%-- 
+This file was generated at $date and should not be manually edited.
+--%>
+
+<script runat="Server">
+
+protected override void Initialize()
+{
+	base.Initialize();
+	TagName = @"${tag.Replace("\"", "\"\"").Replace(" ", "-")}";
+}
+
+</script>

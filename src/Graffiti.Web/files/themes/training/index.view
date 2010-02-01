@@ -1,0 +1,4 @@
+#foreach ($post in $posts)
+<h3>$post.Title</h3>
+$post.Excerpt("<p>", "</p>" ,"$post.Title &rarr;", 300)
+#end

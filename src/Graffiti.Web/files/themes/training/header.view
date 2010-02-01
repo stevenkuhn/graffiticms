@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<title>$title</title>
+
+<!-- CSS -->
+$macros.Style("screen.css","screen")
+$macros.Style("brown.css","screen")
+$macros.Style("print.css","print")
+<!--[if lte IE 6]>
+$macros.Style("ie.css","screen")
+$macros.JavaScript("utils/pngfix.js");
+$macros.JavaScript("utils/navigation.js");
+<![endif]-->
+
+$macros.Head()
+
+</head>
+#if ($where == "home")
+<body class="home">
+#else
+<body>
+#end
+<div class="container">
+	<div id="masthead">
+		<a href='$urls.Home'>
+			<h1>
+				$data.Site.Title<span title="$data.Site.TagLine"></span>
+			</h1>
+		</a>
+		<ul id="accessibility-links">
+			<li>
+				<a href="#navigation">Skip to navigation</a>
+			</li>
+			<li>
+				<a href="#content">Skip to primary content</a>
+			</li>
+		</ul>
+	</div>
+	<!-- / masthead -->
+	<hr />
+	<div id="navigation">
+		<ol>
+			#foreach($link in $macros.NavigationLinks())
+
+			#set($cat = $data.GetCategory($link.CategoryId))
+
+			#if ($count == 1)
+			<li class="first">
+				<a href="$link.Url">
+					<span>$link.Text</span>
+				</a>
+				#else
+				<li>
+					<a href="$link.Url">
+						<span>$link.Text</span>
+					</a>
+					#end
+
+					#if ($cat.HasChildren)
+					<div>
+						<ul>
+							#foreach ($child in $cat.Children)
+							<li>
+								<a href="$child.Url">
+									<span>$child.Name</span>
+								</a>
+								#end
+							</ul>
+					</div>
+					#end
+
+					#end
+				
+		</ol>
+
+		<a href="$urls.Rss" class="rss">$macros.Image("images/ico_rss.png", "alt='RSS Feed' width='14' height='14'")</a>
+	</div>
+	<!-- / navigation -->
+	<hr />
+	<div class="search">
+		$macros.SearchForm()
+	</div>
+	<!-- / search -->
+	<hr />
+</div>
+<div class="header-container">
+	<div id="header">
+		<p>$macros.Variable("SiteHeaderText")</p>
+		#if ($where == "home")
+		<div class="upcoming-events">
+			<h2>Upcoming Events</h2>
+
+			#set ($featuredPost = $data.Featured("Upcoming Events"))
+
+			#if ($macros.IsNull($featuredPost))
+			<div class="vevent">
+				<p class="description">There is no featured upcoming events.</p>
+			</div>
+			#else
+			<div class="vevent">
+				<a href="$featuredPost.Url">
+					<img src="$featuredPost.ResolvedImageUrl" width="240" height="100" class="attach" />
+					<h3 class="summary">$featuredPost.Title</h3>
+				</a>
+				<p class="description">$featuredPost.PostBody</p>
+			</div>
+			#end
+		</div>
+		#end
+	</div>
+</div>
+<hr />

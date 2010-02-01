@@ -1,0 +1,146 @@
+<div class="banner">
+	<img src='$macros.Variable("SiteBanner")' width='710' height='200' />
+</div>
+<!-- / banner -->
+#if($where == 'home')
+<div class="highlights-wrapper">
+	<div class="highlights">
+		<ul>
+			#set ($post = $data.Featured("Reviews"))
+			#if ($macros.IsNotNull($post))
+			<li>
+				#if ($post.ImageUrl != "")
+					<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+				#end
+				<h3><a href="$post.Url">$post.Title</a></h3>
+				<p>$post.PostBody</p>
+			</li>
+			#end
+			#set ($post = "")
+			#set ($post = $data.Featured("Previews"))
+			#if ($macros.IsNotNull($post))
+			<li class="middle">
+				#if ($post.ImageUrl != "")
+					<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+				#end
+				<h3><a href="$post.Url">$post.Title</a></h3>
+				<p>$post.PostBody</p>
+			</li>
+			#end
+			#set ($post = "")
+			#set ($post = $data.Featured("Features"))
+			#if ($macros.IsNotNull($post))
+			<li>
+				#if ($post.ImageUrl != "")
+					<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+				#end
+				<h3><a href="$post.Url">$post.Title</a></h3>
+				<p>$post.PostBody</p>
+			</li>
+			#end
+		</ul>
+	</div>
+</div>
+<!-- / highlights -->
+<div class="column-wrapper triple-column-wrapper">
+	<div class="triple-column">
+		<div class="col-a">
+			<h2>Reviews</h2>
+			<ul>
+				#foreach ($post in $data.PostsByTagAndCategory($request.tag, "Reviews", 3))
+				<li>
+					#if ($post.ImageUrl != "")
+						<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+					#end
+					<h3><a href="$post.Url">$post.Title</a></h3>
+					<p>$post.PostBody</p>
+				</li>
+				#end
+			</ul>
+		</div>
+		<div class="col-b">
+			<h2>Previews</h2>
+			<ul>
+				#foreach ($post in $data.PostsByTagAndCategory($request.tag, "Previews", 3))
+				<li>
+					#if ($post.ImageUrl != "")
+						<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+					#end
+					<h3><a href="$post.Url">$post.Title</a></h3>
+					<p>$post.PostBody</p>
+				</li>
+				#end
+			</ul>
+		</div>
+		<div class="col-c">
+			<h2>Features</h2>
+			<ul>
+				#foreach ($post in $data.PostsByTagAndCategory($request.tag, "Features", 3))
+				<li>
+					#if ($post.ImageUrl != "")
+						<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+					#end
+					<h3><a href="$post.Url">$post.Title</a></h3>
+					<p>$post.PostBody</p>
+				</li>
+				#end
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- / triple column -->
+<div class="column-wrapper dual-column-wrapper">
+	<div class="dual-column-wrapper-2">
+		<div class="dual-column">
+			<div class="col-a">
+				<h3>Last Cheat</h3>
+				#foreach ($post in $data.PostsByTagAndCategory($request.tag, "Cheats", 1))
+				#if ($post.ImageUrl != "")
+				<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+				#end
+				<h4><a href="$post.Url">$post.Title</a></h4>
+				<h5 style='text-transform: uppercase;'>
+				$post.TagList.Replace(",", ", ")
+				</h5>
+				<p>$post.PostBody</p>
+				#end
+			</div>
+			<div class="col-b">
+				<h3>Downloads</h3>
+				<ul>
+					#foreach ($post in $data.PostsByTagAndCategory($request.tag, "Downloads", 4))
+					<li><a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" />
+						$post.Title
+						</a>
+					</li>
+					#end
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- / dual column -->
+#else
+<div class="column-wrapper single-column">
+	<h2>$category.Name</h2>
+	<ul>
+	#set ($newUL = 0)
+	#foreach ($post in $data.PostsByTagAndCategory($request.tag, $category))
+	#set ($newUL = $newUL + 1)
+	#if ($newUL == 5)
+	</ul>
+	<ul>
+	#set ($newUL = 0)
+	#end
+	<li>
+		#if ($post.ImageUrl != "")
+			<a href="$post.Url"><img src="$macros.Link($post.ImageUrl)" width="59" height="59" /></a>	
+		#end
+		<h3><a href="$post.Url">$post.Title</a></h3>
+		<p>$post.PostBody</p>
+	</li>
+	#end
+	</ul>
+</div>
+<!-- / single column -->
+#end

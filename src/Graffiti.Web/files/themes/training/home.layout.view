@@ -1,0 +1,75 @@
+$header
+<div class="upcoming-events hcalendar">
+	<ul>
+		#foreach ($post in $data.PostsByCategory("Upcoming Events", 3))
+		#if ($post.Url != $featuredPost.Url)
+		
+		#if ($count == 2)
+		<li class="second-event">
+		#else
+		<li>
+		#end
+			<div class="vevent">
+				<a href="$post.Url">
+				<img src="$post.ResolvedImageUrl" width="280" height="110" class="attach" />
+				<h3 class="summary">$post.Title</h3>
+				</a>
+				<p class="place-time"><em class="location">$post.Custom("Location")</em> | <em>$post.Custom("Date")</em></p>
+				<p class="description">$post.PostBody</p>
+			</div>
+		</li>
+		#end
+		#end
+	</ul>
+</div>
+<!-- / upcoming events -->
+<hr />
+<div class="main-container">
+	<div class="container">
+		<div id="content">
+			<div class="inner-content-container">
+				<div class="inner-content-right">
+					<h2>News and Updates</h2>
+					<ul class="news-and-updates">
+						#foreach ($post in $data.PostsByCategory("News and Updates", 2))
+						<li>
+							<h3><a href="$post.Url">$post.Title</a></h3>
+							<em class="date">$post.Published</em>
+							<p>$post.PostBody</p>
+						</li>
+						#end
+					</ul>
+					<!-- / news and updates -->
+				</div>
+				<div class="inner-content-left">
+					<h2>RSS Feed</h2>
+					<div class="rss-feed">$macros.Image("images/ico_rss_large.png", "width='28' height='28'")
+						<p>Subscribe to our RSS Feed</p>
+						<ul>
+							<li><a href="$urls.GetFeedUrl($data.GetCategory("Upcoming Events"))">Upcoming Events</a></li>
+							<li><a href="$urls.GetFeedUrl($data.GetCategory("News and Updates"))">News and Updates</a></li>
+						</ul>
+					</div>
+					<!-- / rss feeds -->
+				</div>
+			</div>
+			<div class="testimonial">
+				<h2>Testimonial</h2>
+				#foreach ($post in $data.PostsByCategory("Testimonials", 2))
+				<blockquote>
+				<p>
+					<p>$post.Body</p>
+					<p class="byline">$post.Custom("Name")</p>
+				</p>
+				</blockquote>
+				<br />
+				#end
+			</div>
+			<!-- / testimonial -->
+		</div>
+		<!-- / content -->
+		<hr />
+	</div>
+</div>
+<!-- / main container -->
+$footer
