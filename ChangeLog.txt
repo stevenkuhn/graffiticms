@@ -1,0 +1,17 @@
+**************
+ Graffiti 1.3
+**************
+
+Changes since version 1.2:
+
+* Added support for URL Routing. Routing requires IIS 7 or above and ASP.NET 3.5 SP1, and allows total url control with no directories or files being written to disk. For those running older versions of IIS, writing files to disk has been made a control panel option. 
+
+* Switched from prototype to jQuery javascript library
+
+* The control panel has been cleaned up quite a bit and many configurations settings once made in the web.config now have a web UI.
+
+* VistaDB support removed. Due to licensing contraints, support for VistaDB has been removed from 1.3. Support _may_ be added back in the future.
+
+
+
+ 

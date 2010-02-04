@@ -9,6 +9,7 @@
 	<h2 class="title"><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h2>
 	<p class="byline"><small></small></p>
 	<p class="date"><span class="month">$post.Published.ToString("MMMM") </span><span class="day">$post.Published.ToString("dd")</span><span class="year">, $post.Published.ToString("yyyy")</span></p>
+$FormattedDate(post.Custom("CustomDate"))
 	<div class="entry">
 		$post.PostBody
 	</div>
@@ -22,7 +23,6 @@
 <div class="entry">
 	Sorry, there are no posts matching your request.
 </div>
-
 #end
 
 #if($where == "category" || $where=="home")

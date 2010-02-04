@@ -64,7 +64,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Lucene.Net.dll</HintPath>
     </Reference>
-    <Reference Include="NVelocity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NVelocity, Version=1.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NVelocity.dll</HintPath>
     </Reference>
