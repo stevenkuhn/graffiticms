@@ -1048,7 +1048,7 @@ namespace Graffiti.Core
 		{
 			bool b = (obj == null);
 
-			if (b)
+			if (!b)
 			{
 				b = string.IsNullOrEmpty(obj as string);
 			}
