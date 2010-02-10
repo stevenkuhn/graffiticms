@@ -196,7 +196,7 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 
 			Page.ClientScript.RegisterStartupScript(GetType(),
 				 "Writer-Page-StartUp",
-				 "$(document).ready(function() { var eBody = $('#extended_body')[0]; " + (!string.IsNullOrEmpty(txtContent_extend.Text.Trim()) ? "eBody.style.position = 'static'; eBody.style.visibility = 'visible';" : "eBody.style.position = 'absolute'; eBody.style.visibility = 'hidden';") + "categoryChanged($('#" + CategoryList.ClientID + "')[0]); Publish_Status_Change();});", true);
+				 "$(document).ready(function() { var eBody = $('#extended_body')[0]; " + (!string.IsNullOrEmpty(txtContent_extend.Text) ? "eBody.style.position = 'static'; eBody.style.visibility = 'visible';" : "eBody.style.position = 'absolute'; eBody.style.visibility = 'hidden';") + "categoryChanged($('#" + CategoryList.ClientID + "')[0]); Publish_Status_Change();});", true);
 
 			Page.ClientScript.RegisterHiddenField("dateChangeFlag", "false");
 		}
