@@ -22,6 +22,9 @@ namespace Graffiti.Core
 			// Ignore all of admin section
 			routes.Add("ignoreADMIN", new Route("graffiti-admin/{*pathInfo}", new StopRoutingHandler()));
 
+			// Added to solve a issue with http://(www.)domain.ext/ rendering 404
+			routes.Add("Home", new Route("", new StopRoutingHandler()));
+
 			routes.Add("TagPage", new Route("tags/{TagName}/", new TagHandler()));
 			routes.Add("TagFeed", new Route("tags/{TagName}/feed/", new RssHandler()));
 
@@ -29,10 +32,12 @@ namespace Graffiti.Core
 			routes.Add("Category1Feed", new Route("{CategoryOne}/feed/", new RssHandler()));
 			routes.Add("Category2Feed", new Route("{CategoryOne}/{CategoryTwo}/feed/", new RssHandler()));
 
-			// Allow plugins to add Routes before the default CategoryAndPost one
+			// Allow plugins to add Routes before the default CategoryAndPost ones
 			Events.Instance().ExecuteUrlRoutingAdd(routes);
 
-			routes.Add("CategoryAndPost", new Route("{*path}", new CategoryAndPostHandler()));
+			routes.Add("Param1", new Route("{Param1}", new CategoryAndPostHandler()));
+			routes.Add("Param2", new Route("{Param1}/{Param2}/", new CategoryAndPostHandler()));
+			routes.Add("Param3", new Route("{Param1}/{Param2}/{Param3}/", new CategoryAndPostHandler()));
 		}
 
 		public static void AddRoute(Route route)
