@@ -100,7 +100,7 @@ public partial class graffiti_admin_posts_write_Default {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Telligent.Glow.Editor.Editor txtContent;
+    protected global::Graffiti.Core.GraffitiEditor txtContent;
     
     /// <summary>
     /// txtContent_extend control.
@@ -109,7 +109,7 @@ public partial class graffiti_admin_posts_write_Default {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Telligent.Glow.Editor.Editor txtContent_extend;
+    protected global::Graffiti.Core.GraffitiEditor txtContent_extend;
     
     /// <summary>
     /// TabbedPane2 control.

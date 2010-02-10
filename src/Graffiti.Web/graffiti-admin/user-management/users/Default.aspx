@@ -76,7 +76,7 @@
     </div>
     
     <h2>Bio:</h2>
-    <GlowEditor:Editor runat="Server" ID="Editor" ToolbarSet="Simple" Width="600px" />
+    <Z:GraffitiEditor runat="server" ID="Editor" Width="600px" ToolbarSet="Simple" TabIndex="3" />
     
     <div class="submit">
         <asp:Button runat="Server" ID="EditCategory" OnClick="EditPerson_Click" CssClass="button"  Text = "Save" TabIndex="2" />

@@ -8,7 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using Telligent.Glow.Editor;
 using Graffiti.Core;
 
 public partial class graffiti_admin_presentation_plugins_Edit : AdminControlPanelPage

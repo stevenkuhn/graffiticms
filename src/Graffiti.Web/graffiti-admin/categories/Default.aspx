@@ -38,8 +38,7 @@
         <asp:Literal runat="Server" ID = "existingParentLinkName" /><asp:TextBox CssClass = "small" runat="Server" id="txtExistingLinkName" TabIndex="2" MaxLength="256" /> 
         
         <h2>Description: <span class="form_label">(optional)</span></h2>
-        <GlowEditor:Editor runat="Server" ID="Editor" ToolbarSet="Simple" Width="600px" TabIndex="3" />
-        
+        <Z:GraffitiEditor runat="server" ID="Editor" Width="600px" ToolbarSet="Simple" TabIndex="3" />
         <script type="text/javascript">
         //<!--
         function EditSortOrder()

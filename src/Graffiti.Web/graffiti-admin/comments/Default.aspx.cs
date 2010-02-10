@@ -13,7 +13,7 @@ public partial class graffiti_admin_comments_Default : ControlPanelPage
         if (comment.IsNew)
             throw new Exception("Invalid Comment Id");
 
-        comment.Body = CommentEditor.Value;
+        comment.Body = CommentEditor.Text;
         comment.Name = Server.HtmlEncode(txtName.Text);
         comment.WebSite = txtSite.Text;
         comment.Email = txtEmail.Text;
@@ -96,7 +96,7 @@ public partial class graffiti_admin_comments_Default : ControlPanelPage
             txtName.Text = Server.HtmlDecode(comment.Name);
             txtSite.Text = comment.WebSite;
             txtEmail.Text = comment.Email;
-            CommentEditor.Value = comment.Body;
+            CommentEditor.Text = comment.Body;
         }
 
         #region build the page title

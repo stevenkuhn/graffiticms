@@ -34,7 +34,7 @@ public partial class graffiti_admin_categories_Default : ManagerControlPanelPage
 
                     txtExistingCategory.Text = Server.HtmlDecode(c.Name);
                     txtFeedBurner.Text = c.FeedUrlOverride;
-                    Editor.Value = c.Body;
+                    Editor.Text = c.Body;
                     txtKeywords.Text = Server.HtmlDecode(c.MetaKeywords ?? string.Empty);
                     txtMetaScription.Text = Server.HtmlDecode(c.MetaDescription ?? string.Empty);
                     SortOrder.SelectedValue = c.SortOrder.ToString();
@@ -88,7 +88,7 @@ public partial class graffiti_admin_categories_Default : ManagerControlPanelPage
                 Category c = new Category(Request.QueryString["id"]);
                 c.Name = Server.HtmlEncode(txtExistingCategory.Text.Trim());
                 c.FormattedName = txtExistingLinkName.Text.Trim();
-                c.Body = Editor.Value;
+                c.Body = Editor.Text;
                 c.FeedUrlOverride = txtFeedBurner.Text;
                 c.MetaDescription = Server.HtmlEncode(txtMetaScription.Text.Trim());
                 c.MetaKeywords = Server.HtmlEncode(txtKeywords.Text.Trim());

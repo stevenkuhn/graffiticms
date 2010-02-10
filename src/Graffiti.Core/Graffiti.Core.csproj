@@ -92,10 +92,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Telligent.Glow.dll</HintPath>
     </Reference>
-    <Reference Include="Telligent.Glow.Editor, Version=2.5.0.21213, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Telligent.Glow.Editor.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\IMetaWeblog.cs" />
@@ -106,7 +102,9 @@
     <Compile Include="Controls\Breadcrumbs.cs" />
     <Compile Include="Controls\FileBrowser.cs" />
     <Compile Include="Controls\FilePropertyControl.cs" />
-    <Compile Include="Controls\HtmlPropertyControl.cs" />
+    <Compile Include="Controls\HtmlPropertyControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Controls\LiHyperLink.cs" />
     <Compile Include="Controls\Menu.cs" />
     <Compile Include="Controls\RepeaterPlusNone.cs" />
@@ -140,6 +138,9 @@
     <Compile Include="UI\DisplayEntities\CategoryCount.cs" />
     <Compile Include="UI\DisplayEntities\AuthorCount.cs" />
     <Compile Include="UI\DisplayEntities\PostCount.cs" />
+    <Compile Include="Controls\GraffitiEditor.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="UI\NavigationConfirmation.cs" />
     <Compile Include="UI\Pages\ControlPanelPage.cs">
       <SubType>ASPXCodeBehind</SubType>

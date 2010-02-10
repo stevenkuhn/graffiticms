@@ -17,9 +17,9 @@ using System.Web.UI.HtmlControls;
 using Graffiti.Core;
 using Telligent.Glow;
 
-namespace Graffiti.Web.graffiti_admin.site_options.utilities
+namespace Graffiti.Web
 {
-    public class FileBrowser1 : System.Web.UI.UserControl
+    public class FileBrowserControl : System.Web.UI.UserControl
     {
 		#region private variables
 

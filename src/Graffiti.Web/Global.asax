@@ -12,8 +12,6 @@
         applicationPath = HttpRuntime.AppDomainAppPath;
         _timer = new System.Threading.Timer(PeriodicTasks, null, 30000, 150000);
 		
-    	Application["Telligent_Glow_Editor:UserFilesPath"] = (HttpRuntime.AppDomainAppVirtualPath + "/files/media/").Replace("//", "/");
-        
         // make sure the everyone roles etc are created
         RolePermissionManager.GetRolePermissions();
 

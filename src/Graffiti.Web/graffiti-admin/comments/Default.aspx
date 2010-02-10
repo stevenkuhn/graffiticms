@@ -1,6 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/graffiti-admin/common/AdminMasterPage.master" AutoEventWireup="true" Inherits="graffiti_admin_comments_Default" Title="Graffiti Comments" Codebehind="Default.aspx.cs" %>
 <%@ Register TagPrefix="Z" Assembly="Graffiti.Core" Namespace="Graffiti.Core" %>
-<%@ Register TagPrefix="GlowEditor" Assembly="Telligent.Glow.Editor" Namespace="Telligent.Glow.Editor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderRegion" Runat="Server">
 </asp:Content>
@@ -167,7 +166,7 @@ function toggleCommentBody()
 	<asp:TextBox runat="Server" ID="txtEmail" CssClass="small" />
 
 	<h2>Comment:</h2>
-	<GlowEditor:Editor runat="Server" ToolbarSet="Simple" ID = "CommentEditor" Width="600px" />
+	<Z:GraffitiEditor runat="server" ID="CommentEditor" Width="600px" ToolbarSet="Simple" TabIndex="3" />
 
 	</div>
 

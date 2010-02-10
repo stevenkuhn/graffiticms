@@ -1,7 +1,6 @@
 <%@ Page Language="C#" enableEventValidation="false" MasterPageFile="~/graffiti-admin/common/AdminMasterPage.master" AutoEventWireup="true" Inherits="graffiti_admin_posts_write_Default" Title="Write a Post" Codebehind="Default.aspx.cs" %>
 <%@ Register TagPrefix="Z" Assembly="Graffiti.Core" Namespace="Graffiti.Core" %>
 <%@ Register TagPrefix="Glow" Assembly="Telligent.Glow" Namespace="Telligent.Glow" %>
-<%@ Register TagPrefix="GlowEditor" Assembly="Telligent.Glow.Editor" Namespace="Telligent.Glow.Editor" %>
 <%@ Import namespace="System.Collections.Generic"%>
 <%@ Import namespace="Telligent.Glow"%>
 <%@ Import namespace="DataBuddy"%>
@@ -269,11 +268,11 @@ function insertOption(theSel, newText, newValue)
 
 
             <h2>Body: <span class="form_tip">(<a href="javascript:void();" onclick="javascript:toggleExtendedBody(); return false;">extended body</a>)</span></h2>
-            <GlowEditor:Editor ID="txtContent" ToolbarSet="Simple" runat="server" Width="100%" Height="300px" TabIndex="4" />
+            <Z:GraffitiEditor runat="server" ID="txtContent" Width="95%" Height="200px" ToolbarSet="Normal" TabIndex="4" />
 
             <div id="extended_body">
                 <h2>Extended Body:</h2>
-                <GlowEditor:Editor ID ="txtContent_extend" ToolbarSet="Simple" runat="Server" Width= "100%" Height="300px" TabIndex="5" />
+                <Z:GraffitiEditor runat="server" ID="txtContent_extend" Width="95%" Height="200px" ToolbarSet="Normal" TabIndex="5" />
             </div>            
         </Content>
           
