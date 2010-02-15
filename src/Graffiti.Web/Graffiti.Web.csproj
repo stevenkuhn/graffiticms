@@ -586,6 +586,7 @@
     <Content Include="graffiti-admin\common\img\wrap-bg.gif" />
     <Content Include="graffiti-admin\common\img\wrap-inner-bg.gif" />
     <Content Include="graffiti-admin\common\img\wrench.png" />
+    <Content Include="graffiti-admin\GraffitiInfo.aspx" />
     <Content Include="graffiti-admin\Default.aspx" />
     <Content Include="graffiti-admin\loading.htm" />
     <Content Include="graffiti-admin\logout\Default.aspx" />
@@ -954,11 +955,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2311</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://graffiti</IISUrl>
+          <IISUrl>http://localhost/graffiti</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

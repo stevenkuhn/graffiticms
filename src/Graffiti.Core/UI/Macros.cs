@@ -1048,9 +1048,9 @@ namespace Graffiti.Core
 		{
 			bool b = (obj == null);
 
-			if (!b)
+			if (!b && obj is string)
 			{
-				b = string.IsNullOrEmpty(obj as string);
+				b = (obj as string).Length == 0;
 			}
 
 			return b;
@@ -1388,9 +1388,8 @@ namespace Graffiti.Core
 		{
 			DateTime date = DateTime.MinValue;
 			if (!String.IsNullOrEmpty(dt))
-			{
-				date = DateTime.Parse(dt);
-			}
+				DateTime.TryParse(dt, out date);
+
 			return date;
 		}
 

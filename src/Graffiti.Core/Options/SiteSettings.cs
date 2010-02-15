@@ -282,6 +282,20 @@ namespace Graffiti.Core
             get { return DateTime.Now.AddHours(Get().TimeZoneOffSet); }
         }
 
+		  public static bool UrlRoutingSupported
+		  {
+			  get
+			  {
+				  HttpApplicationState application = HttpContext.Current.Application;
+				  Object objUrlRoutingEnabled = application["UrlRoutingEnabled"];
+				  if (objUrlRoutingEnabled == null)
+					  application["UrlRoutingEnabled"] = Util.CheckUrlRoutingSupport();
+
+
+				  return (bool)application["UrlRoutingEnabled"];
+			  }
+		  }
+
         /// <summary>
         /// Url to append to absolute urls in posts or rss.
         /// </summary>

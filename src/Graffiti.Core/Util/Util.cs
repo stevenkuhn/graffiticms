@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -514,6 +515,28 @@ namespace Graffiti.Core
             return null;
         }
 
+		public static bool CheckUrlRoutingSupport()
+		{
+			Macros macros = new Macros();
+			try
+			{
+				HttpWebResponse response = GRequest.GetResponse(macros.FullUrl(VirtualPathUtility.ToAbsolute("~/__utility/GraffitiUrlRoutingCheck")));
+
+				if (response.StatusCode == HttpStatusCode.NoContent)
+				{
+					string headerValue = response.Headers.Get("GraffitiCMS-UrlRouting");
+					if (!string.IsNullOrEmpty(headerValue))
+					{
+						bool urlRoutingSupported = false;
+						if (bool.TryParse(headerValue, out urlRoutingSupported))
+							return urlRoutingSupported;
+					}
+				}
+			}
+			catch { }
+
+			return false;
+		}
 
     }
 }

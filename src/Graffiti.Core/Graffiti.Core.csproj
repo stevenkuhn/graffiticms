@@ -132,6 +132,7 @@
     <Compile Include="Options\Package.cs" />
     <Compile Include="Options\PackageSettings.cs" />
     <Compile Include="Routing\CategoryAndPostHandler.cs" />
+    <Compile Include="Routing\GraffitiUrlRoutingCheckHandler.cs" />
     <Compile Include="Routing\RssHandler.cs" />
     <Compile Include="Routing\TagHandler.cs" />
     <Compile Include="Routing\UrlRouting.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="UI\Pages\TemplatedThemePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="UI\StaticAccessorHelper.cs" />
     <Compile Include="UI\ThemeConfigurationData.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\ChalkWidget.cs" />
     <Compile Include="UI\Widgets\Forms\DateTimeFormElement.cs" />

@@ -54,7 +54,7 @@ namespace Graffiti.Core
 		/// <summary>
 		/// The writting direction of the language used to write the editor contents. Allowed values are 'ltr' for Left-To-Right language (like English), or 'rtl' for Right-To-Left languages (like Arabic). 
 		/// </summary>
-		public LanguageDir LanguageDirection { get { return (LanguageDir)getVstate("ldr", LanguageDir.ltr); } set { ViewState["ldr"] = value; } }
+		public LanguageDir LanguageDirection { get { return (LanguageDir)GetVstate("ldr", LanguageDir.ltr); } set { ViewState["ldr"] = value; } }
 
 		/// <summary>
 		/// Comma delimited list of extra plugins that should be loaded
@@ -73,39 +73,39 @@ namespace Graffiti.Core
 		/// </summary>
 		public string BaseContentUrl { get { return (string)ViewState["bcu"]; } set { ViewState["bcu"] = value; } }
 
-		public bool Resizable { get { return (bool)getVstate("cRz", true); } set { ViewState["cRz"] = value; } }
+		public bool Resizable { get { return (bool)GetVstate("cRz", true); } set { ViewState["cRz"] = value; } }
 
 		/// <summary>
 		/// Whether to enable the "More Colors..." button in the color selectors. 
 		/// </summary>
-		public bool EnableMoreColors { get { return (bool)getVstate("emclr", true); } set { ViewState["emclr"] = value; } }
+		public bool EnableMoreColors { get { return (bool)GetVstate("emclr", true); } set { ViewState["emclr"] = value; } }
 
 		/// <summary>
 		/// Whether to force all pasting operations to insert on plain text into the editor, loosing any formatting information possibly available in the source text. 
 		/// </summary>
-		public bool ForcePasteAsPlainText { get { return (bool)getVstate("fcePPlain", false); } set { ViewState["fcePPlain"] = value; } }
+		public bool ForcePasteAsPlainText { get { return (bool)GetVstate("fcePPlain", false); } set { ViewState["fcePPlain"] = value; } }
 
 		/// <summary>
 		/// Whether the "Ignore font face definitions" checkbox is enabled by default in the Paste from Word dialog.
 		/// </summary>
-		public bool PastFromWordIgnoreFontFace { get { return (bool)getVstate("pfwordigff", false); } set { ViewState["pfwordigff"] = value; } }
+		public bool PastFromWordIgnoreFontFace { get { return (bool)GetVstate("pfwordigff", false); } set { ViewState["pfwordigff"] = value; } }
 
 		/// <summary>
 		/// Whether to keep structure markup (<h1>, <h2>, etc.) or replace it with elements that create more similar pasting results when pasting content from Microsoft Word into the Paste from Word dialog. 
 		/// </summary>
-		public bool PasteFromWordKeepsStructure { get { return (bool)getVstate("pfwordkpstr", false); } set { ViewState["pfwordkpstr"] = value; } }
+		public bool PasteFromWordKeepsStructure { get { return (bool)GetVstate("pfwordkpstr", false); } set { ViewState["pfwordkpstr"] = value; } }
 
 		/// <summary>
 		/// Whether the "Remove styles definitions" checkbox is enabled by default in the Paste from Word dialog. 
 		/// </summary>
-		public bool PasteFromWordRemoveStyle { get { return (bool)getVstate("pfwordremst", false); } set { ViewState["pfwordremst"] = value; } }
+		public bool PasteFromWordRemoveStyle { get { return (bool)GetVstate("pfwordremst", false); } set { ViewState["pfwordremst"] = value; } }
 
-		public Unit Width { get { return (Unit)getVstate("w", new Unit()); } set { ViewState["w"] = value; } }
-		public Unit Height { get { return (Unit)getVstate("h", new Unit()); } set { ViewState["h"] = value; } }
-		public int MinWidth { get { return (int)getVstate("miW", -1); } set { ViewState["miW"] = value; } }
-		public int MaxWidth { get { return (int)getVstate("maW", -1); } set { ViewState["maW"] = value; } }
-		public int MinHeight { get { return (int)getVstate("miH", -1); } set { ViewState["miH"] = value; } }
-		public int MaxHeight { get { return (int)getVstate("maH", -1); } set { ViewState["maH"] = value; } }
+		public Unit Width { get { return (Unit)GetVstate("w", new Unit()); } set { ViewState["w"] = value; } }
+		public Unit Height { get { return (Unit)GetVstate("h", new Unit()); } set { ViewState["h"] = value; } }
+		public int MinWidth { get { return (int)GetVstate("miW", -1); } set { ViewState["miW"] = value; } }
+		public int MaxWidth { get { return (int)GetVstate("maW", -1); } set { ViewState["maW"] = value; } }
+		public int MinHeight { get { return (int)GetVstate("miH", -1); } set { ViewState["miH"] = value; } }
+		public int MaxHeight { get { return (int)GetVstate("maH", -1); } set { ViewState["maH"] = value; } }
 
 		public short TabIndex
 		{
@@ -116,14 +116,14 @@ namespace Graffiti.Core
 		/// <summary>
 		/// The base Z-index for floating dialogs and popups.
 		/// </summary>
-		public int PopupZIndex { get { return (int)getVstate("pzi", -1); } set { ViewState["pzi"] = value; } }
+		public int PopupZIndex { get { return (int)GetVstate("pzi", -1); } set { ViewState["pzi"] = value; } }
 
 		/// <summary>
 		/// The color to be used for the background of editor when a dialog is displayed.
 		/// This is not the background color of the dialog itself, but the overlay shown around the dialog to cover up
 		/// the overall page contents.
 		/// </summary>
-		public Color DialogCoverBackground { get { return (Color)getVstate("dbgc", Color.Transparent); } set { ViewState["dbgc"] = value; } }
+		public Color DialogCoverBackground { get { return (Color)GetVstate("dbgc", Color.Transparent); } set { ViewState["dbgc"] = value; } }
 
 		/// <summary>
 		/// The level of transparency to use for Dialog Cover when showing a popup.
@@ -134,22 +134,22 @@ namespace Graffiti.Core
 		/// <summary>
 		/// Whether the toolbar can be collapsed by the user. If disabled, the collapser button will not be displayed. 
 		/// </summary>
-		public bool CanCollapseToolbar { get { return (bool)getVstate("canClpsTb", true); } set { ViewState["canClpsTb"] = value; } }
+		public bool CanCollapseToolbar { get { return (bool)GetVstate("canClpsTb", true); } set { ViewState["canClpsTb"] = value; } }
 
 		/// <summary>
 		/// Whether the toolbar must start expanded when the editor is loaded.
 		/// </summary>
-		public bool ToolbarStartExpanded { get { return (bool)getVstate("tbsex", true); } set { ViewState["tbsex"] = value; } }
+		public bool ToolbarStartExpanded { get { return (bool)GetVstate("tbsex", true); } set { ViewState["tbsex"] = value; } }
 
 		public string ToolbarSet { get { return (string)ViewState["tb"]; } set { ViewState["tb"] = value; } }
 
-		protected object getVstate(string key, object defVal)
+		protected object GetVstate(string key, object defVal)
 		{
 			object item = ViewState[key];
 			return item == null ? defVal : item;
 		}
 
-		public static void setupScripts(Page page)
+		public static void SetupScripts(Page page)
 		{
 			page.ClientScript.RegisterClientScriptInclude("GraffitiEditor.CkEditorMain", page.ResolveUrl(CkEditorJS));
 		}
@@ -157,15 +157,22 @@ namespace Graffiti.Core
 		protected override void OnPreRender(EventArgs e)
 		{
 			base.OnPreRender(e);
-			setupScripts(Page);
+			SetupScripts(Page);
 		}
 
 		protected override void Render(HtmlTextWriter writer)
 		{
-			writer.Write("<textarea id=\"{0}\" name=\"{1}\"{2}></textarea>", ClientID, UniqueID,
-				this.TabIndex != 0 ? " tabindex=\"" + this.TabIndex.ToString() + "\"" : "");
-			writer.Write("<script type=\"text/javascript\">var t=\"{2}\";var e = CKEDITOR.instances.{0};if(e != null)CKEDITOR.remove(e);CKEDITOR.replace('{0}'{1}).setData(t);</script>",
-				 ClientID, buildConfigOptions(), getTextForRender());
+			writer.Write(GenerateHTML());
+		}
+
+		public string GenerateHTML()
+		{
+			return String.Format("<textarea id=\"{0}\" name=\"{1}\"{2}></textarea>\n<script type=\"text/javascript\">var t=\"{4}\";var e = CKEDITOR.instances.{0};if(e != null)CKEDITOR.remove(e);CKEDITOR.replace('{0}'{3}).setData(t);</script>",
+				ClientID,
+				UniqueID,
+				this.TabIndex != 0 ? " tabindex=\"" + this.TabIndex.ToString() + "\"" : "",
+				buildConfigOptions(),
+				getTextForRender());
 		}
 
 		protected virtual string getTextForRender()
@@ -184,8 +191,6 @@ namespace Graffiti.Core
 			return "";
 		}
 
- //       filebrowserUploadUrl : '/uploader/upload.php'
- 
 		protected virtual string innerBuildConfigOptions()
 		{
 			StringBuilder buff = new StringBuilder();
