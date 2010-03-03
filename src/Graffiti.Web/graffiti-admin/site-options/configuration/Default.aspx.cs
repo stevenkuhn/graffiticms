@@ -17,7 +17,7 @@ public partial class graffiti_admin_site_options_configuration_Default : AdminCo
         {
             SiteSettings settings = SiteSettings.Get();
 
-            chkUseGoogle.Checked = settings.UseGoogleForJQuery;
+				chkUseExternalJQuery.Checked = settings.UseExternalJQuery;
             chkUseProxy.Checked = settings.UseProxyServer;
             txtProxyHost.Text = settings.ProxyHost;
             txtProxyPort.Text = settings.ProxyPort.ToString();
@@ -43,7 +43,7 @@ public partial class graffiti_admin_site_options_configuration_Default : AdminCo
         {
             SiteSettings settings = SiteSettings.Get();
 
-            settings.UseGoogleForJQuery = chkUseGoogle.Checked;
+				settings.UseExternalJQuery = chkUseExternalJQuery.Checked;
             settings.UseProxyServer = chkUseProxy.Checked;
             settings.ProxyHost = txtProxyHost.Text;
             settings.ProxyPort = Int32.Parse(txtProxyPort.Text);

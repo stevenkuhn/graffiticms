@@ -373,14 +373,6 @@ namespace Graffiti.Core
             return list;
         }
 
-        public static bool UseGoogleForjQuery
-        {
-            get
-            {//<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script><script type="text/javascript">
-                return SiteSettings.Get().UseGoogleForJQuery;               
-            }
-        }
-
         public static bool IsValidFileName(string name)
         {
             return !Regex.IsMatch(name, "^(" + ConfigurationManager.AppSettings["Graffiti::ExcludedNames"] + ")$", RegexOptions.IgnoreCase);

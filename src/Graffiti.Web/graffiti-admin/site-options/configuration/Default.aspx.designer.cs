@@ -28,7 +28,7 @@ public partial class graffiti_admin_site_options_configuration_Default {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox chkUseGoogle;
+	 protected global::System.Web.UI.WebControls.CheckBox chkUseExternalJQuery;
     
     /// <summary>
     /// chkUseProxy control.

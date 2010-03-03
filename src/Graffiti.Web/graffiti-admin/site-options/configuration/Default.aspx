@@ -11,7 +11,7 @@
     
     <div id="post_form_container" class="FormBlock">
         <h3>General Configuration</h3>
-        <h2><asp:CheckBox ID="chkUseGoogle" Text="Use Google For JQuery" runat="Server" /> <span class="form_tip">Determines if Graffiti will use a local copy of JQuery or the one served from Google.</span></h2>
+        <h2><asp:CheckBox ID="chkUseExternalJQuery" Text="Use Microsoft For JQuery" runat="Server" /> <span class="form_tip">Determines if Graffiti will use a local copy of JQuery or the one served from Microsoft.</span></h2>
         <h2><asp:CheckBox ID="chkUseProxy" Text="Use Proxy Server" runat="Server" /> <span class="form_tip">Determines if Graffiti needs to use a proxy server to make local/outside request.</span></h2>
         
         <div id="proxySettings" runat="server">

@@ -914,9 +914,9 @@
     <None Include="__utility\forms\comment.view" />
     <None Include="__utility\forms\contact.view" />
     <Content Include="__utility\img\IdenticonHandler.ashx" />
+    <Content Include="__utility\js\jquery-1.4.2.min.js" />
     <Content Include="__utility\js\jquery-ui-1.7.2.custom.min.js" />
     <None Include="__utility\forms\search.view" />
-    <Content Include="__utility\js\jquery-1.3.2.min.js" />
     <None Include="__utility\pages\category.view" />
     <None Include="__utility\pages\categoryrss.view" />
     <None Include="__utility\pages\tagrss.view" />

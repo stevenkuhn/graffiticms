@@ -21,7 +21,7 @@ namespace Graffiti.Core
         private string _dateFormat;
         private string _timeFormat;
         private bool? _cacheViews;
-        private bool? _useGoogleForJQuery;
+		  private bool? _useExternalJQuery;
         private bool? _filterUncategorizedPostsFromLists;
         private bool? _includeChildPosts;
         private int? _pageSize;
@@ -190,17 +190,17 @@ namespace Graffiti.Core
             }
         }
 
-        public bool UseGoogleForJQuery
+        public bool UseExternalJQuery
         {
             get
             {
-                if (_useGoogleForJQuery.HasValue) return _useGoogleForJQuery.Value;
+					if (_useExternalJQuery.HasValue) return _useExternalJQuery.Value;
 
                 return true;
             }
             set
             {
-                _useGoogleForJQuery = value;
+					_useExternalJQuery = value;
             }
         }
 

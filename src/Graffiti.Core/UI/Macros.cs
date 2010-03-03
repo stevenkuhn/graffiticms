@@ -694,19 +694,9 @@ namespace Graffiti.Core
 		{
 			get
 			{
-				string jqueryJS =
-				"<script type=\"text/javascript\" src=\"" +
-
-				(Util.UseGoogleForjQuery ? "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" :
-				VirtualPathUtility.ToAbsolute("~/__utility/js/jquery-1.3.2.min.js"))
-
-				+ "\" ></script>\n";
-
-				string graffitiJS =
-				"<script type=\"text/javascript\" src=\"" +
-				VirtualPathUtility.ToAbsolute("~/__utility/js/graffiti.js") + "\" ></script>\n";
-
-				return "\n" + jqueryJS + graffitiJS;
+				return string.Format("\n<script type=\"text/javascript\" src=\"{0}\"></script>\n<script type=\"text/javascript\" src=\"{1}\" ></script>\n",
+					SiteSettings.Get().UseExternalJQuery ? "http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js" : VirtualPathUtility.ToAbsolute("~/__utility/js/jquery-1.4.2.min.js"),
+					VirtualPathUtility.ToAbsolute("~/__utility/js/graffiti.js"));
 			}
 		}
 
