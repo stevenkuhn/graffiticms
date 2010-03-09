@@ -17,8 +17,23 @@ void Page_Load(object sender, EventArgs e)
 
         if (!IsPostBack)
         {
-            List<IGraffitiUser> users = GraffitiUsers.GetUsers("*");
+			  List<IGraffitiUser> users = GraffitiUsers.GetUsers("*");
 
+			  if (GraffitiUsers.IsAdmin(theUser))
+			  {
+				  // Don't allow the last admin user to be deleted
+				  List<IGraffitiUser> adminUsers = GraffitiUsers.GetUsers(GraffitiUsers.AdminRole);
+				  if (adminUsers.Count <= 1)
+				  {
+					  UserMessage.Type = StatusType.Error;
+					  UserMessage.Text = "There is only one existing admin user. You must have at least one administrator.";
+					  AssignUser.Visible = false;
+					  DeleteUser.Visible = false;
+					  return;
+				  }
+				  
+			  }
+			  
             if (users.Count > 1)
             {
                 UserMessage.Type = StatusType.Warning;

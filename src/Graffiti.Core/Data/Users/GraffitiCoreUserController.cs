@@ -40,7 +40,7 @@ namespace Graffiti.Core
             User user = GetUser(username) as User;
             if (user != null && user.IsLoaded && !user.IsNew)
             {
-                if (user.PasswordFormat == 0 && ((user.Password == "change_me") ? password.Equals(SiteSettings.DefaultPassword) :  password.Equals(user.Password)))
+                if (password.Equals(user.Password))
                     return user;
                 else if (user.PasswordFormat == 1 && User.EncodePassword(password, user.PasswordSalt) == user.Password)
                     return user;

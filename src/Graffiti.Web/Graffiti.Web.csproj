@@ -697,6 +697,7 @@
     <Content Include="resources\resources.xml" />
     <Content Include="robots.txt" />
     <Content Include="Search\Default.aspx" />
+    <Content Include="graffiti-setup\Default.aspx" />
     <Content Include="Tags\Default.aspx" />
     <Content Include="Web.config" />
     <Content Include="__utility\ckeditor\adapters\jquery.js" />

@@ -52,34 +52,4 @@ ALTER TABLE graffiti_ObjectStore CHECK CONSTRAINT ALL
 GO
 */
 
-/*
-ALTER TABLE graffiti_Users NOCHECK CONSTRAINT ALL
-GO
-
-SET IDENTITY_INSERT graffiti_Users ON 
-PRINT 'Begin inserting data in graffiti_Users'
-*/
-INSERT INTO graffiti_Users (Id, Name, Email, ProperName, TimeZoneOffSet, Bio, Avatar, PublicEmail, WebSite, Password, Password_Salt, PasswordFormat, UniqueId)
-VALUES(1, 'admin', 'admin@graffiticms.com', 'The Admin', 0, NULL, NULL, NULL, NULL, 'change_me', 'OHImGumfnNGgZRrAXtlqDQ==', 0, uuid())
-;
-/*SET IDENTITY_INSERT graffiti_Users OFF 
-ALTER TABLE graffiti_Users CHECK CONSTRAINT ALL
-GO
-*/
-
-/*
-ALTER TABLE graffiti_UserRoles NOCHECK CONSTRAINT ALL
-GO
-
-SET IDENTITY_INSERT graffiti_UserRoles ON 
-PRINT 'Begin inserting data in graffiti_UserRoles'
-*/
-INSERT INTO graffiti_UserRoles (Id, UserId, RoleName)
-VALUES(1, 1, 'gAdmin')
-;
-/*
-SET IDENTITY_INSERT graffiti_UserRoles OFF 
-ALTER TABLE graffiti_UserRoles CHECK CONSTRAINT ALL
-GO
-*/
 

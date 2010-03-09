@@ -86,9 +86,12 @@ namespace Graffiti.Core
 
 			Initialize();
 
+			SiteSettings settings = SiteSettings.Get();
+			if (!settings.InitialSetupCompleted)
+				Response.Redirect(ResolveUrl("~/graffiti-setup/"));
+
 			if (string.IsNullOrEmpty(RedirectUrl))
 			{
-
 				GraffitiContext graffitiContext = GraffitiContext.Current;
 				SetContextDefault(graffitiContext, ViewName);
 

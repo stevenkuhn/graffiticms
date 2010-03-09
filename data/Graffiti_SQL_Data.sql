@@ -43,24 +43,3 @@ SET IDENTITY_INSERT [dbo].[graffiti_ObjectStore] OFF
 ALTER TABLE [dbo].[graffiti_ObjectStore] CHECK CONSTRAINT ALL
 GO
 
-
-ALTER TABLE [dbo].[graffiti_Users] NOCHECK CONSTRAINT ALL
-GO
-SET IDENTITY_INSERT [dbo].[graffiti_Users] ON 
-PRINT 'Begin inserting data in graffiti_Users'
-INSERT INTO [dbo].[graffiti_Users] ([Id], [Name], [Email], [ProperName], [TimeZoneOffSet], [Bio], [Avatar], [PublicEmail], [WebSite], [Password], [Password_Salt], [PasswordFormat])
-VALUES(1, N'admin', N'admin@graffiticms.com', N'The Admin', 0, NULL, NULL, NULL, NULL, N'change_me', N'OHImGumfnNGgZRrAXtlqDQ==', 0)
-SET IDENTITY_INSERT [dbo].[graffiti_Users] OFF 
-ALTER TABLE [dbo].[graffiti_Users] CHECK CONSTRAINT ALL
-GO
-
-
-ALTER TABLE [dbo].[graffiti_UserRoles] NOCHECK CONSTRAINT ALL
-GO
-SET IDENTITY_INSERT [dbo].[graffiti_UserRoles] ON 
-PRINT 'Begin inserting data in graffiti_UserRoles'
-INSERT INTO [dbo].[graffiti_UserRoles] ([Id], [UserId], [RoleName])
-VALUES(1, 1, N'gAdmin')
-SET IDENTITY_INSERT [dbo].[graffiti_UserRoles] OFF 
-ALTER TABLE [dbo].[graffiti_UserRoles] CHECK CONSTRAINT ALL
-GO

@@ -25,6 +25,7 @@ namespace Graffiti.Core
         private bool? _filterUncategorizedPostsFromLists;
         private bool? _includeChildPosts;
         private int? _pageSize;
+		  private bool _initialSetupCompleted = false;
 
         public bool RequireWWW
         {
@@ -204,6 +205,15 @@ namespace Graffiti.Core
             }
         }
 
+		 /// <summary>
+		 /// Has the initial site setup page been completed
+		 /// </summary>
+		  public bool InitialSetupCompleted
+		  {
+			  get { return _initialSetupCompleted; }
+			  set { _initialSetupCompleted = value; }
+		  }
+
         public bool GenerateFolders { get; set; }
 
         public bool FilterUncategorizedPostsFromLists
@@ -272,8 +282,6 @@ namespace Graffiti.Core
 
         public static readonly string VersionDescription =
             string.Format("Graffiti CMS {0} (build {1})", Version, BuildNumber);
-
-        public static string DefaultPassword { get { return ConfigurationManager.AppSettings["Graffiti:User:DefaultPassword"]; } }
 
         public static int DestroyDeletedPostsOlderThanDays { get { return Int32.Parse(ConfigurationManager.AppSettings["Graffiti:Data:DestroyDeletedPostsOlderThanDays"] ?? "7"); } }
 
