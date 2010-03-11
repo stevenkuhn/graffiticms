@@ -8,41 +8,22 @@
 
 function toggleCheckAll()
 {
-    chkAll = document.getElementById("CheckAllComments");
-
-    elements = document.getElementById("postList").getElementsByTagName("input");
-
-    for(indx in elements)
-    {
-        if(elements[indx].type == 'checkbox' && (parseInt(indx) || indx == 0))
-        {
-            elements[indx].checked = chkAll.checked;
-        }
-    }
+    chkAll = $("#CheckAllComments");
+    $('input[type=checkbox]').attr("checked",chkAll.attr("checked"));
 }
 
 function toggleCommentBody()
 {
-    hl = document.getElementById("commentBodyToggle");
-    
-    var display = "block";
+    hl = $("#commentBodyToggle");
 
-    if(hl.innerHTML == "hide comment body")
+    if(hl.html() == 'hide comment body')
     {
-        display = "none";
-        hl.innerHTML = "show comment body";
+        hl.html('show comment body');
+        $('table[name="CommentBody"]').hide();
     }
-    else
-        hl.innerHTML = "hide comment body";
-    
-    elements = document.getElementsByName("CommentBody");
-    
-    for(indx in elements)
-    {
-        if(parseInt(indx) || indx == 0)
-        {
-            elements[indx].style.display = display;
-        }
+    else {
+        hl.html('hide comment body');
+        $('table[name="CommentBody"]').show();
     }
 }
 
