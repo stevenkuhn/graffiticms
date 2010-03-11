@@ -21,7 +21,7 @@ namespace Graffiti.Core
             sb.Append(Description);
             sb.Append(": " + SafeToolTip(false));
             sb.Append("</h2>");
-            sb.AppendFormat("<input type=\"text\" id=\"{0}\" name=\"{0}\" class=\"small\" value=\"{1}\" /> <input class=\"inputbutton\" type=\"button\" value=\"Select ...\" onclick=\"OpenFileBrowser(new Function('url', '$(\\'{0}\\').value = url;'));return false\" />",
+            sb.AppendFormat("<input type=\"text\" id=\"{0}\" name=\"{0}\" class=\"small\" value=\"{1}\" /> <input class=\"inputbutton\" type=\"button\" value=\"Select ...\" onclick=\"OpenFileBrowser(new Function('url', '$$(\\'{0}\\').value = url;'));return false\" />",
                             Name, nvc[Name]);
             sb.Append("\n");
         }

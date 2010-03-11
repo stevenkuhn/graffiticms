@@ -17,7 +17,7 @@
 			<script type="text/javascript">
 				// <!--
 				function selectFile(url) {
-					window.top.opener.SetUrl(url);
+					window.opener.CKEDITOR.tools.callFunction(<%= Request.QueryString["CKEditorFuncNum"] ?? "window.top.opener.CKEDITOR.dialog.getCurrent().getParentEditor()._.filebrowserFn" %>, url);
 					window.top.close();
 					window.top.opener.focus();
 				}

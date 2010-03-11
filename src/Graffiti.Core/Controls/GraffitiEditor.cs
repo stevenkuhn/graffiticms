@@ -19,7 +19,7 @@ namespace Graffiti.Core
 		public enum LanguageDir { rtl, ltr };
 		protected string _text = string.Empty;
 		protected static string _ckEditorJS = "~/__utility/ckeditor/ckeditor.js";
-		protected static string _filebrowserUrl = VirtualPathUtility.ToAbsolute("~/graffiti-admin/site-options/utilities/FileSelector.aspx") + "?path=files\\\\media";
+		protected static string _filebrowserUrl = VirtualPathUtility.ToAbsolute("~/graffiti-admin/site-options/utilities/EditorFileSelector.aspx") + "?path=files\\\\media";
 		
 
 		public string Text { get { return _text; } set { _text = value; } }

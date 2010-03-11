@@ -642,6 +642,7 @@
     <Content Include="graffiti-admin\site-options\plug-ins\Default.aspx" />
     <Content Include="graffiti-admin\site-options\plug-ins\Edit.aspx" />
     <Content Include="graffiti-admin\site-options\settings\Default.aspx" />
+    <Content Include="graffiti-admin\site-options\utilities\EditorFileSelector.aspx" />
     <Content Include="graffiti-admin\site-options\utilities\FileBrowser-AddFolder.aspx" />
     <Content Include="graffiti-admin\site-options\utilities\Default.aspx" />
     <Content Include="graffiti-admin\site-options\utilities\FileBrowser-UploadFiles.aspx" />
@@ -765,6 +766,8 @@
     <Content Include="__utility\ckeditor\lang\zh.js" />
     <Content Include="__utility\ckeditor\lang\_languages.js" />
     <Content Include="__utility\ckeditor\license.html" />
+    <Content Include="__utility\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="__utility\ckeditor\plugins\a11yhelp\lang\en.js" />
     <Content Include="__utility\ckeditor\plugins\about\dialogs\about.js" />
     <Content Include="__utility\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
     <Content Include="__utility\ckeditor\plugins\clipboard\dialogs\paste.js" />

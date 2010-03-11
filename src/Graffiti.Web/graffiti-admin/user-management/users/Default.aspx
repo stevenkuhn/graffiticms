@@ -59,7 +59,8 @@
     <asp:TextBox CssClass = "small" runat="Server" id="txtWebsite" TabIndex="1" MaxLength="256" /> 
     
      <h2>Avatar:</h2>
-     <asp:TextBox CssClass = "small" runat="Server" id="txtAvatar" TabIndex="6" /> <input class="inputbutton" type="button" value="Select ..." onclick="OpenFileBrowser(new Function('url', '$(\'<%= txtAvatar.ClientID %>\').value = url;') , 'image');return false" />
+     <asp:TextBox CssClass = "small" runat="Server" id="txtAvatar" TabIndex="6" />
+     <input class="inputbutton" type="button" value="Select ..." onclick="OpenFileBrowser(new Function('url', '$$(\'<%= txtAvatar.ClientID %>\').value = url;') , 'image');return false" />
   
     
     <h2 id="role_section" runat="Server" style="padding-bottom: 5px;">Role(s):<br /></h2> 
