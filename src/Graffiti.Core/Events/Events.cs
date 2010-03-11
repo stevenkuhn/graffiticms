@@ -36,13 +36,13 @@ namespace Graffiti.Core
 		{
 			ObjectStore os = GetEventFromStore(typeName);
 			EventDetails ed = null;
-			if (!os.IsNew)
+			if (os.IsNew)
 			{
-				ed = LoadEventDetailsFromObjectStore(os);
+				ed = CreateNewEventFromTypeName(typeName);
 			}
 			else
 			{
-				ed = CreateNewEventFromTypeName(typeName);
+				ed = LoadEventDetailsFromObjectStore(os);
 			}
 			return ed;
 		}
@@ -185,7 +185,7 @@ namespace Graffiti.Core
 		#region Private Helpers
 
 		/// <summary>
-		/// Returns instance of ObjectStore for a spefici type name
+		/// Returns instance of ObjectStore for a specific type name
 		/// </summary>
 		private static ObjectStore GetEventFromStore(string typeName)
 		{

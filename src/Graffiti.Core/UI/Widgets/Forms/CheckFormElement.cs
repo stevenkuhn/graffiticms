@@ -3,41 +3,48 @@ using System.Text;
 
 namespace Graffiti.Core
 {
-    /// <summary>
-    /// Enables adding checkboxes to a dyanmic form.
-    /// </summary>
-    public class CheckFormElement : FormElement
-    {
-        public CheckFormElement(string name, string desc, string tip, bool defaultValue)
-            : base(name, desc, tip)
-        {
-            _defaultValue = defaultValue;
-        }
+	/// <summary>
+	/// Enables adding checkboxes to a dyanmic form.
+	/// </summary>
+	public class CheckFormElement : FormElement
+	{
+		internal bool DefaultValue { get; private set; }
+		internal bool IsNew { get; private set; }
 
-        private bool _defaultValue;
+		public CheckFormElement(string name, string desc, string tip, bool defaultValue)
+			: this(name, desc, tip, defaultValue, false)
+		{
+		}
 
-        public override void Write(StringBuilder sb, NameValueCollection nvc)
-        {
-            sb.Append("\n<h2>");
-            string checkValue = nvc[Name];
+		public CheckFormElement(string name, string desc, string tip, bool defaultValue, bool isNew)
+			: base(name, desc, tip)
+		{
+			DefaultValue = defaultValue;
+			IsNew = isNew;
+		}
 
-            if (checkValue == "checked" || checkValue == "on")
-                checkValue = true.ToString();
 
-            if (string.IsNullOrEmpty(checkValue))
-                checkValue = false.ToString();
+		public override void Write(StringBuilder sb, NameValueCollection nvc)
+		{
+			sb.Append("\n<h2>");
+			string checkValue = nvc[Name];
 
-            bool isChecked = bool.Parse(checkValue ?? _defaultValue.ToString());
+			bool isChecked = false;
+			if (IsNew)
+				isChecked = DefaultValue;
+			else if (checkValue == "checked" || checkValue == "on")
+				isChecked = true;
+			else if (string.IsNullOrEmpty(checkValue))
+				isChecked = false;
+			else
+				isChecked = bool.Parse(checkValue);
 
-            sb.Append("</h2>");
-
-            sb.AppendFormat("<input type=\"checkbox\" id=\"{0}\" name=\"{0}\" {2} /> {1}",
-                            Name, Description,
-                            isChecked ? "checked = \"checked\" " : null
-                );
-
-            sb.Append(SafeToolTip(true));
-            sb.Append("\n");
-        }
-    }
+			sb.Append("</h2>");
+			sb.AppendFormat("<input type=\"checkbox\" id=\"{0}\" name=\"{0}\" {2} /> {1}",
+								 Name, Description,
+								 isChecked ? "checked = \"checked\" " : null);
+			sb.Append(SafeToolTip(true));
+			sb.Append("\n");
+		}
+	}
 }

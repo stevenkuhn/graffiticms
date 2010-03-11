@@ -12,9 +12,7 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 {
 	protected void Page_Load(object sender, EventArgs e)
 	{
-
-		NameValueCollection nvcCustomFields = Request.Form;
-
+		NameValueCollection nvcCustomFields = null;
 		IGraffitiUser user = GraffitiUsers.Current;
 		bool isAdmin = GraffitiUsers.IsAdmin(user);
 		CategoryController cc = new CategoryController();
@@ -202,9 +200,18 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 		}
 
 		CustomFormSettings cfs = CustomFormSettings.Get(int.Parse(CategoryList.SelectedItem.Value));
-
 		if (cfs.HasFields)
 		{
+			if (nvcCustomFields == null)
+			{
+				nvcCustomFields = new NameValueCollection();
+				foreach (CustomField cf in cfs.Fields)
+				{
+					if (Request.Form[cf.Id.ToString()] != null)
+						nvcCustomFields[cf.Name] = Request.Form[cf.Id.ToString()];
+				}
+			}
+
 			the_CustomFields.Text = cfs.GetHtmlForm(nvcCustomFields);
 		}
 		else
@@ -369,7 +376,10 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 			{
 				foreach (CustomField cf in cfs.Fields)
 				{
-					p[cf.Name] = Request.Form[cf.Id.ToString()];
+					if (cf.FieldType == FieldType.CheckBox && Request.Form[cf.Id.ToString()] == null)
+						p[cf.Name] = false.ToString();
+					else
+						p[cf.Name] = Request.Form[cf.Id.ToString()];
 				}
 			}
 
