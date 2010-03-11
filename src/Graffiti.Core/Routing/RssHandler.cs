@@ -14,21 +14,14 @@ namespace Graffiti.Core
 			string categoryTwoName = requestContext.RouteData.Values["categorytwo"] != null ? requestContext.RouteData.Values["categorytwo"].ToString() : null;
 			string tagName = requestContext.RouteData.Values["tagname"] != null ? requestContext.RouteData.Values["tagname"].ToString() : null;
 
-
 			if (!String.IsNullOrEmpty(categoryTwoName))
-			{
-				return GetFeed(categoryTwoName);
-			}
+				return GetFeed(categoryOneName + "/" + categoryTwoName);
 
 			if (!String.IsNullOrEmpty(categoryOneName))
-			{
 				return GetFeed(categoryOneName);
-			}
 
 			if (!string.IsNullOrEmpty(tagName))
-			{
 				return GetTagFeed(tagName);
-			}
 
 			return GetFeed(null);
 		}
@@ -37,9 +30,8 @@ namespace Graffiti.Core
 		{
 			var feed = new RSS();
 			if (!string.IsNullOrEmpty(tagName))
-			{
 				feed.TagName = tagName;
-			}
+
 			return feed;
 		}
 
