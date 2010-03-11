@@ -103,6 +103,75 @@ namespace Graffiti.Core
             return null;
         }
 
+		 /// <summary>
+		 /// Gets all posts by the specified user in the specified category name
+		 /// </summary>
+		 /// <param name="username"></param>
+		 /// <param name="categoryId"></param>
+		 /// <param name="numberOfPosts"></param>
+		  public PostCollection PostsByUserAndCategory(string username, int categoryId, int numberOfPosts)
+		  {
+			  Category category = GetCategory(categoryId);
+			  IGraffitiUser user = GraffitiUsers.GetUser(username);
+			  return PostsByUserAndCategory(user, category, numberOfPosts);
+		  }
+
+		 /// <summary>
+		 /// Gets all posts by the specified user in the specified category name
+		 /// </summary>
+		 /// <param name="username"></param>
+		 /// <param name="categoryName"></param>
+		 /// <param name="numberOfPosts"></param>
+		  public PostCollection PostsByUserAndCategory(string username, string categoryName, int numberOfPosts)
+		  {
+			  Category category = GetCategory(categoryName);
+			  IGraffitiUser user = GraffitiUsers.GetUser(username);
+			  return PostsByUserAndCategory(user, category, numberOfPosts);
+		  }
+
+			/// <summary>
+		   /// Gets all posts by the specified user in the specified category name
+			/// </summary>
+			/// <param name="user"></param>
+			/// <param name="category"></param>
+			/// <param name="numberOfPosts"></param>
+		  public PostCollection PostsByUserAndCategory(IGraffitiUser user, Category category, int numberOfPosts)
+		  {
+			  if (category == null || user == null)
+				  return null;
+
+			  const string CacheKey = "Posts-Users-Categories-P:{0}-U:{1}-C:{2}-T:{3}-PS:{4}";
+
+			  PostCollection pc = ZCache.Get<PostCollection>(string.Format(CacheKey, 1, user.UniqueId, category.Id, category.SortOrder, numberOfPosts));
+			  if (pc == null)
+			  {
+				  pc = new PostCollection();
+				  Query q = PostCollection.DefaultQuery(1, numberOfPosts, category.SortOrder);
+				  q.AndWhere(Post.Columns.UserName, user.Name);
+				  if (Category.IncludeChildPosts)
+				  {
+					  if (category.ParentId > 0)
+						  q.AndWhere(Post.Columns.CategoryId, category.Id);
+					  else
+					  {
+						  List<int> ids = new List<int>(category.Children.Count + 1);
+						  foreach (Category child in category.Children)
+							  ids.Add(child.Id);
+						  ids.Add(category.Id);
+						  q.AndInWhere(Post.Columns.CategoryId, ids.ToArray());
+					  }
+				  }
+				  else
+				  {
+					  q.AndWhere(Post.Columns.CategoryId, category.Id);
+				  }
+				  pc.LoadAndCloseReader(q.ExecuteReader());
+				  ZCache.InsertCache(string.Format(CacheKey, 1, user.UniqueId, category.Id, category.SortOrder, numberOfPosts), pc, 60);
+			  }
+
+			  return pc;
+		  }
+
         /// <summary>
         /// Gets all Posts by the specified tag
         /// </summary>
@@ -203,12 +272,22 @@ namespace Graffiti.Core
             return category == null ? null : PostsByCategory(category, numberOfPosts);
         }
 
+			/// <summary>
+			/// Gets the last x amount of posts from the specified category
+			/// </summary>
+			/// <param name="categoryId"></param>
+			/// <param name="numberOfPosts"></param>
+			public PostCollection PostsByCategory(int categoryId, int numberOfPosts)
+			{
+				Category category = GetCategory(categoryId);
+				return category == null ? null : PostsByCategory(category, numberOfPosts);
+			}
+
         /// <summary>
         /// Gets the last x amount of posts from the specified Category
         /// </summary>
         /// <param name="category"></param>
         /// <param name="numberOfPosts"></param>
-        /// <returns></returns>
         public PostCollection PostsByCategory(Category category, int numberOfPosts)
         {
             return PostsByCategory(category, numberOfPosts, false);
