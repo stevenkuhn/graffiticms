@@ -29,8 +29,8 @@ namespace Graffiti.Core
 				throw new ArgumentException("Cannot be null or empty", "desc");
 
 			Name = name;
-			Tip = desc;
-			Description = tip;
+			Tip = tip;
+			Description = desc;
 		}
 
 		/// <summary>
