@@ -2,20 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderRegion" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainRegion" Runat="Server">
-<script type="text/javascript" src="<%= VirtualPathUtility.ToAbsolute("~/__utility/js/effects.js")  %>" ></script>
-<script type="text/javascript" src="<%= VirtualPathUtility.ToAbsolute("~/__utility/js/dragdrop.js")  %>" ></script>
-
 <script type="text/javascript">
-
-window.onload = setupNavigation;
-
-Event.observe(window, 'load', function() {
- setupNavigation();
+$(document).ready(function()
+{
+   setupNavigation();
 });
 
 function setupNavigation()
 {
-    var pl = $('<%=the_Categories.ClientID %>');
+    var pl = $$('<%=the_Categories.ClientID %>');
     
     if(pl.options.length == 0)
     {
@@ -24,13 +19,14 @@ function setupNavigation()
         option.text = '--No Categories--';        
         pl.options[0] = option;
         
-        $('AddPostBTN').hide();
+        $('AddPostBTN').disabled = true;
     }    
 }
 
 function reAddItem(list,name,id, btn)
 {
-    var the_List = $(list);
+    var the_List = $$(list);
+    
     if(the_List.options.length == 1)
     {
         if(the_List.options[0].text.startsWith('--'))
@@ -44,7 +40,8 @@ function reAddItem(list,name,id, btn)
     option.value = id;
     
     the_List.options[the_List.options.length] = option;
-    $(btn).show();
+    
+    $(btn).disabled = false;
     
     for (var i = 0; i < <%= existing_items.ClientID %>.GetItemCount(); i++)
      {
@@ -59,34 +56,40 @@ function reAddItem(list,name,id, btn)
 
 function remove_Link(name, id)
 {
-     reAddItem('<%= the_Categories.ClientID %>',name,  id, 'AddPostBTN');
+     reAddItem('<%= the_Categories.ClientID %>', name, id, 'AddPostBTN');
 }
-
-var base_ListItem_Template = new Template('<div style=\"border: solid 1px #999; padding: 4px;\"><strong>#{title}</strong><div style=\"text-align:right;\"><a title=\"Delete Link\" href=\"javascript:void();\" onclick=\"javascript:remove_Link(&#39;#{text}&#39;, &#39;#{lid}&#39;); return false;\">Delete</a></div></div>');
 
 function AddPost()
 {
-    var list = $('<%= the_Categories.ClientID %>');
+    var list = $$('<%= the_Categories.ClientID %>');
     var option = list.options[list.selectedIndex];
     var id = option.value;
+    var existingItems = <%= existing_items.ClientID %>;
     
-    <%= existing_items.ClientID %>.AddItem(new Telligent_OrderedListItem(id, option.text, base_ListItem_Template.evaluate({title:option.text, text: option.text, lid: id})));
-    <%= existing_items.ClientID %>.Refresh();
-    <%= existing_items.ClientID %>.SelectItem(<%= existing_items.ClientID %>.GetItemCount() - 1, true);
+    existingItems.AddItem(new Telligent_OrderedListItem(id, option.text, parseTemplate($("#LITemplate").html(),{text: option.text, lid: id})));
+    existingItems.Refresh();
+    existingItems.SelectItem(existingItems.GetItemCount() - 1, true);
 
     list.options[list.selectedIndex] = null;
     setupNavigation();
 }
 
 </script>
+<script id="LITemplate" type="text/html">
+<div style="border: solid 1px #999; padding: 4px;">
+	<strong><#= text #></strong>
+	<div style="text-align:right;">
+		<a title="Delete Link" href="javascript:void();" onclick="remove_Link('<#= text #>', '<#= lid #>'); return false;">Delete</a>
+	</div>
+</div>
+</script>
+
+
 <h1>Category Widget</h1>
 <div id = "messages_form">
-
-
-
     <Z:StatusMessage runat="Server" ID = "Message"  Type="Success"/>
 
-<div id="post_form_container" class="FormBlock abc" style="min-height:450px">
+	<div id="post_form_container" class="FormBlock abc" style="min-height:450px">
 
     <h2>Title: <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtTitle" Text="Please enter a Title" runat ="Server" /></h2>
     <asp:TextBox CssClass = "large" runat="Server" id="txtTitle" TabIndex="1" MaxLength="256" />  

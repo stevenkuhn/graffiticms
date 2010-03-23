@@ -108,10 +108,11 @@ namespace Graffiti.Core
             StatusType statusType = base.SetValues(context, nvc);
             if(statusType == StatusType.Success)
             {
-                ItemsToDisplay = Int32.Parse(nvc["itemsToDisplay"]);
+					if (!string.IsNullOrEmpty(nvc["itemsToDisplay"]))
+						ItemsToDisplay = Int32.Parse(nvc["itemsToDisplay"]);
+
                 FeedUri = nvc["FeedUri"];
 
-  
                 try
                 {
                     RegisterForSyndication();

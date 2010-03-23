@@ -212,7 +212,8 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 				}
 			}
 
-			the_CustomFields.Text = cfs.GetHtmlForm(nvcCustomFields);
+			bool isNewPost = (post != null) && (post.Id < 1);
+			the_CustomFields.Text = cfs.GetHtmlForm(nvcCustomFields, isNewPost);
 		}
 		else
 		{
@@ -377,7 +378,7 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 				foreach (CustomField cf in cfs.Fields)
 				{
 					if (cf.FieldType == FieldType.CheckBox && Request.Form[cf.Id.ToString()] == null)
-						p[cf.Name] = false.ToString();
+						p[cf.Name] = null; // false.ToString();
 					else
 						p[cf.Name] = Request.Form[cf.Id.ToString()];
 				}

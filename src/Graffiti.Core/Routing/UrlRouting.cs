@@ -20,14 +20,18 @@ namespace Graffiti.Core
 			routes.Add("ignoreASMX", new Route("{resource}.asmx/{*pathInfo}", new StopRoutingHandler()));
 			routes.Add("ignoreICO", new Route("{resource}.ico/{*pathInfo}", new StopRoutingHandler()));
 
-			// Ignore all of admin section for security
-			routes.Add("ignoreADMIN", new Route("graffiti-admin/{*pathInfo}", new StopRoutingHandler()));
-
 			// Added to solve a issue with http://(www.)domain.ext/ rendering 404
 			routes.Add("Home", new Route("", new StopRoutingHandler()));
 
 			// Used to determine support for URL routing
 			routes.Add("GraffitiInfo", new Route("__utility/GraffitiUrlRoutingCheck", new GraffitiUrlRoutingCheckRouteHandler()));
+			
+			// Ignore non-virtual system folders
+			routes.Add("ignoreAdmin", new Route("graffiti-admin/{*pathInfo}", new StopRoutingHandler()));
+			routes.Add("ignoreAPI", new Route("api/{*pathInfo}", new StopRoutingHandler()));
+			routes.Add("ignoreLogin", new Route("login/{*pathInfo}", new StopRoutingHandler()));
+			routes.Add("ignoreUtility", new Route("__utility/{*pathInfo}", new StopRoutingHandler()));
+			routes.Add("ignoreFiles", new Route("files/{*pathInfo}", new StopRoutingHandler()));
 
 			routes.Add("TagPage", new Route("tags/{TagName}/", new TagHandler()));
 			routes.Add("TagFeed", new Route("tags/{TagName}/feed/", new RssHandler()));

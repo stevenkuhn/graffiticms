@@ -7,6 +7,13 @@ function $$(id) {
     return $(id)[0];
 }
 
+String.prototype.endsWith = function(suffix) {
+	return (this.substr(this.length - suffix.length) === suffix);
+}
+
+String.prototype.startsWith = function(prefix) {
+	return (this.substr(0, prefix.length) === prefix);
+}
 
 var _tmplCache = {}
 this.parseTemplate = function(str, data) {

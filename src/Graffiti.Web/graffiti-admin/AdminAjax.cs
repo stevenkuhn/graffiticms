@@ -325,7 +325,7 @@ public class graffiti_admin_ajax : IHttpHandler
                             nvcCustomFields[cf.Name] = context.Request.Form[cf.Id.ToString()];
                     }
 
-                    context.Response.Write(cfs.GetHtmlForm(nvcCustomFields));
+						  context.Response.Write(cfs.GetHtmlForm(nvcCustomFields, (postId < 1)));
                 }
                 else
                     context.Response.Write("");

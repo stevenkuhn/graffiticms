@@ -132,12 +132,15 @@ namespace Graffiti.Core
 			NameValueCollection nvc = new NameValueCollection();
 
 			FormElementCollection fec = AddFormElements();
-			foreach (FormElement fe in fec)
+			if (fec != null)
 			{
-				CheckFormElement cfe = fe as CheckFormElement;
-				if (cfe != null)
+				foreach (FormElement fe in fec)
 				{
-					nvc[cfe.Name] = cfe.DefaultValue.ToString();
+					CheckFormElement cfe = fe as CheckFormElement;
+					if (cfe != null)
+					{
+						nvc[cfe.Name] = cfe.DefaultValue.ToString();
+					}
 				}
 			}
 
