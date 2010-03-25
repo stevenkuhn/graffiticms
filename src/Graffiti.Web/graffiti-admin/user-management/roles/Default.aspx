@@ -86,10 +86,10 @@
                 <div class="nonnested">
                     <div class="title"><%# HttpUtility.HtmlEncode(Eval("RoleName").ToString()) %></div>
                     <div class="commands">
-                    <a href="?role=<%# HttpUtility.HtmlEncode(Eval("RoleName").ToString()) %>">Edit</a>
+                    <a href="?role=<%# HttpUtility.UrlEncode(HttpUtility.HtmlEncode(Eval("RoleName").ToString())) %>">Edit</a>
                     <% if(CanDelete()) { %>
                     <span <%# IsNotSystemRole(Eval("RoleName").ToString()) %> style="padding: 0 4px 0 4px;">|</span>
-                    <a <%# IsNotSystemRole(Eval("RoleName").ToString()) %> href="javascript:Telligent_Modal.Open('DeleteRole.aspx?role=<%# HttpUtility.HtmlEncode(Eval("RoleName").ToString()) %>', 400, 200, null);">Delete</a>
+                    <a <%# IsNotSystemRole(Eval("RoleName").ToString()) %> href="javascript:Telligent_Modal.Open('DeleteRole.aspx?role=<%# HttpUtility.UrlEncode(HttpUtility.UrlEncode(HttpUtility.HtmlEncode(Eval("RoleName").ToString()))) %>', 400, 200, null);">Delete</a>
                     <% }  %>
                     </div>
                 </div>
