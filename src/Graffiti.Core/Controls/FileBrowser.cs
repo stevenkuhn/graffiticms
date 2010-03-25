@@ -15,7 +15,7 @@ namespace Graffiti.Core
             sb.Append("function OpenFileBrowser(callbackFunction){\n");
             sb.Append("fileBrowserCallback = callbackFunction;\n");
             sb.AppendFormat("var url = '{0}';\n", VirtualPathUtility.ToAbsolute("~/graffiti-admin/site-options/utilities/FileSelector.aspx"));
-            sb.AppendFormat("url += '?path=files/media';");
+            sb.AppendFormat("url += '?path=files\\\\media';");
             sb.Append("window.open(url, 'TEBrowseWindow', \"toolbar=no,status=no,resizable=yes,dependent=yes,scrollbars=yes,width=\" + (screen.width * 0.7) + \",height=\" + (screen.height * 0.7) + \",left=\" + ((screen.width * 0.3) / 2) + \",top=\" + ((screen.height * 0.3) / 2));\n");
             sb.Append("}\n");
 
