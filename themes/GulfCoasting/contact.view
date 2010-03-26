@@ -1,0 +1,32 @@
+<div class="post">
+	<h2><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h2>
+	<div class="entry">
+		$post.Body
+	</div>
+</div>
+
+<form action="$url" method="post" id="contact_form">
+<div id="contactform">
+<dl>
+    <dt><label>Subject:</label></dt>
+    <dd><input type="text" name="subject" id="subject" value="" tabindex="1" class="textbox" /></dd>
+
+    <dt><label>Name:</label></dt>
+    <dd><input type="text" name="name" id="name" value="" tabindex="2" class="textbox" /></dd>
+
+    <dt><label>Email:</label></dt>
+    <dd><input type="text" name="email" id="email" value="" tabindex="3" class="textbox" /></dd>
+
+    <dt><label>Message</label></dt>
+    <dd><textarea class="text_input text_area" name="message" id="message" rows="7" tabindex="4"></textarea></dd>
+</dl>
+
+$macros.ContactButton("%{class='send_button', tabindex='5', value='Send'}") <div style="display:none;" id="contact_status"></div>
+</div>
+</form>
+
+
+
+
+
+

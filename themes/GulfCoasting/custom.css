@@ -1,0 +1,26 @@
+/*
+	custom.css
+	custom styles for Gulf Coasting that YOU define
+	------------------------------------------------------
+	
+	This stylesheet will allow you to futureproof your
+	changes against future releases and upgrades of this 
+	theme. I know you work hard on your modified styles, 
+	and I don't want you to feel like every upgrade is a 
+	total drag!
+	
+	Instructions:
+	
+	Modifying existing styles to your liking is a breeze 
+	with this handy stylesheet. The Gulf Coasting theme
+	will link to style.css and then this one (custom.css).
+	Because of this, you now have the ability to override 
+	ANY style that's declared in the original Gulf Coasting
+	style.css in this file.
+	
+	In practice, you simply need to copy the CSS for the
+	element that you want to change (from style.css) and
+	then paste it below this comment section.
+*/
+
+

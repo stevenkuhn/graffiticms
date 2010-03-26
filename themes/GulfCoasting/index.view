@@ -1,0 +1,44 @@
+#if($where == "tag")
+<h2>Posts tagged '$tag'</h2>
+#elseif($where == "search")
+<h2>Search Results for '$macros.SearchQuery'</h2>
+#end
+
+<ul class="BlogPostList">
+#foreach($post in $posts)
+	<li class="BlogPostArea post">
+        <div class="DateInfoBox">
+            <div class="DateInfoBoxTop">$post.Published.ToString("ddd")</div>
+			<div class="DateInfoBoxContent">$post.Published.ToString("dd")</div>
+			<div class="DateInfoBoxBot">$post.Published.ToString("MMM yy")</div>
+        </div>
+		<h3><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h3>
+		<div class="entry">
+			$post.Excerpt('<p><span class="readMore">Continue reading <em>&quot;', '&quot;</em></span></p>' ,$post.Title, 300)
+		</div>
+
+		<div class="postInfo">
+		    <span class="right"><span class="commentIcon">$macros.CommentUrl($post, "%{anchor='comments'}")</span></span>
+		    <span class="personIcon">$post.User.ProperName</span>
+			<span class="clearer"></span>
+	    #if($post.TagList != '')
+    		<div>
+		        Tagged as: $macros.TagList($post.TagList,"")
+    		</div>
+	    #end
+		</div>
+
+	</li>
+#nodata
+    <li class="BlogPostArea post">
+        <div class="entry">
+	    Sorry, there are no posts matching your request.
+	    </div>
+    </li>
+#end
+</ul>
+
+#if($where == "category" || $where=="home")
+    $macros.Pager("postPager")
+    <div class="clearer"><span></span></div>
+#end

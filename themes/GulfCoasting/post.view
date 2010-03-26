@@ -1,0 +1,137 @@
+<div class="post">
+	<h2><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h2>
+	<div class="entry">
+		$post.Body
+	</div>
+
+	<div class="postInfo">
+		<div>
+		    <span class="dateIcon"><a href="$post.Url">$post.Published.ToString("MMMM dd yyyy")</a></span>
+		    <span class="personIcon">$post.User.ProperName</span>
+		    #if ($post.EnableComments)
+		        <span class="commentIcon">$macros.CommentUrl($post, "%{anchor='comments'}")</span>
+		    #end
+		</div>
+		$macros.EditLink($post)
+	    #if($macros.IsNull($post.Category) == false)
+    		<div>
+		        Filed under: $macros.CategoryLink($post.Category)
+    		</div>
+	    #end
+	    #if($post.TagList != '')
+    		<div>
+		        Tagged as: $macros.TagList($post.TagList,"")
+    		</div>
+	    #end
+		<span class="clearer"></span>
+	</div>
+</div>
+
+
+#set($similarPosts = $data.SimilarSearch($post.Id,3))
+#foreach($sp in $similarPosts)
+#beforeall
+    <h3 id="similarPostsHeader">&#187; Similar Posts</h3>
+    <ol id="similarPosts">
+#each
+    <li><a href="$sp.Url" title="$sp.CustomExcerpt(100)">$sp.Title</a></li>
+#afterall
+    </ol>
+#end
+
+
+#if($post.EnableComments)
+    #foreach($comment in $comments)
+    #beforeall
+        <div class="PostComments">
+            <a name="comments"></a>
+            <h3 id="commentsHeader">&#187; Comments</h3>
+            #if($post.EnableNewComments)
+                <ol id="commentlist">
+            #end
+    #nodata
+        <div class="Comment CommentContent">
+            There are no comments.
+            #if($post.EnableNewComments)
+                Kick things off by filling out the form below.
+            #end
+        </div>
+        	
+    #each
+        <li#if($comment.UserName == $post.UserName) class="CommentOwner"#end>
+            <a href="#comment-$comment.Id" title="Permalink to this comment"></a>
+	        <div class="gravatar">
+    	        $macros.Gravatar($comment.Email, $comment.Name, $comment.IPAddress, "%{size ='60'}")
+	        </div>
+
+            $comment.Body
+            
+		    <div class="commentby">
+			    <cite>$macros.CommentLink($comment) &#8212; $comment.Published.ToString("MMMM d, yyyy h:mm tt")</cite>
+                #if($isUser)
+                    <br /><a href="mailto:$comment.Email">$comment.Email</a> &nbsp;
+                    [<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $comment.Id,'comment-$comment.Id','comment-body-$comment.Id'); return false">Delete Comment</a>]
+                #end
+		    </div>
+        </li>
+    #afterall
+        #if($post.EnableNewComments)
+            </ol>
+        #end
+        </div>
+    #end
+#end
+	
+<div id="commentform">
+	<h3 id="postcomment">
+    #if($post.EnableNewComments)
+	    &#187; Leave a Comment
+    #else
+        Comments are closed
+    #end
+	</h3>
+    
+    #if($post.EnableNewComments)
+	<form action="$url" method="post" id="comment_form">
+	<dl>
+	#if($isUser)
+	    <dt>
+		    Logged in as $user.ProperName <a href="$urls.Logout">Logout</a><br /><br />
+	    </dt>
+	#else
+		<dt>
+    		<label for="author">Name</label>
+		</dt>
+		<dd>
+			<input class="textbox" type="text" name="author" id="author" value="" tabindex="1" />
+		</dd>
+
+		<dt>
+			<label for="email">Email</label>
+		</dt>
+		<dd>
+			<input class="textbox" type="text" name="email" id="email" value="" tabindex="2" />
+		</dd>
+
+		<dt>
+			<label for="url">Website</label>
+		</dt>
+		<dd>
+			<input class="textbox" type="text" name="url" id="url" value="" tabindex="3" />
+		</dd>
+	#end
+		<dt>
+		    <label for="comment">Comment</label>
+	    </dt>
+		<dd>
+			<textarea name="comment" id="comment" rows="8" cols="50" tabindex="4"></textarea>
+		</dd>
+
+		<dt>
+			$macros.CommentButton("%{class='submit_button', tabindex='5', value='Submit'}") <div style="display:none;" id="comment_status"></div>
+			<input type="hidden" name="comment_post_ID" value="$post.Id" />
+		</dt>
+	</dl>
+	</form>
+	#end
+</div>

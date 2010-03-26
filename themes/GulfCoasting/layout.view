@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>$title</title>
+	$macros.Style("style.css","screen")
+	$macros.Style("custom.css","screen")
+	$macros.Head()
+</head>
+<body>
+<div class="top">
+	<div class="header">
+		<div class="left">
+		    <h1><a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a></h1>
+		</div>
+		<div class="right">
+		    <div style="display: table; height: 150px; #position: relative; overflow: hidden; width: 100%;">
+		        <div style="#position: absolute; #top: 50%;display: table-cell; vertical-align: middle; width: 100%;">
+		            <div class="rightHeader" style="#position: relative; #top: -50%; width: 100%;">
+			            <div class="SiteDescription">
+				            $data.Site.TagLine
+			            </div>
+			            <form method="get" id="search_form" action="$macros.SearchUrl">
+				            <input type="text" style="width: 225px;" value="search..." name="q" id="q" onfocus="if (this.value == 'search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'search...';}" />
+				            <span class="searchButton"><input type="submit" value="" class="SearchButton" /></span>
+				            <input type="hidden" id="searchsubmit" value="Search" />
+			            </form>
+			            #if ($macros.Variable("siteHeaderRightContent") != '')
+			            <div class="AddHeadContent">
+			            $macros.Variable("siteHeaderRightContent")
+			            </div>
+			            #end
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="container">	
+
+    <div class="navigation">
+        #foreach($link in $macros.NavigationLinks())
+        #if ($link.IsSelected)
+            <div class="SelectedNavMenu"><a href="$link.Url">$link.Text</a></div>
+        #else
+            <a href="$link.Url">$link.Text</a>
+        #end
+        #end
+        <div class="clearer"><span></span></div>
+    </div>
+    
+	<div id="main" class="main" runat="server">
+		<div id="content" class="content" runat="server">
+			$childContent
+		</div>
+		<div id="sidebar" class="sidenav" runat="server">
+			<div class="sidenavContent">
+			$macros.RightSideBar("%{beforeWidget='<div class=\"sidenavWide\">', afterWidget='</div>', beforeTitle='<h2>', afterTitle='</h2>'}")
+			</div>
+		</div>
+
+		<div class="clearer"><span></span></div>
+	</div>
+
+	<div class="footer">
+		<div class="footerSectionWrapper" style="display: table; height: 80px; width: 100%; #position: relative; overflow: hidden;">
+		    <div class="footerSection" style="#position: absolute; #top: 50%;display: table-cell; vertical-align: middle; width: 100%;">
+		        <div class="footerSectionContent" style="#position: relative; #top: -50%; width: 100%;">
+		            <div id="footerLogo"><a href="http://graffiticms.com" target="_blank">$macros.Logo</a></div>
+		            <div id="footer_center_col">
+			            <span id="copyright">$!data.Site.Copyright</span><br />
+			            <span id="credits">
+				            Theme by <a href="http://kevinharder.com" target="_blank">Kevin Harder</a>, 
+				            based on an <a href="http://arcsin.se" target="_blank">Arcsin</a> template
+			            </span>
+			        </div>
+		            #if ($macros.Variable("siteFooterRightContent") != '')
+			            <div id="footer_right_col">
+                        $macros.Variable("siteFooterRightContent")
+                        </div>
+                    #end
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
+$!data.Site.WebStatistics
+</body>
+</html>
