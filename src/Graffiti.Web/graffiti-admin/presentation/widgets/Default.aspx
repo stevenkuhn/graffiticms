@@ -25,10 +25,12 @@ function addNewWidget()
 {
     pre_update();
 
-	var awClientID = <%= AvailableWidgets.ClientID %>;
-	var qbarClientID = <%= qbar.ClientID %>;
-	var lbarClientID = <%= lbar.ClientID %>;
-	var rbarClientID = <%= rbar.ClientID %>;
+    var awClientID = <%= AvailableWidgets.ClientID %>;
+    var qbarClientID = <%= qbar.ClientID %>;
+    var lbarClientID = <%= lbar.ClientID %>;
+    var rbarClientID = <%= rbar.ClientID %>;
+    var lbarSelectedIndex = lbarClientID.GetSelectedIndex();
+    var rbarSelectedIndex = rbarClientID.GetSelectedIndex();
     var newWidgetUniqueId = awClientID.GetValue();
 
     $.ajax(
@@ -45,8 +47,10 @@ function addNewWidget()
                 addWidgetNode(awClientID.GetText(awClientID.GetSelectedIndex()), response, qbarClientID);
                 awClientID.SetSelectedIndex(0);
                 post_update();
-                lbarClientID.SelectItem(lbarClientID.GetSelectedIndex());
-                rbarClientID.SelectItem(rbarClientID.GetSelectedIndex());
+                if(lbarSelectedIndex =! -1)
+                  lbarClientID.SelectItem(lbarSelectedIndex);
+                if(rbarSelectedIndex =! -1)
+                  rbarClientID.SelectItem(rbarSelectedIndex);
             }
             else
             {
