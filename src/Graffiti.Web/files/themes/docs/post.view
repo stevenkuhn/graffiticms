@@ -1,7 +1,0 @@
-
-
-			<h1>$post.Title</h1>
-			$post.Body
-<p style="font-size: 150%;">
-$macros.EditLink($post)
-</p>

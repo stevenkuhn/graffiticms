@@ -53,7 +53,8 @@
 	</div>
 
 <div id="footer">
-	<p>&copy; $data.Site.Title &#8212; <a href="http://www.copyblogger.com">Copyblogger</a> theme design by <a href="http://pearsonified.com">Chris Pearson</a>. Implemented in <a href="http://graffiticms.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
+	<p>&copy; $data.Site.Title &#8212; <a href="http://www.copyblogger.com">Copyblogger</a> theme design by <a href="http://pearsonified.com">Chris Pearson</a>.
+	Implemented in <a href="http://graffiticms.codeplex.com">Graffiti CMS</a> by <a href="http://simpable.com">Scott Watermasysk</a></p>
 	<p>$!data.Site.Copyright</p>
 	<br />
 	<p>$macros.Logo</p>
