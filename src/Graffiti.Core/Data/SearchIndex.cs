@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Web;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
@@ -179,7 +180,7 @@ namespace Graffiti.Core
 				TimeSpan ts = (DateTime.Now - dt);
 				searchResults.SearchDuration = ts.Milliseconds;
 
-				SimpleHTMLFormatter html = new SimpleHTMLFormatter("<span style=\"BACKGROUND-COLOR: Yellow\">", "</span>");
+				SimpleHTMLFormatter html = new SimpleHTMLFormatter(":openhighlight", ":closehighlight"); //use placeholders instead of html to allow later htmlencode
 				Highlighter highlighter = new Highlighter(html, new QueryScorer(q));
 
 				int start = sq.PageIndex * sq.PageSize;
@@ -226,12 +227,15 @@ namespace Graffiti.Core
 		{
 			try
 			{
-				TokenStream tokenStream = analyzer.TokenStream(fieldName, new StringReader(text));
-				return hl.GetBestFragments(tokenStream, text, 2, "...");
+                //decode text to prevent fragmenting escape chars or char refs
+                text = HttpUtility.HtmlDecode(text);
+                TokenStream tokenStream = analyzer.TokenStream(fieldName, new StringReader(text));
+                //encode for html validity, replace temporary highlight tags
+                return HttpUtility.HtmlEncode(hl.GetBestFragments(tokenStream, text, 2, "...")).Replace(":openhighlight", "<span style=\"BACKGROUND-COLOR: Yellow\">").Replace(":closehighlight", "</span>");
 			}
 			catch
 			{
-				return RemoveHtml(text, 250);
+                return RemoveHtml(text.Replace(":openhighlight", "").Replace(":closehighlight", ""), 250);
 			}
 
 		}

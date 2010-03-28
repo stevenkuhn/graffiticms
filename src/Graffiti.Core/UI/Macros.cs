@@ -1213,7 +1213,7 @@ namespace Graffiti.Core
 			identicon = HttpUtility.UrlEncode(identicon);
 
 			string hash = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(email.Trim(), "MD5").Trim().ToLower();
-			return string.Format("http://www.gravatar.com/avatar.php?gravatar_id={0}&amp;rating=G&amp;size={2}&amp;default={1}", hash, identicon, size);
+            return string.Format("http://www.gravatar.com/avatar/{0}?amp;r=g&amp;s={2}&amp;d={1}", hash, identicon, size);
 		}
 
 		#endregion

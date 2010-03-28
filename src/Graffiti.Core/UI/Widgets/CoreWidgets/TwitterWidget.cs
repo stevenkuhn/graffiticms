@@ -41,12 +41,12 @@ namespace Graffiti.Core
 							string desc = channel.Items[i].Description;
 							int index = desc.IndexOf(":");
 
-							sb.Append("<li class=\"tweet\">" + Util.FormatLinks(((index > -1) ? desc.Substring(index + 1).Trim() : desc)) + "</li>");
+              sb.Append("<li class=\"tweet\">" + Util.FormatLinks(HttpUtility.HtmlEncode(HttpUtility.HtmlDecode(((index > -1) ? desc.Substring(index + 1).Trim() : desc)))) + "</li>");
 
 						}
 					}
 
-					sb.Append("<li class=\"twitterlink\"><a href=\"http://twitter.com/" + UserName + "\">Follow Me</a> on <a href=\"http://twitter.com\">Twitter</a></li>");
+					sb.Append("<li class=\"twitterlink\"><a href=\"http://twitter.com/" + UserName + "\">Follow Me on Twitter</a></li>");
 				}
 				catch (Exception)
 				{

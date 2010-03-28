@@ -12,7 +12,7 @@
 
     <asp:Label ID="lblError" runat="server" style="color: Red;" />
     
-    <h2>Theme file:</h2>
+    <h2>Theme XML file:</h2>
     <asp:FileUpload ID="ThemeUploader" runat="server" />
    
     <h2>Theme Name: <span style="color: #777; font-size: 80%;">(optional)</span></h2>
@@ -40,7 +40,7 @@
         
         if (!ThemeUploader.HasFile)
         {
-            lblError.Text = "Select a file to upload.";
+            lblError.Text = "Select a theme XML file to upload.";
             return;
         }
         else
@@ -66,7 +66,7 @@
             }
             catch (Exception exc)
             {
-                lblError.Text = "Error uploading theme. Make sure you have checked override existing files if the theme already exists.";
+                lblError.Text = "Error uploading theme. Make sure you have checked override existing files if the theme already exists and that you have selected a valid theme XML file.";
             }
         }
     }
