@@ -64,7 +64,7 @@ public class ajax : IHttpHandler
                 string name = context.Request.Form["name"];
                 string message = context.Request.Form["message"];
 
-                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(email))
+                if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(message))
                 {
                     context.Response.Write("All of the fields are required, your message has not been sent");
                     context.Response.End();
