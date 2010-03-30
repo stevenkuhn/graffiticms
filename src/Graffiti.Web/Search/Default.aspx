@@ -42,7 +42,7 @@
                 SearchIndex si = new SearchIndex();
 
                 SearchQuery sq = new SearchQuery();
-                sq.PageSize = 25;
+                sq.PageSize = SiteSettings.Get().PageSize;
                 sq.PageIndex = PageIndex - 1;
                 sq.QueryText = new Macros().SearchQuery;
 
@@ -55,9 +55,9 @@
                         filteredPosts.Add(p);
                 }
 
-                graffitiContext.TotalRecords = filteredPosts.TotalRecords;
+                graffitiContext.TotalRecords = posts.TotalRecords;
                 graffitiContext.PageIndex = PageIndex;
-                graffitiContext.PageSize = 20;
+                graffitiContext.PageSize = SiteSettings.Get().PageSize;
 
                 return filteredPosts;
             }

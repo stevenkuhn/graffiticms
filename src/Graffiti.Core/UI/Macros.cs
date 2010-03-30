@@ -843,7 +843,8 @@ namespace Graffiti.Core
 		public string Pager(string cssClass, string previousText, string nextText)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, null, previousText, nextText);
+            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq, previousText, nextText);
 		}
 
 		/// <summary>
@@ -854,7 +855,8 @@ namespace Graffiti.Core
 		public string Pager(string cssClass)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, null);
+            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq);
 		}
 
 		/// <summary>
