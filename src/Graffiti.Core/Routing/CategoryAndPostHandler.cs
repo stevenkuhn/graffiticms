@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web;
 using System.Web.Compilation;
 using System.Web.Routing;
@@ -15,7 +15,7 @@ namespace Graffiti.Core
 
 			if (!String.IsNullOrEmpty(param3))
 			{
-				var post = GetPost(param3);
+				var post = GetPost(string.Format("{0}/{1}/{2}", param1, param2, param3));
 				if (post != null)
 					return post;
 			}
@@ -26,7 +26,7 @@ namespace Graffiti.Core
 				if (category != null)
 					return category;
 
-				var post = GetPost(param2);
+				var post = GetPost(string.Format("{0}/{1}", param1, param2));
 				if (post != null)
 					return post;
 			}

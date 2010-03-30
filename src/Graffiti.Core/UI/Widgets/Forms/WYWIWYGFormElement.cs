@@ -19,7 +19,7 @@ namespace Graffiti.Core
 			editor.ToolbarSet = "Simple";
 			editor.Width = new Unit(600);
 			editor.Height = new Unit(200);
-			editor.Text = HttpUtility.HtmlEncode(nvc[Name]);
+			editor.Text = nvc[Name];
 			editor.ID = Name;
 			sb.Append(editor.GenerateHTML());
 		}
