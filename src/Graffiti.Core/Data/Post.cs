@@ -349,28 +349,28 @@ namespace Graffiti.Core
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Returns the Post excerpt. If a PostBody exists, it will be used. If not, it returns
-        /// the first 300 none HTML characters
-        /// </summary>
-        public string Excerpt(string startText, string endText, string linkText, int len)
-        {
-            string link = "";
-            
-            if (!String.IsNullOrEmpty(linkText))
-                link = string.Format("{0}<a href=\"{1}\">{2}</a>{3}", startText, Url, linkText, endText);
+			/// <summary>
+			/// Returns the Post excerpt. If a PostBody exists, it will be used.
+			/// If not, it returns the first 300 non-HTML characters
+			/// </summary>
+			public string Excerpt(string startText, string endText, string linkText, int len)
+			{
+			string link = "";
+
+			if (!String.IsNullOrEmpty(linkText))
+				link = string.Format("{0}<a href=\"{1}\">{2}</a>{3}", startText, Url, linkText, endText);
 
 			if (!string.IsNullOrEmpty(ExtendedBody))
-                return PostBody + link;
-            else if (PostBody != null && PostBody.Length <= len)
-                return Util.RemoveHtml(PostBody, PostBody.Length);
-            else
+				return PostBody + link;
+			else if (PostBody != null && PostBody.Length <= len)
+				return PostBody;
+			else
                 return "<p>" + Util.RemoveHtml(PostBody, len) + "...</p>" + link;
-        }
+			}
 
 
         /// <summary>
-        /// Returns the first len none HTML chacters of the PostBody property
+        /// Returns the first len non-HTML chacters of the PostBody property
         /// </summary>
         /// <param name="len"></param>
         /// <returns></returns>

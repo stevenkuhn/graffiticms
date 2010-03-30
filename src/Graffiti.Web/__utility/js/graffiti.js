@@ -72,13 +72,11 @@ GraffitiHelpers.statusMessage = function(name, text, alertOnNull) {
 }
 
 
-
 /********************* COMMENTS ************************/
 
 var Comments = new Object();
 
 Comments.statusMessage = function(text, alertOnNull) {
-
     var result = $('#comment_status');
 
     if (result != null) {
@@ -89,16 +87,11 @@ Comments.statusMessage = function(text, alertOnNull) {
         alert(text);
     }
 
-
-
     if (typeof decrementComments == 'function')
         decrementComments();
 }
 
-
-
 Comments.deleteCommentWithStatus = function(url, id, tempparam) {
-
     var itemToRemove = new Array();
 
     if (arguments.length > 2) {
@@ -182,9 +175,7 @@ Comments.unDelete = function(url, id) {
 }
 
 Comments.deleteComment = function(url, id) {
-
     //if(!confirm('Are you sure you want to delete this comment ' + id + '? This action can not be undone!'))
-
     //    return false;
 
     var itemToRemove = new Array();
@@ -221,7 +212,7 @@ Comments.submitComment = function(url) {
         success: function(transport) {
             var response = transport || "no response text";
             Comments.statusMessage(response, true);
-            $('#comment').value = '';
+            $('#comment').val('');
         },
 
         error: function() {
@@ -323,7 +314,7 @@ Contact.submitMessage = function(url) {
         success: function(transport) {
             var response = transport || "no response text";
             GraffitiHelpers.statusMessage('contact_status', response, true);
-            $('#message').value = '';
+            $('#message').val('');
         },
         error: function() {
             GraffitiHelpers.statusMessage('contact_status', 'Something went wrong. The contact request was likely not sent.', true);
