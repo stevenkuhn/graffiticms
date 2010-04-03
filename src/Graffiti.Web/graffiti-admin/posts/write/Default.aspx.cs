@@ -76,7 +76,7 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 					{
 						VersionHistory.Items.Add(
 							 new DropDownListItem(
-								  string.Format(versionHtml, px.Version, px.ModifiedOn.ToString("dd-MMM-yyyy"), px.UserProperName, px.Notes),
+								  string.Format(versionHtml, px.Version, px.ModifiedOn.ToString("dd-MMM-yyyy"), GraffitiUsers.GetUser(px.ModifiedBy).ProperName, px.Notes),
 								  string.Format(versionText, px.Version), px.Version.ToString()));
 					}
 
