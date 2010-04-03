@@ -545,7 +545,7 @@ namespace Graffiti.Core
 							foreach (Post post in posts)
 							{
 								Link link = new Link();
-								link.IsSelected = (currentCategory.Id == post.CategoryId);
+                                link.IsSelected = (ttp.PostId == post.Id);
 								link.Text = post.Title;
 								link.CategoryId = post.Id;
 								link.PostId = post.Id;

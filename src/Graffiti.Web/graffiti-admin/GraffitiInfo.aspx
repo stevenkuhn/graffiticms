@@ -1,69 +1,116 @@
-<%@ Page Language="C#" Inherits="Graffiti.Core.GraffitiPage" %>
-<%@ Import Namespace="System.Collections.Generic" %>
-<%@ Import Namespace="System.IO" %>
-<%@ Import Namespace="System.Xml" %>
-<script runat="server">
-	protected const string PluginInfoFormatString = "Enabled: {0}<br />Description: {1}<br />Type: {2}<br />";
+<%@ Page Language="C#" %>
 
+<% SiteSettings settings = SiteSettings.Get(); %>
 
-	protected override void OnLoad(System.EventArgs e)
-	{
-		SiteSettings settings = SiteSettings.Get();
-		CommentSettings commentSettings = CommentSettings.Get();
+<html>
+	<head>
+		<title>Graffiti CMS - System Information</title>
+		<style type="text/css">
+			html, body { background-color: #ffc;}
+			h2 { border-bottom: solid 2px #666; }
+			table td { vertical-align: top; padding-bottom: 0.25em;}
+			table { padding-bottom: 1em;}
+			.name { font-weight: bold; padding-right: 2em;}
+		</style>
+	</head>
+	<body>
+		<h1>Graffiti CMS</h1>
+		<h2>System Information</h2>
+		<table>
+			<tr>
+				<td class="name">Version</td>
+				<td><%= SiteSettings.VersionDescription %></td>
+			</tr>
+			<tr>
+				<td class="name">Url Routing Supported</td>
+				<td><%= SiteSettings.UrlRoutingSupported %></td>
+			</tr>
+			<tr>
+				<td class="name">Generate Folders</td>
+				<td><%= settings.GenerateFolders %></td>
+			</tr>
+			<tr>
+				<td class="name">Cache Views</td>
+				<td><%= settings.CacheViews %></td>
+			</tr>
+			<tr>
+				<td class="name">Require SSL</td>
+				<td><%= settings.RequireSSL %></td>
+			</tr>
+			<tr>
+				<td class="name">Require WWW</td>
+				<td><%= settings.RequireWWW %></td>
+			</tr>
+			<tr>
+				<td class="name">Use Proxy Server</td>
+				<td><%= settings.UseProxyServer %></td>
+			</tr>
+			<tr>
+				<td class="name">Email Server</td>
+				<td><%= settings.EmailServer %></td>
+			</tr>
+			<tr>
+				<td class="name">Current User Time</td>
+				<td><%= SiteSettings.CurrentUserTime.ToString("dddd dd MMMM yyyy hh:mm:ss") %></td>
+			</tr>
+			<tr>
+				<td class="name">TimeZone Offset</td>
+				<td><%= settings.TimeZoneOffSet %></td>
+			</tr>
+			<tr>
+				<td class="name">Theme</td>
+				<td><%= settings.Theme %></td>
+			</tr>
+			<tr>
+				<td class="name">Site Title</td>
+				<td><%= settings.Title %></td>
+			</tr>
+			<tr>
+				<td class="name">Default Page Size</td>
+				<td><%= settings.PageSize %></td>
+			</tr>
+			<tr>
+				<td class="name">Enable Comments</td>
+				<td><%= CommentSettings.Get().EnableCommentsDefault %></td>
+			</tr>
+		</table>
+		<h2>Plugins</h2>
+		<dl>
+		<% foreach(EventDetails plugin in Graffiti.Core.Events.GetEvents())
+		   { %>
+			<dt class="name"><%= plugin.Event.Name %></dt>
+			<dd>
+				<table>
+					<tr>
+						<td class="name">Enabled</td>
+						<td><%= plugin.Enabled %></td>
+					</tr>
+					<tr>
+						<td class="name">Description </td>
+						<td><%= plugin.Event.Description%></td>
+					</tr>
+					<tr>
+						<td class="name">Plugin Type</td>
+						<td><%= plugin.EventType %></td>
+					</tr>
+				</table>
+			</dd>
+		 <%} %>
+		 </dl>
+		 
+		<h2>Recent Events</h2>
+		<% 
+			DataBuddy.Query q = Log.CreateQuery();
+			q.PageSize = 10;
+			q.PageIndex = 1;	
+			q.OrderByDesc(Log.Columns.CreatedOn);
 
-		StringWriter sw = new StringWriter();
-		sw.WriteLine("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-		XmlTextWriter writer = new XmlTextWriter(sw);
-
-		writer.WriteStartElement("html");
-		writer.WriteAttributeString("xmlns", "http://www.w3.org/1999/xhtml");
-
-		writer.WriteStartElement("head");
-		writer.WriteElementString("title", "Graffiti CMS - System Information");
-		writer.WriteEndElement();
-
-		writer.WriteStartElement("body");
-		writer.WriteElementString("h1", "Graffiti CMS");
-
-		writer.WriteElementString("h2", "System Information");
-		writer.WriteStartElement("dl");
-		GenerateDLItem(writer, "Version", SiteSettings.VersionDescription);
-		GenerateDLItem(writer, "Url Routing Supported", SiteSettings.UrlRoutingSupported.ToString());
-		GenerateDLItem(writer, "Generate Folders", settings.GenerateFolders.ToString());
-		GenerateDLItem(writer, "Cache Views", settings.CacheViews.ToString());
-		GenerateDLItem(writer, "Require SSL", settings.RequireSSL.ToString());
-		GenerateDLItem(writer, "Require WWW", settings.RequireWWW.ToString());
-		GenerateDLItem(writer, "Use Proxy Server", settings.UseProxyServer.ToString());
-		GenerateDLItem(writer, "Email Server", settings.EmailServer.ToString());
-		GenerateDLItem(writer, "Current User Time", SiteSettings.CurrentUserTime.ToString());
-		GenerateDLItem(writer, "TimeZone Offset", settings.TimeZoneOffSet.ToString());
-		GenerateDLItem(writer, "Theme", settings.Theme.ToString());
-		GenerateDLItem(writer, "Site Title", settings.Title.ToString());
-		GenerateDLItem(writer, "Default Page Size", settings.PageSize.ToString());
-		GenerateDLItem(writer, "Enable Comments", commentSettings.EnableCommentsDefault.ToString());
-		writer.WriteEndElement();
-
-		writer.WriteElementString("h2", "Plugins");
-		writer.WriteStartElement("dl");
-		writer.WriteEndElement();
-		List<EventDetails> plugins = Graffiti.Core.Events.GetEvents();
-		foreach (EventDetails plugin in plugins)
-		{
-			GenerateDLItem(writer, plugin.Event.Name, string.Format(PluginInfoFormatString, plugin.Enabled.ToString(), plugin.Event.Description, plugin.EventType));
-		}
-		writer.WriteEndElement();
-
-		writer.WriteEndElement();
-		writer.WriteEndElement();
-
-		Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-		Context.Response.ContentType = "application/rss+xml";
-		Context.Response.Write(sw.ToString());
-	}
-
-	protected void GenerateDLItem(XmlTextWriter writer, string key, string value)
-	{
-		writer.WriteElementString("dt", key);
-		writer.WriteElementString("dd", value);
-	}
-</script>
+			foreach (Log log in LogCollection.FetchByQuery(q))
+			{%>
+				<dt class="name"><%= log.Title %></dt>
+				<dd><%= log.Type == 3 ? "Error" : log.Type== 2 ? "Warning"  : "Information" %>
+				<dd><%= log.CreatedOn.ToString("dddd dd MMMM yyyy hh:mm:ss")%></dd>
+				<dd><%= log.Message %></dd>
+			<%} %>
+	</body>
+</html>

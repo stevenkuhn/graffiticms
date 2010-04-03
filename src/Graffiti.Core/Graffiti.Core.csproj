@@ -152,6 +152,7 @@
     <Compile Include="UI\StaticAccessorHelper.cs" />
     <Compile Include="UI\ThemeConfigurationData.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\ChalkWidget.cs" />
+    <Compile Include="UI\Widgets\CoreWidgets\PopularPostWidget.cs" />
     <Compile Include="UI\Widgets\Forms\DateTimeFormElement.cs" />
     <Compile Include="UI\Widgets\Forms\EditableForm.cs" />
     <Compile Include="Util\EmailTemplate.cs" />
@@ -217,7 +218,6 @@
     <Compile Include="UI\Widgets\CoreWidgets\DeliciousWidget.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\PageWidget.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\PlainTextBox.cs" />
-    <Compile Include="UI\Widgets\CoreWidgets\PopulartPostWidget.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\RecentCommentsWidget.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\RecentPostWidget.cs" />
     <Compile Include="UI\Widgets\CoreWidgets\GenericFeedWidget.cs" />

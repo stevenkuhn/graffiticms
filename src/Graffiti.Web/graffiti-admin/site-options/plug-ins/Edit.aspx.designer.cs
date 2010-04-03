@@ -10,12 +10,6 @@
 
 
 
-/// <summary>
-/// graffiti_admin_presentation_plugins_Edit class.
-/// </summary>
-/// <remarks>
-/// Auto-generated class.
-/// </remarks>
 public partial class graffiti_admin_presentation_plugins_Edit {
     
     /// <summary>

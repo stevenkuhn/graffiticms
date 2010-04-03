@@ -27,6 +27,7 @@ public partial class graffiti_admin_categories_PostSortOrder : AdminControlPanel
 
                     DataBuddy.Query query = Post.CreateQuery();
                     query.AndWhere(Post.Columns.CategoryId, c.Id);
+                    query.AndWhere(Post.Columns.IsDeleted, false);
                     query.OrderByAsc(Post.Columns.SortOrder);
 
                     string itemFormat = "<div style=\"border: solid 1px #999; padding: 4px;\"><strong>{0}</strong></div>";

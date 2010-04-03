@@ -61,7 +61,7 @@ namespace Graffiti.Core
 			FormElementCollection fec = new FormElementCollection();
 			fec.Add(AddTitleElement());
 
-			ListFormElement lfe = new ListFormElement("numberOFposts", "Number of Posts", "The number of most recent posts to list");
+			ListFormElement lfe = new ListFormElement("numberOfPosts", "Number of Posts", "The number of most recent posts to list");
 			lfe.Add(new ListItemFormElement("3", "3"));
 			lfe.Add(new ListItemFormElement("5", "5", true));
 			lfe.Add(new ListItemFormElement("10", "10"));
@@ -111,7 +111,7 @@ namespace Graffiti.Core
 		protected override NameValueCollection DataAsNameValueCollection()
 		{
 			NameValueCollection nvc = base.DataAsNameValueCollection();
-			nvc["numberOFposts"] = NumberOfPosts.ToString();
+			nvc["numberOfPosts"] = NumberOfPosts.ToString();
 			nvc["showExcerpt"] = ShowExcerpt.ToString();
 			nvc["categoryid"] = CategoryId.ToString();
 			return nvc;
@@ -121,8 +121,8 @@ namespace Graffiti.Core
 		{
 			base.SetValues(context, nvc);
 
-			if (!string.IsNullOrEmpty(nvc["numberOFposts"]))
-				NumberOfPosts = Int32.Parse(nvc["numberOFposts"]);
+			if (!string.IsNullOrEmpty(nvc["numberOfPosts"]))
+				NumberOfPosts = Int32.Parse(nvc["numberOfPosts"]);
 
 			if (!string.IsNullOrEmpty(nvc["categoryid"]))
 				CategoryId = Int32.Parse(nvc["categoryid"]);

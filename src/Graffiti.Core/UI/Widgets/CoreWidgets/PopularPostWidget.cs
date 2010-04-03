@@ -6,7 +6,7 @@ namespace Graffiti.Core
 {
 	[WidgetInfo("f1eb7aa2-5e28-4711-8588-edf1416b62b1", "Popular Posts", "Controls the display of a list of popular posts")]
 	[Serializable]
-	public class PopulartPostWidget : Widget
+	public class PopularPostWidget : Widget
 	{
 		public override string Name
 		{
@@ -62,7 +62,7 @@ namespace Graffiti.Core
 			FormElementCollection fec = new FormElementCollection();
 			fec.Add(AddTitleElement());
 
-			ListFormElement lfe = new ListFormElement("numberOFposts", "Number of Posts", "The number of popular posts to list");
+			ListFormElement lfe = new ListFormElement("numberOfPosts", "Number of Posts", "The number of popular posts to list");
 			lfe.Add(new ListItemFormElement("3", "3"));
 			lfe.Add(new ListItemFormElement("5", "5", true));
 			lfe.Add(new ListItemFormElement("10", "10"));
@@ -95,7 +95,7 @@ namespace Graffiti.Core
 
 			foreach (Post p in new Data().PopularPosts(NumberOfPosts, CategoryId))
 			{
-				sb.AppendFormat("<li><a href=\"{0}\">{1}</a></li>{2}\n", p.Url, p.Title, ShowExcerpt ? "<br />" + p.CustomExcerpt(100) : null);
+                sb.AppendFormat("<li><a href=\"{0}\">{1}</a>{2}</li>\n", p.Url, p.Title, ShowExcerpt ? "<br />" + p.CustomExcerpt(100) : null);
 			}
 
 			sb.Append("</ul>\n");
@@ -106,7 +106,7 @@ namespace Graffiti.Core
 		protected override NameValueCollection DataAsNameValueCollection()
 		{
 			NameValueCollection nvc = base.DataAsNameValueCollection();
-			nvc["numberOFposts"] = NumberOfPosts.ToString();
+			nvc["numberOfPosts"] = NumberOfPosts.ToString();
 			nvc["showExcerpt"] = ShowExcerpt.ToString();
 			nvc["categoryid"] = CategoryId.ToString();
 			return nvc;
@@ -116,8 +116,8 @@ namespace Graffiti.Core
 		{
 			base.SetValues(context, nvc);
 
-			if (!string.IsNullOrEmpty(nvc["numberOFposts"]))
-				NumberOfPosts = Int32.Parse(nvc["numberOFposts"]);
+			if (!string.IsNullOrEmpty(nvc["numberOfPosts"]))
+				NumberOfPosts = Int32.Parse(nvc["numberOfPosts"]);
 
 			if (!string.IsNullOrEmpty(nvc["categoryid"]))
 				CategoryId = Int32.Parse(nvc["categoryid"]);

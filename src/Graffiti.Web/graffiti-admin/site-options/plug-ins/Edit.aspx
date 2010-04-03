@@ -30,11 +30,11 @@
     <div id="sidebar"><div class="gutter">
     <div class="box">
         <h3>About This Page</h3>
-        <p>The editing expereince is managed by each individual widget, so it may vary. For widget specific questions, please consult the widget author.</p>
+        <p>The editing expereince is managed by each individual plugin, so it may vary. For plugin specific questions, please consult the plugin author.</p>
     </div>
     <div class="box">    
-        <h3>Widget Editing Tip</h3>
-        <p>Some widgets may not require any editing.</p>
+        <h3>Plugin Editing Tip</h3>
+        <p>Some plugins may not require any editing.</p>
     </div>
     <div style="clear: both;"></div>
     </div></div>
