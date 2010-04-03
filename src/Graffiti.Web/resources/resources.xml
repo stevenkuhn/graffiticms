@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <root>
   <!-- Control Panel Messaging -->
   <resource name="NoPostsPublished">Sorry, there are no published posts. Why not add a &lt;a href='write'&gt;new one&lt;/a&gt;?</resource>
@@ -7,8 +7,8 @@
   <resource name="NoPostsRequiringChanges">Sorry, there are no posts requiring changes.</resource>
   <resource name="NoPostsDeleted">There are no deleted posts.</resource>
 
-  <resource name="CannotConnectToMarketplace">An unexpected error has occurred connecting to the marketplace. The &lt;a href=http://marketplace.graffiticms.com/ target=\&quot;_blank\&quot;&gt;Graffiti Marketplace&lt;/a&gt; is where you can find new themes, widgets, and plugins. Please try again later.</resource>
-  <resource name="CannotConnectToMarketplaceSecurityException">Your security settings do not allow you to access the marketplace from within the Control Panel. To find new themes, widgets, and plugins, please visit the &lt;a href=http://marketplace.graffiticms.com/ target=\&quot;_blank\&quot;&gt;Graffiti Marketplace&lt;/a&gt;.</resource>
+  <resource name="CannotConnectToMarketplace">An unexpected error has occurred connecting to the marketplace. The &lt;a href=http://extendgraffiti.com/ target=\&quot;_blank\&quot;&gt;Graffiti Marketplace&lt;/a&gt; is where you can find new themes, widgets, and plugins. Please try again later.</resource>
+  <resource name="CannotConnectToMarketplaceSecurityException">Your security settings do not allow you to access the marketplace from within the Control Panel. To find new themes, widgets, and plugins, please visit the &lt;a href=http://extendgraffiti.com/ target=\&quot;_blank\&quot;&gt;Graffiti Marketplace&lt;/a&gt;.</resource>
 
   <resource name="CannotDeleteUser">The membership system in use does not support deleting users.</resource>
   <resource name="CannotDeleteUserBecauseHasPosts">The user you are trying to delete has created posts. Another existing user must be selected to assign these posts to.</resource>
@@ -28,8 +28,6 @@
   <resource name="EmailTestNoAddress">Please enter an address to send the test message to.</resource>
   <resource name="EmailTestSubject">Graffiti Test Email</resource>
   <resource name="EmailTestBody">This email was sent to test your email settings configured in Graffiti. If you are seeing this message, your settings worked!</resource>
-  
-  <resource name="MaxUsersLicensed">You have reached your maximum number ({0}) of content publishers for your license ({0}). If you want to add more users please &lt;a href=http://get.graffiticms.com/&gt;purchase additional licenses&lt;/a&gt; or &lt;a href=mailto:sales@telligent.com&gt;contact sales&lt;/a&gt;.</resource>
   
   <!-- Site Messaging -->
   <resource name="InvalidEmailAddress">The email address you've entered is invalid.</resource>

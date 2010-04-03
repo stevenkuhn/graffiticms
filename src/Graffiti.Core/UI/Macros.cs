@@ -1270,7 +1270,7 @@ namespace Graffiti.Core
 		{
 			get
 			{
-				return "<a title=\"Powered by Graffiti CMS\" href=\"http://graffiticms.com\">" + LogoImage + "</a>";
+				return "<a title=\"Powered by Graffiti CMS\" href=\"http://graffiticms.codeplex.com\">" + LogoImage + "</a>";
 			}
 		}
 

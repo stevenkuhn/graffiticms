@@ -105,7 +105,7 @@ namespace Graffiti.Core.Marketplace
 
         private static string Url(string path)
         {
-            string baseUrl = "http://marketplace.graffiticms.com/data";
+            string baseUrl = "http://extendgraffiti.com/data";
             if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings[_settingBaseUrl]))
                 baseUrl = ConfigurationManager.AppSettings[_settingBaseUrl];
 

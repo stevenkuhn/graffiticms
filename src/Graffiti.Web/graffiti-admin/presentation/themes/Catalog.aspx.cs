@@ -63,9 +63,9 @@ public partial class graffiti_admin_presentation_themes_Catalog : AdminControlPa
             }
             catch (Exception ex)
             {
-                string messageText = "An unexpected error has occurred connecting to the marketplace. The <a href=\"http://marketplace.graffiticms.com/\" target=\"_blank\">Graffiti Marketplace</a> is where you can find new themes, widgets, and plugins. Please try again later.";
+                string messageText = "An unexpected error has occurred connecting to the marketplace. The <a href=\"http://extendgraffiti.com/\" target=\"_blank\">Graffiti Marketplace</a> is where you can find new themes, widgets, and plugins. Please try again later.";
                 if (ex is System.Security.SecurityException)
-                    messageText = "Your security settings do not allow you to access the marketplace from within the Control Panel. To find new themes, widgets, and plugins, please visit the <a href=\"http://marketplace.graffiticms.com/\" target=\"_blank\">Graffiti Marketplace</a>.";
+                    messageText = "Your security settings do not allow you to access the marketplace from within the Control Panel. To find new themes, widgets, and plugins, please visit the <a href=\"http://extendgraffiti.com/\" target=\"_blank\">Graffiti Marketplace</a>.";
 
                 Message.Type = StatusType.Error;
                 Message.Text = messageText;
