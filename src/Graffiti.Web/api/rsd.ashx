@@ -24,7 +24,7 @@ namespace Graffiti.Core
 			//service
 			xml.WriteStartElement("service");
             xml.WriteElementString("engineName", SiteSettings.Version);
-            xml.WriteElementString("engineLink", "http://graffiticms.com");
+            xml.WriteElementString("engineLink", "http://graffiticms.codeplex.com");
 			xml.WriteElementString("homePageLink", macros.FullUrl(new Urls().Home));
 
 			xml.WriteStartElement("apis");

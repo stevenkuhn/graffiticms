@@ -379,6 +379,8 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 				{
 					if (cf.FieldType == FieldType.CheckBox && Request.Form[cf.Id.ToString()] == null)
 						p[cf.Name] = null; // false.ToString();
+                    else if (cf.FieldType == FieldType.DateTime && Request.Form[cf.Id.ToString()].IndexOf("_") > -1)
+                        p[cf.Name] = null;
 					else
 						p[cf.Name] = Request.Form[cf.Id.ToString()];
 				}

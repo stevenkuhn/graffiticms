@@ -31,7 +31,7 @@ namespace Graffiti.Core
 			Page p = HttpContext.Current.Handler as Page;
 			if (p == null)
 			{
-				string js = "ds" + guid + " = new Telligent_DateTimeSelector('ds" + guid + "', 'ds_state" + guid + "', '<January,February,March,April,May,June,July,August,September,October,November,December> <1-31>, <1900-3000> at <1-12>:<00-59> <am,pm>', 2, 0, 1, 3, 4, 5, true, true, null);";
+				string js = "ds" + guid + " = new Telligent_DateTimeSelector('ds" + guid + "', 'ds_state" + guid + "', '<January,February,March,April,May,June,July,August,September,October,November,December> <1-31> <1900-3000> <01-12>:<00-59> <AM,PM>', 2, 0, 1, 3, 4, 5, true, true, null);";
 
 				sb.Append("startscript:" + js + ":endscript");
 			}

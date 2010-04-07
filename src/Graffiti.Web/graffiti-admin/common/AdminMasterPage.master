@@ -74,7 +74,7 @@
 		</form>
 		<div id="footer">
 			<div class="left">
-				Powered by <a href="http://graffiticms.com">Graffiti CMS</a>
+				Powered by <a href="http://graffiticms.codeplex.com" target="_new">Graffiti CMS</a>
 				<asp:Literal ID="version" runat="server" />
 			</div>
 			<div class="left" style="clear: left; line-height: 20px;">
@@ -122,7 +122,7 @@
 		{
 			// get the latest version
 			XmlDocument document = new XmlDocument();
-			document.Load("http://graffiticms.com/currentversion.xml");
+			document.Load("http://extendgraffiti.com/currentversion.xml");
 
 			string newVersion = document.SelectSingleNode("currentversion/assembly").InnerText.Replace(".", "");
 
