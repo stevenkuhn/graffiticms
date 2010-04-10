@@ -17,7 +17,7 @@ namespace Graffiti.Core
 			GraffitiEditor.SetupScripts(HttpContext.Current.Handler as System.Web.UI.Page);
 			GraffitiEditor editor = new GraffitiEditor();
 			editor.ToolbarSet = "Simple";
-			editor.Width = new Unit(600);
+			editor.Width = new Unit(95, UnitType.Percentage);
 			editor.Height = new Unit(200);
 			editor.Text = nvc[Name];
 			editor.ID = Name;
