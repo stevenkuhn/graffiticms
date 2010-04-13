@@ -353,7 +353,7 @@ function insertOption(theSel, newText, newValue)
 
             <div class="submit">
                 <asp:Button ID="Publish_Button" runat="Server" Style="font-weight:bold;" Text = "Publish" OnClick="publish_return_click" OnClientClick="GoToTab(0);" TabIndex="81" />
-                <asp:HyperLink ID ="Cancel_Edit" Text = "(Cancel)" NavigateUrl="~/graffiti-admin/posts/" runat="Server" TabIndex="82" />
+                <a href="<%= ResolveUrl("~/") %>graffiti-admin/posts/?status=<% if (Request.QueryString["status"] != null) { %><%=Request.QueryString["status"]%><% } else {%>1<%} if (Request.QueryString["category"] != null) { %>&category=<%=Request.QueryString["category"]%><% } if (Request.QueryString["author"] != null) { %>&author=<%=Request.QueryString["author"]%><% } %>" id ="Cancel_Edit" tabindex="82" />(Cancel)</a>
             </div>   
 
         </asp:PlaceHolder>

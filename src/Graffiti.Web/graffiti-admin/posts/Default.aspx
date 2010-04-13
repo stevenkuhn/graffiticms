@@ -123,7 +123,7 @@ function authorselect(author)
     <ItemTemplate>
         <tr id="post-<%# Eval("Id") %>"<%# IsAltRow( Container.ItemIndex, ((int)Eval("Id")) ) %>>
             <td style="padding: 4px; padding-top: 7px; padding-bottom: 7px;">
-                <a style="font-size: 185%;" href="write/?id=<%# Eval("Id") %>"><%# Eval("Title") %></a><br />
+                <a style="font-size: 185%;" href="write/?id=<%# Eval("Id") %><% if (Request.QueryString["status"] != null) { %>&status=<%=Request.QueryString["status"]%><% } if (Request.QueryString["category"] != null) { %>&category=<%=Request.QueryString["category"]%><% } if (Request.QueryString["author"] != null) { %>&author=<%=Request.QueryString["author"]%><% } %>"><%# Eval("Title") %></a><br />
                 <span style="line-height: 18px;">By <strong><%# Eval("User.ProperName")%></strong> on <%# Eval("Published", "{0:ddd MMM d, yyyy h:mm tt}")%>, revision: <%# Eval("Version") %></span><br />
                 <span style="line-height: 13px;">Category: <%# GetCategoryLink(Eval("Category.Name").ToString(), Eval("Category.Url").ToString()) %></span><br />
             </td>
