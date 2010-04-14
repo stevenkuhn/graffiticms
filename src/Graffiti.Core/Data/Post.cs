@@ -360,11 +360,9 @@ namespace Graffiti.Core
 			if (!String.IsNullOrEmpty(linkText))
 				link = string.Format("{0}<a href=\"{1}\">{2}</a>{3}", startText, Url, linkText, endText);
 
-			if (!string.IsNullOrEmpty(ExtendedBody))
-				return PostBody + link;
-			else if (PostBody != null && PostBody.Length <= len)
-				return PostBody;
-			else
+            if (PostBody.Length <= len && String.IsNullOrEmpty(ExtendedBody))
+                return "<p>" + Util.RemoveHtml(PostBody, len) + "</p>";
+            else
                 return "<p>" + Util.RemoveHtml(PostBody, len) + "...</p>" + link;
 			}
 

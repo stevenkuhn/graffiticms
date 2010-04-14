@@ -43,7 +43,7 @@
 
                 SearchQuery sq = new SearchQuery();
                 sq.PageSize = SiteSettings.Get().PageSize;
-                sq.PageIndex = PageIndex - 1;
+                sq.PageIndex = PageIndex;
                 sq.QueryText = new Macros().SearchQuery;
 
                 SearchResultSet<Post> posts = si.Search(sq);
