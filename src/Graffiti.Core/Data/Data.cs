@@ -662,14 +662,51 @@ namespace Graffiti.Core
         /// <returns></returns>
         public PostCollection RecentPosts(int numberOfPosts)
         {
-            PostCollection pc = ZCache.Get<PostCollection>("Posts-Recent-" + numberOfPosts);
+            return RecentPosts(numberOfPosts, -1);
+        }
+
+        /// <summary>
+        /// Gets x amount of recent posts from the specified category Id
+        /// </summary>
+        /// <param name="numberOfPosts"></param>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public PostCollection RecentPosts(int numberOfPosts, int categoryId)
+        {
+            PostCollection pc = ZCache.Get<PostCollection>("Posts-Recent-" + numberOfPosts + "c:" + categoryId);
             if (pc == null)
             {
-                pc = new PostCollection();
                 Query q = PostCollection.DefaultQuery();
+
+                if (categoryId > 0)
+                {
+                    Category category = new CategoryController().GetCachedCategory(categoryId, true);
+                    if (category != null)
+                    {
+                        if (category.ParentId > 0)
+                            q.AndWhere(Post.Columns.CategoryId, categoryId);
+                        else
+                        {
+                            List<int> ids = new List<int>(category.Children.Count + 1);
+                            foreach (Category child in category.Children)
+                                ids.Add(child.Id);
+
+                            ids.Add(category.Id);
+
+                            q.AndInWhere(Post.Columns.CategoryId, ids.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        //this should result in no data, but it will signal to 
+                        //the end user to edit/remove this widget
+                        q.AndWhere(Post.Columns.CategoryId, categoryId);
+                    }
+                }
+
                 q.Top = numberOfPosts.ToString();
-                pc.LoadAndCloseReader(q.ExecuteReader());
-                ZCache.InsertCache("Posts-Recent-" + numberOfPosts, pc, 60);
+                pc = PostCollection.FetchByQuery(q);
+                ZCache.InsertCache("Posts-Recent-" + numberOfPosts + "c:" + categoryId, pc, 60);
             }
             return pc;
         }
