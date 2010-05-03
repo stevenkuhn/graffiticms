@@ -350,7 +350,7 @@ public partial class graffiti_admin_posts_write_Default : ControlPanelPage
 			p.ModifiedOn = DateTime.Now.AddHours(SiteSettings.Get().TimeZoneOffSet);
 
 			p.PostBody = postBody;
-			if (string.IsNullOrEmpty(extenedBody) || extenedBody == "<p></p>" || extenedBody == "<p>&nbsp;</p>")
+            if (string.IsNullOrEmpty(extenedBody) || extenedBody == "<p></p>" || extenedBody == "<p>&nbsp;</p>" || extenedBody == "<br />\r\n")
 			{
 				p.ExtendedBody = null;
 			}
