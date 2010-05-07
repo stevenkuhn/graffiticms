@@ -93,13 +93,28 @@
 			</asp:Panel>
 			
 			<reports:postview ID="reportsbypost" runat="server" />
+			<reports:popularview ID="reportbypopularity" runat="server" />
+
 			<div style="clear: both;">
 			</div>
 		</div>
 		<div style="float: right; width: 45%;">
 			<h3>
 				Recent Graffiti News</h3>
-			<Z:Repeater runat="Server" ID="RecentNews" ShowHeaderFooterOnNone="false">
+			<Z:Repeater runat="Server" ID="GraffitiNews" ShowHeaderFooterOnNone="false">
+				<HeaderTemplate>
+					<ul style="margin-left: 0; padding-left: 0;">
+				</HeaderTemplate>
+				<FooterTemplate></ul></FooterTemplate>
+				<ItemTemplate>
+					<li style="list-style-type: none; margin-bottom: 3px;"><a target="_blank" href="<%# Eval("Link") %>"><%#DateTime.Parse(Eval("PubDate").ToString()).ToString("MMM d yyyy")%></a><br />
+					    <%# Eval("Description") %></li>
+				</ItemTemplate>
+				<NoneTemplate>Sorry, no news was found.</NoneTemplate>
+			</Z:Repeater>
+			<h3>
+				Recent Graffiti Extensions</h3>
+			<Z:Repeater runat="Server" ID="GraffitiExtensions" ShowHeaderFooterOnNone="false">
 				<HeaderTemplate>
 					<ul style="margin-left: 0; padding-left: 0;">
 				</HeaderTemplate>
@@ -109,9 +124,8 @@
 						<%# Eval("Title") %></a><br />
 						<%# Util.RemoveHtml(Eval("Description") as string, 200)%>...</li>
 				</ItemTemplate>
-				<NoneTemplate>Sorry, no news was found.</NoneTemplate>
+				<NoneTemplate>Sorry, no extensions were found.</NoneTemplate>
 			</Z:Repeater>
-			<reports:popularview ID="reportbypopularity" runat="server" />
 			<div style="clear: both;">
 			</div>
 		</div>
@@ -143,19 +157,11 @@
 			if (GraffitiUsers.IsAdmin(GraffitiUsers.Current))
 				GetWaitingApprovals();
 
-			Feed feed = FeedManager.GetFeed("http://graffiticms.com/blog/feed/", false);
+            GraffitiExtensions.DataSource = GetFeedItems("http://extendgraffiti.com/feed");
+            GraffitiExtensions.DataBind();
 
-			List<RssItem> items = new List<RssItem>();
-			if (feed != null && feed.Document != null && feed.Document.Channel != null && feed.Document.Channel.Items.Count > 0)
-			{
-				for (int i = 0; i < Math.Min(3, feed.Document.Channel.Items.Count); i++)
-				{
-					items.Add(feed.Document.Channel.Items[i]);
-				}
-			}
-
-			RecentNews.DataSource = items;
-			RecentNews.DataBind();
+            GraffitiNews.DataSource = GetFeedItems("http://twitter.com/statuses/user_timeline/graffiticms.rss");
+            GraffitiNews.DataBind();
 
 			if (SiteSettings.UrlRoutingSupported)
 			{
@@ -175,6 +181,20 @@
 			}
 		}
 	}
+
+    private List<RssItem> GetFeedItems(string url)
+    {
+        Feed feed = FeedManager.GetFeed(url, false);
+        List<RssItem> items = new List<RssItem>();
+        if (feed != null && feed.Document != null && feed.Document.Channel != null && feed.Document.Channel.Items.Count > 0)
+        {
+            for (int i = 0; i < Math.Min(3, feed.Document.Channel.Items.Count); i++)
+            {
+                items.Add(feed.Document.Channel.Items[i]);
+            }
+        }
+        return items;
+    }
 		
 	private void GetTotals()
 	{
