@@ -1,0 +1,204 @@
+<div id="main-top">
+	<div class="main-top-left">
+		<h4>$post.Published.ToString("MMMM dd, yyyy")</h4>
+		<div class="single-comments">
+			<a href="#comments">$post.CommentCount</a>
+		</div>
+	</div>
+	$macros.LoadThemeView("subscribe.view")
+</div>
+<div id="main" class="clear">
+	<div id="content">
+
+		<div id="post-$post.Id" class="post-$post.Id post clear single">
+			<h1 class="title"><a href="$post.Url" rel="bookmark">$post.Title</a></h1>
+			<div class="entry single">
+				#if($post.ImageUrl != '')
+				<img src="$post.ResolvedImageUrl" class="single-post-thm alignright border" alt="" />
+				#end
+				$post.Body
+				$macros.EditLink($post)
+			</div><!--end entry-->
+			<div class="meta clear">
+				#if($post.Category.IsUncategorized == false)
+				<div class="cats">
+					<em>Read more from</em> <a href="$post.Category.Url" rel="category tag">$post.Category.Name</a>
+				</div>
+				#end
+				
+				#if($post.TagList != '')
+				<div class="tags">
+					Tagged as: $macros.TagList($post.TagList,"")
+				</div>
+				#end
+			</div><!--end meta-->
+		</div><!--end post-->
+
+		#set($similarPosts = $data.SimilarSearch($post.Id,3))
+		#foreach($sp in $similarPosts)
+		#beforeall
+			<div id="similarPosts">
+			<h4>Similar Posts</h4>
+			<ol>
+		#each
+			<li><a href="$sp.Url" title="$sp.CustomExcerpt(100)">$sp.Title</a></li>
+		#afterall
+			</ol>
+			</div>
+		#end
+
+		<div id="comments">
+		#if($post.EnableComments)
+			<div class="comment-number clear">
+				<span>
+					#if($post.CommentCount == 0)
+						No Comments Yet
+					#elseif($post.CommentCount == 1)
+						1 Comment
+					#else
+						$post.CommentCount Comments
+					#end
+				</span>
+				#if($post.EnableNewComments)
+					<a id="leavecomment" href="#respond" title="Post a comment">Post a comment</a>
+				#end
+			</div><!--end comment-number-->
+			<ol class="commentlist">
+			#foreach($comment in $comments)
+				#odd
+					<li id="comment-$comment.Id" class="comment odd alt thread-odd thread-alt depth-1">
+						<a name="#comment-$comment.Id" title="Permalink to this comment"></a>
+						<div class="comment-box clear">
+							<div class="c-grav">
+								$macros.Gravatar($comment.Email, $comment.Name, $comment.IPAddress, "%{size ='39'}")
+								<div class="c-author">
+									$macros.CommentLink($comment)
+								</div>
+								<div class="c-date">$comment.Published.ToString("MMM d yyyy<br />h:mm tt")</div>
+							</div>
+							<div class="c-body">
+								$comment.Body	
+								#if($isUser)
+									<br /><a href="mailto:$comment.Email">$comment.Email</a> &nbsp;
+									[<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $comment.Id,'comment-$comment.Id','comment-body-$comment.Id'); return false">Delete Comment</a>]
+								#end
+							</div><!--end c-body-->
+						</div><!--end comment-box-->
+					</li>
+				#even
+					<li id="comment-$comment.Id" class="comment even thread-even depth-1">
+						<a name="#comment-$comment.Id" title="Permalink to this comment"></a>
+						<div class="comment-box clear">
+							<div class="c-grav">
+								$macros.Gravatar($comment.Email, $comment.Name, $comment.IPAddress, "%{size ='39'}")
+								<div class="c-author">
+									$macros.CommentLink($comment)
+								</div>
+								<div class="c-date">$comment.Published.ToString("MMM d yyyy<br />h:mm tt")</div>
+							</div>
+							<div class="c-body">
+								$comment.Body	
+								#if($isUser)
+									<br /><a href="mailto:$comment.Email">$comment.Email</a> &nbsp;
+									[<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $comment.Id,'comment-$comment.Id','comment-body-$comment.Id'); return false">Delete Comment</a>]
+								#end
+							</div><!--end c-body-->
+						</div><!--end comment-box-->
+					</li>
+			#end
+			</ol>
+			
+			#foreach($trackback in $trackbacks)
+				#beforeall
+					<h3 class="pinghead">Trackbacks &amp; Pingbacks</h3>
+					<ol class="pinglist">
+				#odd
+					<li id="comment-$comment.Id" class="comment odd alt thread-odd thread-alt depth-1">
+						<a name="#comment-$trackback.Id" title="Permalink to this trackback"></a>
+						<div class="comment-box clear">
+							<div class="c-grav">
+								$macros.Gravatar($trackback.Email, $trackback.Name, $trackback.IPAddress, "%{size ='39'}")
+								<div class="c-author">
+									$macros.CommentLink($comment)
+								</div>
+								<div class="c-date">$comment.Published.ToString("MMM d yyyy<br />h:mm tt")</div>
+							</div>
+							<div class="c-body">
+								$trackback.Body	
+								#if($isUser)
+									[<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $trackback.Id,'comment-$trackback.Id','comment-body-$trackback.Id'); return false">Delete Trackback</a>]
+								#end
+							</div><!--end c-body-->
+						</div><!--end comment-box-->
+					</li>
+				#even
+					<li id="comment-$comment.Id" class="comment even thread-even depth-1">
+						<a href="#comment-$trackback.Id" title="Permalink to this trackback"></a>
+						<div class="comment-box clear">
+							<div class="c-grav">
+								$macros.Gravatar($trackback.Email, $trackback.Name, $trackback.IPAddress, "%{size ='39'}")
+								<div class="c-author">
+									$macros.CommentLink($trackback)
+								</div>
+								<div class="c-date">$trackback.Published.ToString("MMM d yyyy<br />h:mm tt")</div>
+							</div>
+							<div class="c-body">
+								$trackback.Body	
+								#if($isUser)
+									<br />
+									[<a href="javascript:void(0);" onclick="Comments.deleteComment('$urls.AdminAjax', $trackback.Id,'comment-$trackback.Id','comment-body-$trackback.Id'); return false">Delete Trackback</a>]
+								#end
+							</div><!--end c-body-->
+						</div><!--end comment-box-->
+					</li>
+				#afterall
+				</ol>
+			#end
+		#end
+		</div><!--end comments-->
+
+		#if($post.EnableNewComments)
+		<div id="respond">
+			<div class="cancel-comment-reply">
+				<small><a rel="nofollow" id="cancel-comment-reply-link" href="$post.Url#respond" style="display:none;">Click here to cancel reply.</a></small>
+			</div>
+			<h4 id="postcomment">Share your thoughts, post a comment.</h4>
+			<form action="$url" method="post" id="comment_form">
+			#if($isUser)
+				<p>Logged in as $user.ProperName. <a href="$urls.Logout" title="Log out of this account">Logout &raquo;</a></p>
+			#else
+				<fieldset>
+					<label for="author" class="comment-field">Name</label>
+					<input class="text-input" type="text" name="author" id="author" value=""  tabindex="1" />
+					<span>(required)</span>
+				</fieldset>
+				<fieldset>
+					<label for="email" class="comment-field">Email</label>
+					<input class="text-input" type="text" name="email" id="email" value="" tabindex="2" />
+					<span>(required)</span>
+				</fieldset>
+   			<fieldset>
+					<label for="url" class="comment-field">Web site</label>
+					<input class="text-input" type="text" name="url" id="url" value="" tabindex="3" />
+				</fieldset>
+			#end
+			<fieldset>
+				<label for="comment" class="comment-field">Comment</label>
+				<textarea name="comment" id="comment" cols="50" rows="8" tabindex="4"></textarea>
+			</fieldset>
+			<div class="comments-submit">
+				<p class="guidelines"><strong>Note:</strong> Your email address will <strong>never</strong> be published.</p>
+				<fieldset>
+					<div style="display:none;" id="comment_status"></div>
+					$macros.CommentButton("%{id='submit', name='submit', tabindex='5', value='Submit Comment'}") 
+					<input type="hidden" name="comment_post_ID" value="$post.Id" />
+				</fieldset>
+			</div>
+			</form>
+		</div><!--end respond-->
+		#end
+
+	</div>
+	$sidebar
+</div>
+<div id="main-bottom"></div>

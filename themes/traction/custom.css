@@ -1,0 +1,8 @@
+img.feature-photo{ max-width: 400px; max-height: 300px; float:left; margin: 0 1em 1em 0;}
+
+.category-About .post .date { display: none; }
+
+#post-2 dt {font-weight: bold;}
+#post-2 dd { margin-left: 40px;}
+
+div.feature-main .more-link a:link, div.feature-main .more-link a:visited { margin-top: 0.5em;}

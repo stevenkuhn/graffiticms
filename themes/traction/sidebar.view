@@ -1,0 +1,5 @@
+<div id="sidebar">
+	<ul>
+	$macros.RightSideBar("%{beforeWidget='<li class=\"widget\">', afterWidget='</li>', beforeTitle='<h2 class=\"widgettitle\">', afterTitle='</h2>'}")
+	</ul>
+</div>

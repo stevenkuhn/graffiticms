@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>$title</title>
+	$macros.Style("style.css","screen")
+	<!--[if lt IE 8]>
+	$macros.Style("ie.css","screen")
+	<![endif]-->
+	$macros.Style("custom.css","screen")
+	$macros.Head()
+	<meta http-equiv="imagetoolbar" content="no" />
+</head>
+#if ($macros.IsNotNull($category.Name))
+<body class="category-$category.Name">
+#else
+<body>
+#end
+<div class="skip-content"><a href="#content">Skip to content</a></div>
+<div id="pg-nav-bg">
+	<div class="wrapper clear">
+		<div id="pg-nav">
+			<ul class="nav">
+			#foreach($link in $macros.NavigationLinks())
+				#if ($link.IsSelected)
+					<li class="page_item current_page_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+				#else
+					<li class="page_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+				#end
+			#end
+			</ul> 
+		</div>
+	</div>
+</div>
+
+<div class="wrapper big">
+	<div id="header" class="clear">
+		<div class="logo">
+			#if($where == "home")
+				<h1 id="title">
+			#else
+				<div id="title">
+			#end
+			<a href="$urls.Home" title="$data.Site.Title">$data.Site.Title</a>
+			#if($where == "home")
+				</h1>
+			#else
+				</div>
+			#end
+			<div id="description">
+				$data.Site.TagLine
+			</div>
+		</div>
+		$macros.LoadThemeView("subnav.view")
+	</div>
+
+	$childContent
+</div>
+
+<div id="footer">
+	<div class="wrapper clear">
+		<div id="footer-about" class="footer-column">
+			#if ($macros.Variable("siteFooterLeftHeader") != '')
+				<h2>$macros.Variable("siteFooterLeftHeader")</h2>
+			#else
+				<h2></h2>
+			#end
+
+			#if ($macros.Variable("siteFooterLeftContent") != '')
+				$macros.Variable("siteFooterLeftContent")
+			#end
+		</div>
+		<div id="footer-middle" class="footer-column">
+			<ul>
+				$macros.LeftSideBar("%{beforeWidget='<li class=\"widget\">', afterWidget='</li>', beforeTitle='<h2 class=\"widgettitle\">', afterTitle='</h2>'}")
+			</ul>
+		</div>
+		<div id="footer-search" class="footer-column">
+			<ul>
+				<li id="pagesBottom" class="widget">
+					<h2 class="widgettitle">Navigation</h2>
+					<ul>
+					#foreach($link in $macros.NavigationLinks())
+						#if ($link.IsSelected)
+							<li class="page_item current_page_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+						#else
+							<li class="page_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+						#end
+					#end
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="copyright" class="wrapper">
+	<p class="credit">
+		Traction Theme by <a href="http://thethemefoundry.com/members/go.php?r=3230&i=l2">The Theme Foundry</a><br />
+		Modified for <a href="http://graffiticms.codeplex.com">Graffiti CMS</a> by <a href="http://kevinharder.com">Kevin Harder</a>
+	</p>
+	<p>$!data.Site.Copyright</p>
+</div>
+$!data.Site.WebStatistics
+$macros.JavaScript("traction.js")
+
+#if($where == "home")
+<script type="text/javascript" charset="utf-8">
+jQuery(function(){
+	jQuery("#feature").loopedSlider({
+		containerClick: false,
+		autoStart: 8000,
+		slidespeed: 300,
+		fadespeed: 200,
+		autoHeight: 1
+	});    
+});
+#end
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div id="main-top">
+	<div class="main-top-left">
+	#if($where == "category")
+		<h4>Posts from $category.Name</h4>
+	#elseif($where == "post")
+		<h4>$post.Published.ToString("MMMM dd, yyyy")</h4>
+		<div class="single-comments">
+			<a href="#comments">$post.CommentCount</a>
+		</div>
+	#elseif($where == "tag")
+		<h4>Posts tagged '$tag'</h4>
+	#elseif($where == "search")
+		<h4>Search Results for '$macros.SearchQuery'</h4>
+	#else
+		<h4></h4>
+	#end
+	</div>
+	$macros.LoadThemeView("subscribe.view")
+</div>
+<div id="main" class="clear">
+	<div id="content">
+		#foreach($post in $posts)
+		<div id="post-$post.Id" class="post-$post.Id post clear">
+			<div class="date">
+				<div class="day">$post.Published.ToString("dd")</div>
+				<div class="month">$post.Published.ToString("MMM")</div>      
+			</div>
+			#if($post.ImageUrl != '')
+			<a href="$post.Url" rel="bookmark"><img src="$post.ResolvedImageUrl" class="index-post-thm alignright border" alt="" /></a>
+			<div class="entry">
+			#else
+			<div class="entry nothumb">
+			#end
+				<h2 class="title"><a href="$post.Url" rel="bookmark" title="$post.Title">$post.Title</a></h2>
+				$post.Excerpt('<span class="more-link">', '</span>', "Read more", 300)
+			</div><!--end entry-->
+		</div><!--end post-->
+		#nodata
+		<div id="post-0" class="post-0 post clear">
+			<div class="entry">
+			Sorry, there are no posts matching your request.
+			</div>
+		</div>
+		#end
+
+		#if($where == "category")
+			$macros.Pager("navigation index")
+		#end
+	</div>
+	$sidebar
+</div>
+<div id="main-bottom"></div>

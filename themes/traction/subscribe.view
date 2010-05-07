@@ -1,0 +1,23 @@
+<div class="subscribe">
+	<h5>Subscribe</h5>
+	<ul>
+		<li>
+			<a href="$urls.Rss"><img src="$macros.ThemeFile('/images/flw-rss.png')" alt="RSS Feed"/></a>
+		</li>
+		#if ($macros.Variable("subscribeTwitter") != '')
+		<li>
+			<a href="http://twitter.com/$macros.Variable("subscribeTwitter")"><img src="$macros.ThemeFile('/images/flw-twitter.png')" alt="Twitter"/></a>
+		</li>
+		#end
+		#if ($macros.Variable("subscribeFacebook") != '')
+		<li>
+			<a href="$macros.Variable("subscribeFacebook")"><img src="$macros.ThemeFile('/images/flw-facebook.png')" alt="Facebook"/></a>
+		</li>
+		#end
+		#if ($macros.Variable("subscribeFlickr") != '')
+		<li>
+			<a href="$macros.Variable("subscribeFlickr")"><img src="$macros.ThemeFile('/images/flw-flickr.png')" alt="Flickr"/></a>
+		</li>
+		#end
+	</ul>
+</div>

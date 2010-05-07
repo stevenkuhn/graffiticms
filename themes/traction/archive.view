@@ -1,0 +1,38 @@
+<div id="main-top">
+	<div class="main-top-left">
+		<h4>$post.Title</h4>
+	</div>
+	$macros.LoadThemeView("subscribe.view")
+</div>
+<div id="main" class="clear">
+	<div id="content">
+		<div id="post-$post.Id" class="post-$post.Id post clear single">
+			<div class="entry single">
+				#if($post.ImageUrl != '')
+				<img width="175" height="150" src="$post.ResolvedImageUrl" class="single-post-thm alignright border" alt="" />
+				#end
+				$post.Body
+				$macros.EditLink($post)
+			</div>
+		</div>
+
+		#if ($macros.Variable("archiveCategory") != '')
+			#set($similarPosts = $data.PostsByCategory($macros.Variable("archiveCategory"),999))
+			#foreach($p in $similarPosts)
+			#beforeall
+			<div class="p-archives">
+				<h3></h3>
+				<ul>
+			#each
+				<li><a href="$p.Url" rel="Bookmark" title="$p.Title"><span class="comments_number">$p.CommentCount</span><span class="archdate">$p.Published.ToString("M.d.yy")</span>$p.Title</a></li>
+			#afterall
+				</ul>
+			</div>
+			#end
+		#end
+		
+	</div>
+	$sidebar
+</div>
+<div id="main-bottom"></div>
+

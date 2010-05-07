@@ -1,0 +1,58 @@
+<div id="main-top">
+	<div class="main-top-left">
+		<h4>$post.Title</h4>
+	</div>
+	$macros.LoadThemeView("subscribe.view")
+</div>
+<div id="main" class="clear">
+	<div id="content">
+		
+		<div id="post-$post.Id" class="post-$post.Id post clear single">
+			<div class="entry single">
+				#if($post.ImageUrl != '')
+				<img width="175" height="150" src="$post.ResolvedImageUrl" class="single-post-thm alignright border" alt="" />
+				#end
+				$post.Body
+				$macros.EditLink($post)
+			</div><!--end entry-->
+		</div><!--end post-->
+
+		<div id="respond">
+			<div class="cancel-comment-reply">
+				<small><a rel="nofollow" id="cancel-comment-reply-link" href="$post.Url#respond" style="display:none;">Click here to cancel reply.</a></small>
+			</div>
+			<h4 id="postcomment">Send a message</h4>
+			<form action="$url" method="post" id="contact_form">
+			<fieldset>
+				<label for="subject" class="comment-field">Subject</label>
+				<input class="text-input" type="text" name="subject" id="subject" value="" tabindex="1" />
+				<span>(required)</span>
+			</fieldset>
+			<fieldset>
+				<label for="author" class="comment-field">Name</label>
+				<input class="text-input" type="text" name="name" id="name" value=""  tabindex="2" />
+				<span>(required)</span>
+			</fieldset>
+			<fieldset>
+				<label for="email" class="comment-field">Email</label>
+				<input class="text-input" type="text" name="email" id="email" value="" tabindex="3" />
+				<span>(required)</span>
+			</fieldset>
+			<fieldset>
+				<label for="message" class="comment-field">Message</label>
+				<textarea name="message" id="message" cols="50" rows="8" tabindex="4"></textarea>
+			</fieldset>
+			<div class="comments-submit">
+				<fieldset>
+					<div style="display:none;" id="contact_status"></div>
+					$macros.ContactButton("%{class='send_button', tabindex='5', value='Send'}")
+				</fieldset>
+			</div>
+			</form>
+		</div><!--end respond-->
+		
+	</div>
+	$sidebar
+</div>
+<div id="main-bottom"></div>
+

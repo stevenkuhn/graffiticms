@@ -1,0 +1,30 @@
+<div id="cat-nav" class="clear">
+	<ul class="nav">
+	#if($macros.Variable("subNavType") == "allCats")
+		#set($topCats = $data.Categories())
+		#foreach($cat in $topCats)
+			#if ($category.Id == $cat.Id)
+				<li class="cat_item current-cat"><a href="$cat.Url" title="$cat.Name">$cat.Name</a></li>
+			#else
+				<li class="cat_item"><a href="$cat.Url" title="$cat.Text">$cat.Name</a></li>
+			#end
+		#end
+	#elseif($macros.Variable("subNavType") == "childCatsPosts")
+		#foreach($link in $macros.NavigationSubLinks(true))
+			#if ($link.IsSelected)
+				<li class="cat_item current-cat"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+			#else
+				<li class="cat_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+			#end
+		#end
+	#else
+		#foreach($link in $macros.NavigationSubLinks(false))
+			#if ($link.IsSelected)
+				<li class="cat_item current-cat"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+			#else
+				<li class="cat_item"><a href="$link.Url" title="$link.Text">$link.Text</a></li>
+			#end
+		#end
+	#end
+	</ul>
+</div>
