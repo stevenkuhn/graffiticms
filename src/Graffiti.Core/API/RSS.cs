@@ -66,8 +66,27 @@ namespace Graffiti.Core
                 {
                     Query q = PostCollection.DefaultQuery();
                     q.Top = Util.PageSize.ToString();
-                    if (CategoryID > 0)
-                        q.AndWhere(Post.Columns.CategoryId, CategoryID);
+                    
+                    if (SiteSettings.Get().IncludeChildPosts)
+                    {
+                        if (category.ParentId > 0)
+                            q.AndWhere(Post.Columns.CategoryId, CategoryID);
+                        else
+                        {
+                            List<int> ids = new List<int>(category.Children.Count + 1);
+                            foreach (Category child in category.Children)
+                                ids.Add(child.Id);
+
+                            ids.Add(category.Id);
+
+                            q.AndInWhere(Post.Columns.CategoryId, ids.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        if (CategoryID > 0)
+                            q.AndWhere(Post.Columns.CategoryId, CategoryID);
+                    }
 
                     pc = new PostCollection();
                     pc.LoadAndCloseReader(q.ExecuteReader());
