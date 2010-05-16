@@ -121,6 +121,8 @@ namespace Graffiti.Core
 				ObjectStoreCollection osc =
 					 ObjectStoreCollection.FetchByColumn(ObjectStore.Columns.ContentType, "eventdetails/xml");
 
+                // Can't log errors until after Events have been fully loaded
+                var warnings = new List<String>();
 
 				string[] assemblies =
 					 Directory.GetFileSystemEntries(HttpRuntime.BinDirectory, "*.dll");
@@ -157,7 +159,7 @@ namespace Graffiti.Core
 							}
 							catch (Exception exType)
 							{
-								Log.Warn("Plugin", "Failed to load type {0}. Reason: {1}", type.FullName, exType.Message);
+                                warnings.Add(String.Format("Failed to load type {0}. Reason: {1}", type.FullName, exType.Message));
 							}
 						}
 
@@ -165,17 +167,20 @@ namespace Graffiti.Core
 					catch (ReflectionTypeLoadException rtle)
 					{
 						if (assemblies[i].IndexOf("DataBuddy") == -1 && assemblies[i].IndexOf("RssToolkit") == -1)
-							Log.Warn("Plugin", "Failed to load assembly {0}. Reason: {1}",
-										assemblies[i], rtle.Message);
+                            warnings.Add(String.Format("Failed to load assembly {0}. Reason: {1}", assemblies[i], rtle.Message));
 					}
 
 					catch (Exception exAssembly)
 					{
-						Log.Warn("Plugin", "Failed to load assembly {0}. Reason: {1}", assemblies[i], exAssembly.Message);
+                        warnings.Add(String.Format("Failed to load assembly {0}. Reason: {1}", assemblies[i], exAssembly.Message));
 					}
 				}
 
 				ZCache.InsertCache("EventDetails", details, 300);
+
+                // Now we can log errors
+                foreach (var warning in warnings)
+                    Log.Warn("Plugin", warning);
 			}
 
 			return details;
