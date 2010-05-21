@@ -67,7 +67,7 @@ namespace Graffiti.Core
                     Query q = PostCollection.DefaultQuery();
                     q.Top = Util.PageSize.ToString();
                     
-                    if (SiteSettings.Get().IncludeChildPosts)
+                    if (SiteSettings.Get().IncludeChildPosts && macros.IsNotNull(category))
                     {
                         if (category.ParentId > 0)
                             q.AndWhere(Post.Columns.CategoryId, CategoryID);
