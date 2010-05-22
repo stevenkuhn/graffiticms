@@ -272,14 +272,14 @@ namespace Graffiti.Core
             {
                 DataService.ExecuteNonQuery(
                     new QueryCommand(
-						"Update graffiti_Categories Set Post_Count = (Select " + DataService.Provider.SqlCountFunction() + " FROM graffiti_Posts where graffiti_Posts.CategoryId = graffiti_Categories.Id and graffiti_Posts.Status = 1 and graffiti_Posts.IsPublished = 1)"));
+                        "Update graffiti_Categories Set Post_Count = (Select " + DataService.Provider.SqlCountFunction() + " FROM graffiti_Posts where graffiti_Posts.CategoryId = graffiti_Categories.Id and graffiti_Posts.Status = 1 and graffiti_Posts.IsPublished = 1 and graffiti_Posts.IsDeleted = 0)"));
                 DataService.ExecuteNonQuery(
                     new QueryCommand(
                         "Update graffiti_Categories Set Post_Count = (Select coalesce(sum(x.Post_Count), 0) FROM " + DataService.Provider.GenerateDerivedView("graffiti_Categories") + " AS x where x.ParentId = graffiti_Categories.Id) + Post_Count Where graffiti_Categories.ParentId <= 0"));
             }
             else
             {
-				QueryCommand cmd1 = new QueryCommand("select count(*) AS PostCount, p.CategoryId from graffiti_Posts p where p.Status = 1 and p.IsPublished = @IsPublished group by p.CategoryId");
+                QueryCommand cmd1 = new QueryCommand("select count(*) AS PostCount, p.CategoryId from graffiti_Posts p where p.Status = 1 and p.IsPublished = @IsPublished and p.IsDeleted = 0 group by p.CategoryId");
 				cmd1.Parameters.Add("IsPublished", true);
 
 				using(IDataReader dr = DataService.ExecuteReader(cmd1))
