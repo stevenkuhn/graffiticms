@@ -471,6 +471,33 @@ namespace Graffiti.Core
                 }
             }
 
+            //Check if the user has created any post versions
+            VersionStoreCollection vsc = new VersionStoreCollection();
+            vsc = VersionStoreCollection.FetchAll();
+            
+            if (vsc != null && vsc.Count > 0)
+            {
+                foreach (VersionStore v in vsc)
+                {
+                    Post vp = ObjectManager.ConvertToObject<Graffiti.Core.Post>(v.Data);
+
+                    if (v.CreatedBy == oldUserName)
+                        v.CreatedBy = newUserName;
+                    if (v.Type == "post/xml")
+                    {
+                        if (vp.UserName == oldUserName)
+                            vp.UserName = newUserName;
+                        if (vp.ModifiedBy == oldUserName)
+                            vp.ModifiedBy = newUserName;
+                        if (vp.CreatedBy == oldUserName)
+                            vp.CreatedBy = newUserName;
+                        v.Data = vp.ToXML();
+                    }
+                    
+                    v.Save();
+                }
+            }
+                        
             ZCache.RemoveCache("user-" + oldUserName);
             // Clear roles cache
             if (user.Roles != null && user.Roles.Length > 0)
