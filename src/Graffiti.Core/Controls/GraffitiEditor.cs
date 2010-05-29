@@ -167,19 +167,12 @@ namespace Graffiti.Core
 
 		public string GenerateHTML()
 		{
-			return String.Format("<textarea id=\"{0}\" name=\"{1}\"{2}></textarea>\n<script type=\"text/javascript\">var t=\"{4}\";var e = CKEDITOR.instances.{0};if(e != null)CKEDITOR.remove(e);CKEDITOR.replace('{0}'{3}).setData(t);</script>",
+			return String.Format("<textarea id=\"{0}\" name=\"{1}\"{2}>{4}</textarea>\n<script type=\"text/javascript\">var e = CKEDITOR.instances.{0};if(e != null)CKEDITOR.remove(e);CKEDITOR.replace('{0}'{3});</script>",
 				ClientID,
 				UniqueID,
 				this.TabIndex != 0 ? " tabindex=\"" + this.TabIndex.ToString() + "\"" : "",
 				buildConfigOptions(),
-				getTextForRender());
-		}
-
-		protected virtual string getTextForRender()
-		{
-			if (Text != null)
-				return Text.Replace("\"", "\\\"").Replace("\r\n", "\\r\\n").Replace("\n", "\\n");
-			return Text;
+				Text);
 		}
 
 
