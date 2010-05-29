@@ -6,11 +6,12 @@ namespace Graffiti.Core
 {
     public class PostPage : TemplatedThemePage
     {
+        private string viewName;
         protected override string ViewName
         {
             get
             {
-                return ViewLookUp(".view", "post.view");
+                    return ViewLookUp(".view", "post.view");
             }
         }
 
@@ -28,7 +29,7 @@ namespace Graffiti.Core
                 return PostName + ".view";
             else if (ViewExists(PostName + baseName))
                 return PostName + baseName;
-            
+
             // Subcategories
             if (category.ParentId > 0)
             {
@@ -49,10 +50,10 @@ namespace Graffiti.Core
                 if (ViewExists(category.Parent.LinkName + baseName))
                     return category.Parent.LinkName + baseName;
             }
-
+            /*
             else if (ViewExists(CategoryName + baseName))
                 return CategoryName + baseName;
-
+            */
             else if (CategoryID == CategoryController.UnCategorizedId && ViewExists("page" + baseName))
                 return "page" + baseName;
 
@@ -62,7 +63,7 @@ namespace Graffiti.Core
             else if (ViewExists(defaultViewName))
                 return defaultViewName;
 
-            return base.ViewLookUp(baseName,defaultViewName);
+            return base.ViewLookUp(baseName, defaultViewName);
         }
 
         protected override void LoadContent(GraffitiContext graffitiContext)
@@ -76,7 +77,7 @@ namespace Graffiti.Core
             {
                 RedirectTo(new Urls().Home);
             }
-            else if(PostName != null && CategoryName != null && (!Util.AreEqualIgnoreCase(PostName,post.Name) || !Util.AreEqualIgnoreCase(CategoryName,post.Category.LinkName)) )
+            else if (PostName != null && CategoryName != null && (!Util.AreEqualIgnoreCase(PostName, post.Name) || !Util.AreEqualIgnoreCase(CategoryName, post.Category.LinkName)))
             {
                 RedirectTo(post.Url);
             }
@@ -87,7 +88,7 @@ namespace Graffiti.Core
                 HttpCookie cookie = new HttpCookie("Graffiti-Post-" + PostId, PostId.ToString());
                 Context.Response.Cookies.Add(cookie);
             }
-            
+
 
             graffitiContext["title"] = post.Title + " : " + SiteSettings.Get().Title;
 
