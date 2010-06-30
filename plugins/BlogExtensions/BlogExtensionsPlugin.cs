@@ -153,7 +153,7 @@ namespace Graffiti.BlogExtensions
 				return StatusType.Error;
 			}
 
-			SetupUrlRouting(null);
+			UrlRouting.Initialize();
 			SetupCommentFeed();
 			SetupGeoRSS();
 
@@ -162,7 +162,7 @@ namespace Graffiti.BlogExtensions
 
 		public override void EventEnabled()
 		{
-			SetupUrlRouting(null);
+			UrlRouting.Initialize();
 			SetupCommentFeed();
 			SetupGeoRSS();
 		}
@@ -248,31 +248,6 @@ namespace Graffiti.BlogExtensions
 			}
 		}
 
-		private void SetupUrlRouting(RouteCollection routes)
-		{
-			if (EnableCommentRSS)
-			{
-				if (routes == null)
-					UrlRouting.AddRoute(new Route("feed/comments/", new CommentRssRouteHandler()));
-				else
-					routes.Add(new Route("feed/comments/", new CommentRssRouteHandler()));
-			}
-
-			if (EnableTrackbacks)
-			{
-				if (routes == null)
-				{
-					UrlRouting.AddRoute(new Route("trackback.ashx", new TrackbackRouteHandler()));
-					UrlRouting.AddRoute(new Route("pingback.ashx", new PingbackRouteHandler()));
-				}
-				else
-				{
-					routes.Add(new Route("trackback.ashx", new TrackbackRouteHandler()));
-					routes.Add(new Route("pingback.ashx", new PingbackRouteHandler()));
-				}
-			}
-		}
-
 		#endregion
 
 		#region Events
@@ -328,7 +303,15 @@ namespace Graffiti.BlogExtensions
 
 		void ga_UrlRoutingAdd(RouteCollection routes, EventArgs e)
 		{
-			SetupUrlRouting(routes);
+			if (EnableCommentRSS)
+				routes.Add(new Route("feed/comments/", new CommentRssRouteHandler()));
+
+			if (EnableTrackbacks)
+			{
+				routes.Add(new Route("trackback.ashx", new TrackbackRouteHandler()));
+				routes.Add(new Route("pingback.ashx", new PingbackRouteHandler()));
+			}
+
 		}
 
 		void ga_BeginRequest(object sender, EventArgs e)

@@ -1,55 +1,49 @@
 using System;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
     public class CreatorInfo
     {
-        private int _id = 0;
+        private string _id = string.Empty;
         private string _name = string.Empty;
-        private string _location = string.Empty;
-        private bool _displayLocation = false;
         private string _email = string.Empty;
         private bool _displayEmail = false;
+        private string _bio = string.Empty;
         private string _url = string.Empty;
         private ItemInfoCollection _items;
 
-        public CreatorInfo(XmlNode node)
+        public CreatorInfo(XElement node)
         {
-            XmlAttribute a = node.Attributes["id"];
-            if (a != null)
-                _id = int.Parse(a.Value);
+            string value;
 
-            XmlNode n = node.SelectSingleNode("name");
-            if (n != null)
-                _name = n.InnerText;
+            if (node.TryGetAttributeValue("id", out value))
+                _id = value;
 
-            n = node.SelectSingleNode("location");
-            if (n != null)
+            XElement n = node.Element("name");
+            if (n != null && n.TryGetValue(out value))
+                _name = value;
+
+            n = node.Element("email");
+            if (n != null && n.TryGetValue(out value))
             {
-                _location = n.InnerText;
+                _email = value;
 
-                a = n.Attributes["display"];
-                if (a != null)
-                    _displayLocation = bool.Parse(a.Value);
+                if (n.TryGetAttributeValue("display", out value))
+                    _displayEmail = bool.Parse(value);
             }
 
-            n = node.SelectSingleNode("email");
-            if (n != null)
-            {
-                _email = n.InnerText;
+            n = node.Element("bio");
+            if (n != null && n.TryGetValue(out value))
+                _bio = value;
 
-                a = n.Attributes["display"];
-                if (a != null)
-                    _displayEmail = bool.Parse(a.Value);
-            }
+            n = node.Element("url");
+            if (n != null && n.TryGetValue(out value))
+                _url = value;
 
-            n = node.SelectSingleNode("url");
-            if (n != null)
-                _url = n.InnerText;
         }
 
-        public int Id
+        public string Id
         {
             get { return _id; }
             set { _id = value; }
@@ -61,16 +55,10 @@ namespace Graffiti.Core.Marketplace
             set { _name = value; }
         }
 
-        public string Location
+        public string Bio
         {
-            get { return _location; }
-            set { _location = value; }
-        }
-
-        public bool DisplayLocation
-        {
-            get { return _displayLocation; }
-            set { _displayLocation = value; }
+            get { return _bio; }
+            set { _bio = value; }
         }
 
         public string Email
@@ -98,7 +86,7 @@ namespace Graffiti.Core.Marketplace
                 _items = new ItemInfoCollection();
                 foreach (ItemInfo item in Marketplace.Catalogs[catalogId].Items.Values)
                 {
-                    if (item.CreatorId == Id)
+                    if (Util.AreEqualIgnoreCase(item.CreatorId, Id))
                         _items.Add(item.Id, item);
                 }
             }

@@ -84,6 +84,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="Telligent.DynamicConfiguration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Telligent.DynamicConfiguration.dll</HintPath>
@@ -156,6 +159,7 @@
     <Compile Include="UI\Widgets\Forms\DateTimeFormElement.cs" />
     <Compile Include="UI\Widgets\Forms\EditableForm.cs" />
     <Compile Include="Util\EmailTemplate.cs" />
+    <Compile Include="Util\ExtensionMethods.cs" />
     <Compile Include="Util\FileFilters.cs" />
     <Compile Include="Util\GRequest.cs" />
     <Compile Include="Util\ManagedThreadPool.cs" />

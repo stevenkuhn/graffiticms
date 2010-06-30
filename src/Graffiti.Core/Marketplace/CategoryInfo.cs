@@ -1,5 +1,5 @@
 using System;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -11,21 +11,22 @@ namespace Graffiti.Core.Marketplace
         private string _description = string.Empty;
         private ItemInfoCollection _items;
 
-        public CategoryInfo(CatalogInfo catalog, XmlNode node)
+        public CategoryInfo(CatalogInfo catalog, XElement node)
         {
             _catalog = catalog;
 
-            XmlAttribute a = node.Attributes["id"];
-            if (a != null)
-                _id = int.Parse(a.Value);
+            string value;
 
-            XmlNode n = node.SelectSingleNode("name");
-            if (n != null)
-                _name = n.InnerText;
+            if (node.TryGetAttributeValue("id", out value))
+                _id = int.Parse(value);
 
-            n = node.SelectSingleNode("description");
-            if (n != null)
-                _description = n.InnerText;
+            XElement n = node.Element("name");
+            if (n != null && n.TryGetValue(out value))
+                _name = value;
+
+            n = node.Element("description");
+            if (n != null && n.TryGetValue(out value))
+                _description = value;
         }
 
         public CatalogInfo Catalog

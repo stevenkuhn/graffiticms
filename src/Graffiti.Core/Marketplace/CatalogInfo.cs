@@ -1,5 +1,5 @@
 using System;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -9,19 +9,20 @@ namespace Graffiti.Core.Marketplace
         private string _name = string.Empty;
         private string _description = string.Empty;
 
-        public CatalogInfo(XmlNode node)
+        public CatalogInfo(XElement node)
         {
-            XmlAttribute a = node.Attributes["id"];
-            if (a != null)
-                _id = int.Parse(a.Value);
+            string value;
 
-            XmlNode n = node.SelectSingleNode("name");
-            if (n != null)
-                _name = n.InnerText;
+            if (node.TryGetAttributeValue("id", out value))
+                _id = int.Parse(value);
 
-            n = node.SelectSingleNode("description");
-            if (n != null)
-                _description = n.InnerText;
+            XElement n = node.Element("name");
+            if (n != null && n.TryGetValue(out value))
+                _name = value;
+
+            n = node.Element("description");
+            if (n != null && n.TryGetValue(out value))
+                _description = value;
         }
 
         public int Id
@@ -100,19 +101,15 @@ namespace Graffiti.Core.Marketplace
 
         public void RefreshCategories()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(CategoryUrl);
-
-            CategoryInfoCollection categories = new CategoryInfoCollection(this, doc.SelectNodes("//categories/categoryInfo"));
+            XDocument doc = XDocument.Load(CategoryUrl);
+            CategoryInfoCollection categories = new CategoryInfoCollection(this, doc.Element("categories").Elements("categoryInfo"));
             ZCache.InsertCache(CategoryCacheKey, categories, Marketplace.CacheTime);
         }
 
         public void RefreshItems()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(ItemUrl);
-
-            ItemInfoCollection items = new ItemInfoCollection(this, doc.SelectNodes("//items/itemInfo"));
+            XDocument doc = XDocument.Load(ItemUrl);
+            ItemInfoCollection items = new ItemInfoCollection(this, doc.Element("items").Elements("itemInfo"));
             ZCache.InsertCache(ItemCacheKey, items, Marketplace.CacheTime);
         }
 
@@ -129,10 +126,8 @@ namespace Graffiti.Core.Marketplace
 
         public void RefreshMessages()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(MessageUrl);
-
-            MessageInfoCollection messages = new MessageInfoCollection(doc.SelectNodes("//messages/messageInfo"));
+            XDocument doc = XDocument.Load(MessageUrl);
+            MessageInfoCollection messages = new MessageInfoCollection(doc.Element("messages").Elements("messageInfo"));
             ZCache.InsertCache(MessageCacheKey, messages, Marketplace.CacheTime);
         }
 

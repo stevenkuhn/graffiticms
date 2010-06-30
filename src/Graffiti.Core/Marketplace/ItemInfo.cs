@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -9,7 +9,7 @@ namespace Graffiti.Core.Marketplace
         private CatalogInfo _catalog;
         private int _id = 0;
         private int _categoryId = 0;
-        private int _creatorId = 0;
+        private string _creatorId = string.Empty;
         private string _name = string.Empty;
         private string _description = string.Empty;
         private string _version = string.Empty;
@@ -20,82 +20,90 @@ namespace Graffiti.Core.Marketplace
         private int _worksWithMajorVersion = 0;
         private int _worksWithMinorVersion = 0;
         private bool _requiresManualIntervention = false;
-        private bool _isApproved = false;
         private DateTime _dateAdded = DateTime.MinValue;
         private StatisticsInfo _statistics;
         private PurchaseInfo _purchase;
+        private List<string> _tags = new List<string>();
 
-        public ItemInfo(CatalogInfo catalog, XmlNode node)
+        public ItemInfo(CatalogInfo catalog, XElement node)
         {
             _catalog = catalog;
 
-            XmlAttribute a = node.Attributes["id"];
-            if (a != null)
-                _id = int.Parse(a.Value);
+            string value;
 
-            a = node.Attributes["categoryId"];
-            if (a != null)
-                _categoryId = int.Parse(a.Value);
+            if (node.TryGetAttributeValue("id", out value))
+                _id = int.Parse(value);
+            if (node.TryGetAttributeValue("categoryId", out value))
+                _categoryId = int.Parse(value);
+            if (node.TryGetAttributeValue("creatorId", out value))
+                _creatorId = value;
 
-            a = node.Attributes["creatorId"];
-            if (a != null)
-                _creatorId = int.Parse(a.Value);
+            XElement n = node.Element("name");
+            if (n != null && n.TryGetValue(out value))
+                _name = value;
 
-            XmlNode n = node.SelectSingleNode("name");
-            if (n != null)
-                _name = n.InnerText;
+            n = node.Element("name");
+            if (n != null && n.TryGetValue(out value))
+                _name = value;
 
-            n = node.SelectSingleNode("description");
-            if (n != null)
-                _description = n.InnerText;
+            n = node.Element("description");
+            if (n != null && n.TryGetValue(out value))
+                _description = value;
 
-            n = node.SelectSingleNode("version");
-            if (n != null)
-                _version = n.InnerText;
+            n = node.Element("version");
+            if (n != null && n.TryGetValue(out value))
+                _version = value;
 
-            n = node.SelectSingleNode("size");
-            if (n != null)
-                _size = int.Parse(n.InnerText);
+            n = node.Element("size");
+            if (n != null && n.TryGetValue(out value))
+                _size = int.Parse(value);
 
-            n = node.SelectSingleNode("downloadUrl");
-            if (n != null)
-                _downloadUrl = n.InnerText;
+            n = node.Element("downloadUrl");
+            if (n != null && n.TryGetValue(out value))
+                _downloadUrl = value;
 
-            n = node.SelectSingleNode("screenshotUrl");
-            if (n != null)
-                _screenshotUrl = n.InnerText;
+            n = node.Element("screenshotUrl");
+            if (n != null && n.TryGetValue(out value))
+                _screenshotUrl = value;
 
-            n = node.SelectSingleNode("iconUrl");
-            if (n != null)
-                _iconUrl = n.InnerText;
+            n = node.Element("iconUrl");
+            if (n != null && n.TryGetValue(out value))
+                _iconUrl = value;
 
-            n = node.SelectSingleNode("worksWithMajorVersion");
-            if (n != null)
-                _worksWithMajorVersion = int.Parse(n.InnerText);
+            n = node.Element("worksWithMajorVersion");
+            if (n != null && n.TryGetValue(out value))
+                _worksWithMajorVersion = int.Parse(value);
 
-            n = node.SelectSingleNode("worksWithMinorVersion");
-            if (n != null)
-                _worksWithMinorVersion = int.Parse(n.InnerText);
+            n = node.Element("worksWithMinorVersion");
+            if (n != null && n.TryGetValue(out value))
+                _worksWithMinorVersion = int.Parse(value);
 
-            n = node.SelectSingleNode("requiresManualIntervention");
-            if (n != null)
-                _requiresManualIntervention = bool.Parse(n.InnerText);
+            n = node.Element("requiresManualIntervention");
+            if (n != null && n.TryGetValue(out value))
+                _requiresManualIntervention = bool.Parse(value);
 
-            n = node.SelectSingleNode("isApproved");
-            if (n != null)
-                _isApproved = bool.Parse(n.InnerText);
+            n = node.Element("dateAdded");
+            if (n != null && n.TryGetValue(out value))
+                _dateAdded = DateTime.Parse(value);
 
-            n = node.SelectSingleNode("dateAdded");
-            if (n != null)
-                _dateAdded = DateTime.Parse(n.InnerText);
-
-            n = node.SelectSingleNode("statisticsInfo");
+            n = node.Element("statisticsInfo");
             if (n != null)
                 _statistics = new StatisticsInfo(n);
 
-            n = node.SelectSingleNode("purchaseInfo");
+            n = node.Element("purchaseInfo");
             if (n != null)
                 _purchase = new PurchaseInfo(n);
+
+            n = node.Element("tags");
+            if (n != null)
+            {
+                foreach (XElement e in n.Elements("tag"))
+                {
+                    string tag;
+                    if (e.TryGetValue(out tag))
+                        _tags.Add(tag);
+                }
+            }
         }
 
         public CatalogInfo Catalog
@@ -121,7 +129,7 @@ namespace Graffiti.Core.Marketplace
             get { return Catalog.Categories[CategoryId]; }
         }
 
-        public int CreatorId
+        public string CreatorId
         {
             get { return _creatorId; }
             set { _creatorId = value; }
@@ -216,10 +224,9 @@ namespace Graffiti.Core.Marketplace
             set { _requiresManualIntervention = value; }
         }
 
-        public bool IsApproved
+        public string Tags
         {
-            get { return _isApproved; }
-            set { _isApproved = value; }
+            get { return string.Join(", ", _tags.ToArray()); }
         }
 
         public DateTime DateAdded

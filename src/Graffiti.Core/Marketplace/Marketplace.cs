@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -56,28 +56,22 @@ namespace Graffiti.Core.Marketplace
 
         public static void RefreshCatalogs()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(CatalogsUrl);
-
-            CatalogInfoCollection catalogs = new CatalogInfoCollection(doc.SelectNodes("//catalogs/catalogInfo"));
+            XDocument doc = XDocument.Load(CatalogsUrl);
+            CatalogInfoCollection catalogs = new CatalogInfoCollection(doc.Element("catalogs").Elements("catalogInfo"));
             ZCache.InsertCache(CatalogsCacheKey, catalogs, CacheTime);
         }
 
         public static void RefreshCreators()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(CreatorsUrl);
-
-            CreatorInfoCollection creators = new CreatorInfoCollection(doc.SelectNodes("//creators/creatorInfo"));
+            XDocument doc = XDocument.Load(CreatorsUrl);
+            CreatorInfoCollection creators = new CreatorInfoCollection(doc.Element("creators").Elements("creatorInfo"));
             ZCache.InsertCache(CreatorsCacheKey, creators, CacheTime);
         }
 
         public static void RefreshMessages()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(MessagesUrl);
-
-            MessageInfoCollection messages = new MessageInfoCollection(doc.SelectNodes("//messages/messageInfo"));
+            XDocument doc = XDocument.Load(MessagesUrl);
+            MessageInfoCollection messages = new MessageInfoCollection(doc.Element("messages").Elements("messageInfo"));
             ZCache.InsertCache(MessagesCacheKey, messages, CacheTime);
         }
 

@@ -466,18 +466,14 @@ namespace Graffiti.Core
                         crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
                     }
 
-                    int creatorId = 0;
-                    string creator = HttpContext.Current.Request.QueryString["creator"];
-                    if (!string.IsNullOrEmpty(creator))
-                    {
-                        try { creatorId = int.Parse(creator); }
-                        catch { }
-                    }
+                    string creatorId = string.Empty;
+                    if (!string.IsNullOrEmpty(HttpContext.Current.Request.QueryString["creator"]))
+                        creatorId = HttpUtility.UrlDecode(HttpContext.Current.Request.QueryString["creator"]);
 
-                    if ((creatorId != 0) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
+                    if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?creator=" + creatorInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
                     }
 
                     int itemId = 0;
@@ -518,18 +514,14 @@ namespace Graffiti.Core
                         crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
                     }
 
-                    creatorId = 0;
-                    creator = HttpContext.Current.Request.QueryString["creator"];
-                    if (!string.IsNullOrEmpty(creator))
-                    {
-                        try { creatorId = int.Parse(creator); }
-                        catch { }
-                    }
+                    creatorId = string.Empty;
+                    if (!string.IsNullOrEmpty(HttpContext.Current.Request.QueryString["creator"]))
+                        creatorId = HttpUtility.UrlDecode(HttpContext.Current.Request.QueryString["creator"]);
 
-                    if ((creatorId != 0) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
+                    if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?creator=" + creatorInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
                     }
 
                     itemId = 0;
@@ -570,18 +562,14 @@ namespace Graffiti.Core
                         crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
                     }
 
-                    creatorId = 0;
-                    creator = HttpContext.Current.Request.QueryString["creator"];
-                    if (!string.IsNullOrEmpty(creator))
-                    {
-                        try { creatorId = int.Parse(creator); }
-                        catch { }
-                    }
+                    creatorId = string.Empty;
+                    if (!string.IsNullOrEmpty(HttpContext.Current.Request.QueryString["creator"]))
+                        creatorId = HttpUtility.UrlDecode(HttpContext.Current.Request.QueryString["creator"]);
 
-                    if ((creatorId != 0) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
+                    if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?creator=" + creatorInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
                     }
 
                     itemId = 0;

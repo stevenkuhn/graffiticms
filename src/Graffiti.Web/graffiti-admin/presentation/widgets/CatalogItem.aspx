@@ -42,25 +42,24 @@ function buyItem()
 
         <div>
             <p id="info1">
-                <strong>Creator Info</strong><br />
-                Name: <a href="Catalog.aspx?creator=<%= Item.Creator.Id %>"><strong><%= Item.Creator.Name %></strong></a><br />
-                <asp:PlaceHolder ID="Location" runat="server">Location: <strong><%= Util.Truncate(Item.Creator.Location, 25) %></strong><br /></asp:PlaceHolder>
-                Url: <a href="<%= Item.Creator.Url %>" title="<%= Item.Creator.Url %>" target="_blank"><strong><%= Util.Truncate(Item.Creator.Url, 25) %></strong></a><br />
-                <asp:PlaceHolder ID="Email" runat="server">Email: <a href="mailto:<%= Item.Creator.Email %>?subject=<%= Item.Name %>" title="<%= Item.Creator.Email %>"><strong><%= Util.Truncate(Item.Creator.Email, 25) %></strong></a><br /></asp:PlaceHolder>
-            </p>
-            <p id="info2">
                 <strong>Widget Info</strong><br />
-                Name: <strong><%= Util.Truncate(Item.FileName, 25) %></strong><br />
+                Tags: <strong><%= Item.Tags %></strong><br />
                 Version: <strong><%= Util.Truncate(Item.Version, 25) %></strong><br />
                 Size: <strong><%= Item.FormattedSize %></strong><br />
-                Works with: <strong>Graffiti <%= Item.WorksWithMajorVersion %>.<%= Item.WorksWithMinorVersion %></strong>
+                Minimum Version: <strong>Graffiti <%= Item.WorksWithMajorVersion %>.<%= Item.WorksWithMinorVersion %></strong>
+            </p>
+            <p id="info2">
+                <strong>Creator Info</strong><br />
+                Name: <a href="Catalog.aspx?creator=<%= HttpUtility.UrlEncode(Item.Creator.Id) %>"><strong><%= Item.Creator.Name %></strong></a><br />
+                Url: <a href="<%= Item.Creator.Url %>" title="<%= Item.Creator.Url %>" target="_blank"><strong><%= Util.Truncate(Item.Creator.Url, 25) %></strong></a><br />
+                <asp:PlaceHolder ID="Email" runat="server">Email: <a href="mailto:<%= Item.Creator.Email %>?subject=<%= Item.Name %>" title="<%= Item.Creator.Email %>"><strong><%= Util.Truncate(Item.Creator.Email, 25) %></strong></a><br /></asp:PlaceHolder>
+                Bio: <%= Util.Truncate(Item.Creator.Bio, 140) %><br />
             </p>
             <asp:PlaceHolder ID="Statistics" runat="server">
                 <p id="info3">
                     <strong>Statistics</strong><br />
                     <asp:PlaceHolder ID="Views" runat="server">Views: <strong><%= Item.Statistics.ViewCount %></strong><br /></asp:PlaceHolder>
                     <asp:PlaceHolder ID="Downloads" runat="server">Downloads: <strong><%= Item.Statistics.DownloadCount %></strong><br /></asp:PlaceHolder>
-                    <asp:PlaceHolder ID="Rating" runat="server">Avg Rating: <strong><%= Item.Statistics.AverageRating %> (<%= Item.Statistics.RatingCount %> votes)</strong><br /></asp:PlaceHolder>
                 </p>
             </asp:PlaceHolder>
         </div>

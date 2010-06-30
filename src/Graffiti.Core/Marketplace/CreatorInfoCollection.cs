@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
-    public class CreatorInfoCollection : Dictionary<int, CreatorInfo>
+    public class CreatorInfoCollection : Dictionary<string, CreatorInfo>
     {
         public CreatorInfoCollection()
         {
         }
 
-        public CreatorInfoCollection(XmlNodeList nodes)
+        public CreatorInfoCollection(IEnumerable<XElement> nodes)
         {
-            foreach (XmlNode node in nodes)
+            foreach (XElement node in nodes)
             {
                 CreatorInfo creatorInfo = new CreatorInfo(node);
                 Add(creatorInfo.Id, creatorInfo);

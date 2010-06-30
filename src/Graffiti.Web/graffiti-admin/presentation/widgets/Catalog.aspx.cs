@@ -10,7 +10,7 @@ public partial class graffiti_admin_presentation_widgets_Catalog : AdminControlP
 {
     private int _catalogId = 1001;
     private int _categoryId = 0;
-    private int _creatorId = 0;
+    private string _creatorId = string.Empty;
 
     protected void Page_Init(object sender, EventArgs e)
     {
@@ -23,10 +23,7 @@ public partial class graffiti_admin_presentation_widgets_Catalog : AdminControlP
 
         string creator = Request.QueryString["creator"];
         if (!string.IsNullOrEmpty(creator))
-        {
-            try { _creatorId = int.Parse(creator); }
-            catch { }
-        }
+            _creatorId = HttpUtility.UrlDecode(creator);
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -56,7 +53,7 @@ public partial class graffiti_admin_presentation_widgets_Catalog : AdminControlP
                 itemList.DataSource = Catalog.Items.Values;
                 if (_categoryId > 0)
                     itemList.DataSource = Category.Items.Values;
-                else if (_creatorId > 0)
+                else if (!string.IsNullOrEmpty(_creatorId))
                     itemList.DataSource = Creator.GetItems(Catalog.Id).Values;
 
                 itemList.DataBind();

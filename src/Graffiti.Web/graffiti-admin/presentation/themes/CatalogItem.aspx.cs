@@ -35,13 +35,11 @@ public partial class graffiti_admin_presentation_themes_CatalogItem : AdminContr
     {
         AdditionalConfiguration.Visible = Item.RequiresManualIntervention;
 
-        Location.Visible = Item.Creator.DisplayLocation;
         Email.Visible = Item.Creator.DisplayEmail;
 
-        Statistics.Visible = (Item.Statistics.ViewCount + Item.Statistics.DownloadCount + Item.Statistics.RatingCount > 0);
+        Statistics.Visible = (Item.Statistics.ViewCount + Item.Statistics.DownloadCount > 0);
         Views.Visible = (Item.Statistics.ViewCount > 0);
         Downloads.Visible = (Item.Statistics.DownloadCount > 0);
-        Rating.Visible = (Item.Statistics.RatingCount > 0);
 
         InstallButton.Visible = DownloadButton.Visible = BuyButton.Visible = false;
         if (Item.Purchase.Price > 0)

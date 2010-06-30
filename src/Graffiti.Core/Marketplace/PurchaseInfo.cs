@@ -1,5 +1,5 @@
 using System;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -8,15 +8,17 @@ namespace Graffiti.Core.Marketplace
         private double _price = 0.0;
         private string _buyUrl = string.Empty;
 
-        public PurchaseInfo(XmlNode node)
+        public PurchaseInfo(XElement node)
         {
-            XmlNode n = node.SelectSingleNode("price");
-            if (n != null)
-                _price = double.Parse(n.InnerText);
+            string value;
 
-            n = node.SelectSingleNode("buyUrl");
-            if (n != null)
-                _buyUrl = n.InnerText;
+            XElement n = node.Element("price");
+            if (n != null && n.TryGetValue(out value))
+                _price = double.Parse(value);
+
+            n = node.Element("buyUrl");
+            if (n != null && n.TryGetValue(out value))
+                _buyUrl = value;
         }
 
         public double Price

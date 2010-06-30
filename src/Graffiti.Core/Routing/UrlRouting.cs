@@ -7,13 +7,12 @@ namespace Graffiti.Core
 	{
 		public static void Initialize()
 		{
+            RouteTable.Routes.Clear();
 			RegisterRoutes(RouteTable.Routes);
-
 		}
 
 		private static void RegisterRoutes(RouteCollection routes)
 		{
-
 			// Do not use url routing for requests with .axd/.asmx/.ico extensions
 			// This prevents ASP.NET from having to do File.Exists check
 			routes.Add("ignoreAXD", new Route("{resource}.axd/{*pathInfo}", new StopRoutingHandler()));
@@ -33,15 +32,15 @@ namespace Graffiti.Core
 			routes.Add("ignoreUtility", new Route("__utility/{*pathInfo}", new StopRoutingHandler()));
 			routes.Add("ignoreFiles", new Route("files/{*pathInfo}", new StopRoutingHandler()));
 
+            // Allow plugins to add Routes before the default CategoryAndPost ones
+            Events.Instance().ExecuteUrlRoutingAdd(routes);
+
 			routes.Add("TagPage", new Route("tags/{TagName}/", new TagHandler()));
 			routes.Add("TagFeed", new Route("tags/{TagName}/feed/", new RssHandler()));
 
 			routes.Add("SiteFeed", new Route("feed/", new RssHandler()));
 			routes.Add("Category1Feed", new Route("{CategoryOne}/feed/", new RssHandler()));
 			routes.Add("Category2Feed", new Route("{CategoryOne}/{CategoryTwo}/feed/", new RssHandler()));
-
-			// Allow plugins to add Routes before the default CategoryAndPost ones
-			Events.Instance().ExecuteUrlRoutingAdd(routes);
 
 			routes.Add("Param1", new Route("{Param1}", new CategoryAndPostHandler()));
 			routes.Add("Param2", new Route("{Param1}/{Param2}/", new CategoryAndPostHandler()));
@@ -57,8 +56,7 @@ namespace Graffiti.Core
 					return;
 			}
 
-			// Add new routes before the last default rout (CategoryAndPost)
-			RouteTable.Routes.Insert(RouteTable.Routes.Count - 1, route);
+			RouteTable.Routes.Add(route);
 		}
 
 	}

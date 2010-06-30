@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
@@ -10,9 +10,9 @@ namespace Graffiti.Core.Marketplace
         {
         }
 
-        public CatalogInfoCollection(XmlNodeList nodes)
+        public CatalogInfoCollection(IEnumerable<XElement> nodes)
         {
-            foreach (XmlNode node in nodes)
+            foreach (XElement node in nodes)
             {
                 CatalogInfo catalogInfo = new CatalogInfo(node);
                 Add(catalogInfo.Id, catalogInfo);
