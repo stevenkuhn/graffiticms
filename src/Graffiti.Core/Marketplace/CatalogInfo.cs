@@ -8,6 +8,7 @@ namespace Graffiti.Core.Marketplace
         private int _id = 0;
         private string _name = string.Empty;
         private string _description = string.Empty;
+        private CatalogType _type = CatalogType.All;
 
         public CatalogInfo(XElement node)
         {
@@ -23,12 +24,22 @@ namespace Graffiti.Core.Marketplace
             n = node.Element("description");
             if (n != null && n.TryGetValue(out value))
                 _description = value;
+
+            n = node.Element("type");
+            if (n != null && n.TryGetValue(out value))
+                _type = (CatalogType)System.Enum.Parse(typeof(CatalogType), value);
         }
 
         public int Id
         {
             get { return _id; }
             set { _id = value; }
+        }
+
+        public CatalogType Type
+        {
+            get { return _type; }
+            set { _type = value; }
         }
 
         public string Name

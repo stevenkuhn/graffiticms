@@ -88,6 +88,7 @@ namespace Graffiti.Core
 
         private string GetBreadCrumbs()
         {
+            Urls urls = new Urls();
             StringBuilder crumbs = new StringBuilder();
 
             if (this.Page.MasterPageFile.EndsWith("AdminModal.master"))
@@ -448,9 +449,9 @@ namespace Graffiti.Core
 
                 case Section.WidgetMarketplace:
 
-                    crumbs.Append(GetHyperLink("All Widgets", ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx"), true));
+                    crumbs.Append(GetHyperLink("All Widgets", urls.AdminMarketplace("Widgets"), true));
 
-                    CatalogInfo widgets = Marketplace.Marketplace.Catalogs[1001];
+                    CatalogInfo widgets = Marketplace.Marketplace.Catalogs[CatalogType.Widgets];
 
                     int categoryId = 0;
                     string category = HttpContext.Current.Request.QueryString["category"];
@@ -463,7 +464,7 @@ namespace Graffiti.Core
                     if ((categoryId != 0) && widgets.Categories.ContainsKey(categoryId))
                     {
                         CategoryInfo categoryInfo = widgets.Categories[categoryId];
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Widgets") + "&category=" + categoryInfo.Id.ToString(), false));
                     }
 
                     string creatorId = string.Empty;
@@ -473,7 +474,7 @@ namespace Graffiti.Core
                     if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, urls.AdminMarketplace("Widgets") + "&creator=" + HttpUtility.UrlEncode(creatorInfo.Id), false));
                     }
 
                     int itemId = 0;
@@ -488,17 +489,17 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = widgets.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalog.aspx?category=" + categoryInfo.Id.ToString()), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, ResolveUrl("~/graffiti-admin/presentation/widgets/catalogItem.aspx?item=" + itemInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Widgets") + "&category=" + categoryInfo.Id.ToString(), true));
+                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Widgets", itemInfo.Id), false));
                     }
 
                     break;
 
                 case Section.ThemeMarketplace:
 
-                    crumbs.Append(GetHyperLink("All Themes", ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx"), true));
+                    crumbs.Append(GetHyperLink("All Themes", urls.AdminMarketplace("Themes"), true));
 
-                    CatalogInfo themeCatalog = Marketplace.Marketplace.Catalogs[1002];
+                    CatalogInfo themeCatalog = Marketplace.Marketplace.Catalogs[CatalogType.Themes];
 
                     categoryId = 0;
                     category = HttpContext.Current.Request.QueryString["category"];
@@ -511,7 +512,7 @@ namespace Graffiti.Core
                     if ((categoryId != 0) && (themeCatalog.Categories.ContainsKey(categoryId)))
                     {
                         CategoryInfo categoryInfo = themeCatalog.Categories[categoryId];
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Themes") + "&category=" + categoryInfo.Id.ToString(), false));
                     }
 
                     creatorId = string.Empty;
@@ -521,7 +522,7 @@ namespace Graffiti.Core
                     if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, urls.AdminMarketplace("Themes") + "&creator=" + HttpUtility.UrlEncode(creatorInfo.Id), false));
                     }
 
                     itemId = 0;
@@ -536,17 +537,17 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = themeCatalog.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalog.aspx?category=" + categoryInfo.Id.ToString()), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, ResolveUrl("~/graffiti-admin/presentation/themes/catalogItem.aspx?item=" + itemInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Themes") + "&category=" + categoryInfo.Id.ToString(), true));
+                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Themes", itemInfo.Id), false));
                     }
 
                     break;
 
                 case Section.PluginMarketplace:
 
-                    crumbs.Append(GetHyperLink("All Plugins", ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx"), true));
+                    crumbs.Append(GetHyperLink("All Plugins", urls.AdminMarketplace("Plugins"), true));
 
-                    CatalogInfo plugins = Marketplace.Marketplace.Catalogs[1003];
+                    CatalogInfo plugins = Marketplace.Marketplace.Catalogs[CatalogType.Plugins];
 
                     categoryId = 0;
                     category = HttpContext.Current.Request.QueryString["category"];
@@ -559,7 +560,7 @@ namespace Graffiti.Core
                     if ((categoryId != 0) && plugins.Categories.ContainsKey(categoryId))
                     {
                         CategoryInfo categoryInfo = plugins.Categories[categoryId];
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?category=" + categoryInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Plugins") + "&category=" + categoryInfo.Id.ToString(), false));
                     }
 
                     creatorId = string.Empty;
@@ -569,7 +570,7 @@ namespace Graffiti.Core
                     if (!string.IsNullOrEmpty(creatorId) && (Marketplace.Marketplace.Creators.ContainsKey(creatorId)))
                     {
                         CreatorInfo creatorInfo = Marketplace.Marketplace.Creators[creatorId];
-                        crumbs.Append(GetHyperLink(creatorInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?creator=" + HttpUtility.UrlEncode(creatorInfo.Id)), false));
+                        crumbs.Append(GetHyperLink(creatorInfo.Name, urls.AdminMarketplace("Plugins") + "&creator=" + HttpUtility.UrlEncode(creatorInfo.Id), false));
                     }
 
                     itemId = 0;
@@ -584,8 +585,8 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = plugins.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalog.aspx?category=" + categoryInfo.Id.ToString()), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, ResolveUrl("~/graffiti-admin/site-options/plug-ins/catalogItem.aspx?item=" + itemInfo.Id.ToString()), false));
+                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Plugins") + "&category=" + categoryInfo.Id.ToString(), true));
+                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Plugins", itemInfo.Id), false));
                     }
 
                     break;

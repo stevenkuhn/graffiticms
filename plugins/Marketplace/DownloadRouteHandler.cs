@@ -14,7 +14,6 @@ namespace Graffiti.Marketplace
             string postID = requestContext.RouteData.Values["PostID"] != null ? requestContext.RouteData.Values["PostID"].ToString() : null;
             if (!string.IsNullOrEmpty(postID))
             {
-
                 return new DownloadHandler(postID);
             }
 

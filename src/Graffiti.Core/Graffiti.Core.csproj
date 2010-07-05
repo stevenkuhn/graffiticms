@@ -120,6 +120,7 @@
     <Compile Include="Data\VersionStore.cs" />
     <Compile Include="Events\GraffitiEventArgs.cs" />
     <Compile Include="Marketplace\CatalogInfo.cs" />
+    <Compile Include="Marketplace\CatalogType.cs" />
     <Compile Include="Marketplace\CategoryInfo.cs" />
     <Compile Include="Marketplace\CategoryInfoCollection.cs" />
     <Compile Include="Marketplace\MessageInfoCollection.cs" />

@@ -10,7 +10,7 @@
 
 
 
-public partial class graffiti_admin_presentation_widgets_Default {
+public partial class graffiti_admin_marketplace_Default {
     
     /// <summary>
     /// Message control.
@@ -22,47 +22,20 @@ public partial class graffiti_admin_presentation_widgets_Default {
     protected global::Graffiti.Core.StatusMessage Message;
     
     /// <summary>
-    /// Modal control.
+    /// MarketplaceImage control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Telligent.Glow.Modal Modal;
+    protected global::System.Web.UI.HtmlControls.HtmlImage MarketplaceImage;
     
     /// <summary>
-    /// AvailableWidgets control.
+    /// catalogList control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::Telligent.Glow.DropDownList AvailableWidgets;
-    
-    /// <summary>
-    /// qbar control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Telligent.Glow.OrderedList qbar;
-    
-    /// <summary>
-    /// lbar control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Telligent.Glow.OrderedList lbar;
-    
-    /// <summary>
-    /// rbar control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Telligent.Glow.OrderedList rbar;
+    protected global::System.Web.UI.WebControls.Repeater catalogList;
 }

@@ -79,12 +79,12 @@ namespace Graffiti.Core.Marketplace
             set { _url = value; }
         }
 
-        public ItemInfoCollection GetItems(int catalogId)
+        public ItemInfoCollection GetItems(CatalogType catType)
         {
             if (_items == null)
             {
                 _items = new ItemInfoCollection();
-                foreach (ItemInfo item in Marketplace.Catalogs[catalogId].Items.Values)
+                foreach (ItemInfo item in Marketplace.Catalogs[catType].Items.Values)
                 {
                     if (Util.AreEqualIgnoreCase(item.CreatorId, Id))
                         _items.Add(item.Id, item);

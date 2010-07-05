@@ -114,7 +114,7 @@ function ToggleStatus(typeName, btnID)
 <Z:StatusMessage runat="server" ID="Message" />
 
 <h3>Installed Plug-Ins</h3>
-<asp:HyperLink runat="server" NavigateUrl="javascript:Telligent_Modal.Open('Catalog.aspx', 600, 475, refresh);" Text="Search online plugins..." />
+<a href="javascript:Telligent_Modal.Open('<%= new Urls().AdminMarketplace("Plugins") %>', 600, 475, refresh);">Search online plugins...</a>
 <Z:Repeater runat="Server" ShowHeaderFooterOnNone = "false" ID = "PluginList">
     <NoneTemplate>
         <z:StatusMessage runat="Server" Text="Sorry, there are no plugins to manage." Type="Warning" />

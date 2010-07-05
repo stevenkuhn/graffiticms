@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Graffiti.Core.Marketplace
 {
-    public class CatalogInfoCollection : Dictionary<int, CatalogInfo>
+    public class CatalogInfoCollection : Dictionary<CatalogType, CatalogInfo>
     {
         public CatalogInfoCollection()
         {
@@ -15,7 +15,7 @@ namespace Graffiti.Core.Marketplace
             foreach (XElement node in nodes)
             {
                 CatalogInfo catalogInfo = new CatalogInfo(node);
-                Add(catalogInfo.Id, catalogInfo);
+                Add(catalogInfo.Type, catalogInfo);
             }
         }
     }

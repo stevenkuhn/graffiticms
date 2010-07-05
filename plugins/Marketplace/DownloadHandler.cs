@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -12,9 +13,9 @@ namespace Graffiti.Marketplace
     {
         string _postID;
 
-        public DownloadHandler(string postIDvalue)
+        public DownloadHandler(string postID)
         {
-            _postID = postIDvalue;
+            _postID = postID;
         }
 
         public bool IsReusable
@@ -38,7 +39,18 @@ namespace Graffiti.Marketplace
                 string downloadFile = post.Custom("FileName");
                 if (!string.IsNullOrEmpty(downloadFile))
                 {
-                    // ToDo: stream download file to client
+                    string localPath = context.Server.MapPath(downloadFile);
+                    if (!string.IsNullOrEmpty(localPath) && File.Exists(localPath))
+                    {
+                        downloadFile = HttpUtility.UrlEncode(downloadFile).Replace("+", "%20");
+                        context.Response.Clear();
+                        context.Response.ContentType = "application/octet-stream";
+                        context.Response.AddHeader("Content-Disposition", string.Format("attachment; filename=\"{0}\"", downloadFile));
+                        context.Response.TransmitFile(localPath);
+
+                        // Increment download count for post
+                        DataHelper.UpdateMarketplaceStats(post.Id);
+                    }
                 }
             }
 

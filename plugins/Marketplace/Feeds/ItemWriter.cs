@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Web;
 using Graffiti.Core;
 
 namespace Graffiti.Marketplace
@@ -29,23 +29,27 @@ namespace Graffiti.Marketplace
 
 		protected override string BuildFeed()
 		{
+            string downloadUrlPrefix = VirtualPathUtility.ToAbsolute("~/download/");
+
 			StringWriter sw = new StringWriter();
 			sw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
 			XmlTextWriter writer = new XmlTextWriter(sw);
-
+            
 			writer.WriteStartElement("items");
 
             foreach (Post post in GetPosts())
             {
+                Dictionary<int, ItemStatistics> stats = DataHelper.GetMarketplaceCategoryStats(_categoryId);
+
                 writer.WriteStartElement("itemInfo");
                 writer.WriteAttributeString("id", post.Id.ToString());
                 writer.WriteAttributeString("categoryId", post.CategoryId.ToString());
-                writer.WriteAttributeString("creatorId", post.UserName);
+                writer.WriteAttributeString("creatorId", post.Custom("Creator"));
                 writer.WriteElementString("name", post.Name);
-                writer.WriteElementString("description", post.Body);
+                writer.WriteElementString("description", Util.FullyQualifyRelativeUrls(post.RenderBody(PostRenderLocation.Feed), SiteSettings.BaseUrl));
                 writer.WriteElementString("version", post.Custom("Version"));
                 writer.WriteElementString("size", post.Custom("Size"));
-                writer.WriteElementString("downloadUrl", post.Custom("FileName"));
+                writer.WriteElementString("downloadUrl", downloadUrlPrefix + post.Id.ToString());
                 writer.WriteElementString("screenshotUrl", post.Custom("ImageLarge"));
                 writer.WriteElementString("iconUrl", post.ImageUrl);
                 writer.WriteElementString("worksWithMajorVersion", post.Custom("RequiredMajorVersion"));
@@ -55,7 +59,10 @@ namespace Graffiti.Marketplace
                 writer.WriteElementString("dateAdded", post.Published.ToUniversalTime().ToString("u"));
 
                 writer.WriteStartElement("statisticsInfo");
-                writer.WriteElementString("downloadCount", post.Views.ToString());
+                if (stats.ContainsKey(post.Id))
+                    writer.WriteElementString("downloadCount", stats[post.Id].DownloadCount.ToString());
+                else
+                    writer.WriteElementString("downloadCount", "0");
                 writer.WriteElementString("viewCount", post.Views.ToString());
                 writer.WriteEndElement(); // End statisticsInfo
 
@@ -85,10 +92,6 @@ namespace Graffiti.Marketplace
 
             if (posts != null && posts.Count > 0)
             {
-                // Retrieve Marketplace details for posts
-
-
-
                 foreach (Post p in posts)
                 {
                     yield return p;
@@ -96,27 +99,6 @@ namespace Graffiti.Marketplace
             }
             
         }
-
-
-        /*
-        public void GetMarketplaceData()
-        {
-
-            using (SqlConnection connection = CreateMarketplaceConnection())
-            {
-                using (SqlCommand command = new SqlCommand("marketplace_items_get", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@categoryId", SqlDbType.Int)).Value = _categoryId;
-
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-                    return new ItemWriter(reader).WriteXml();
-                }
-            }
-        }
-        */
 
 	}
 }

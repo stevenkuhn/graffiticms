@@ -16,16 +16,26 @@ namespace Graffiti.Marketplace
 
         public string DownloadLink(Post post)
         {
+            return VirtualPathUtility.ToAbsolute("~/download/") + post.Id.ToString();
+        }
 
+        public string FileDownloader(Post post)
+        {
             // If the "download" querystring attrib exists, stream the download file
             if (!string.IsNullOrEmpty(HttpContext.Current.Request.QueryString["download"]))
             {
-                // ToDo: render iframe or script to call the DownloadHandler
+                return string.Format("<iframe src=\"{0}\" width=\"1\" height=\"1\"></iframe>", "");
             }
 
             return string.Empty;
         }
 
+        public ItemStatistics PostItemStatistics(Post post)
+        {
+            if (post != null)
+                return DataHelper.GetMarketplacePostStats(post.Id);
 
+            return new ItemStatistics();
+        }
     }
 }

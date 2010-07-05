@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/graffiti-admin/common/AdminModal.master" AutoEventWireup="true" CodeBehind="CatalogItem.aspx.cs" Inherits="graffiti_admin_presentation_widgets_CatalogItem" Title="Widget Marketplace" %>
+<%@ Page Language="C#" MasterPageFile="~/graffiti-admin/common/AdminModal.master" AutoEventWireup="true" CodeBehind="CatalogItem.aspx.cs" Inherits="graffiti_admin_marketplace_CatalogItem" Title="Graffiti Marketplace" %>
 <asp:Content ContentPlaceHolderID="BodyRegion" Runat="Server">
 
 <script language="javascript">
@@ -15,7 +15,7 @@ function buyItem()
 
 <div id="messages_form">
 
-    <Z:Breadcrumbs runat="server" SectionName="WidgetMarketplace" />
+    <Z:Breadcrumbs runat="server" ID="PageBreadcrumbs" />
     <Z:StatusMessage runat="Server" ID="Message" Type="Success"/>
 
     <div id="post_form_container" class="FormBlock abc" style="min-height:260px;min-width:550px;">
@@ -42,7 +42,7 @@ function buyItem()
 
         <div>
             <p id="info1">
-                <strong>Widget Info</strong><br />
+                <strong><%= _itemTypeName %> Info</strong><br />
                 Tags: <strong><%= Item.Tags %></strong><br />
                 Version: <strong><%= Util.Truncate(Item.Version, 25) %></strong><br />
                 Size: <strong><%= Item.FormattedSize %></strong><br />
@@ -50,7 +50,7 @@ function buyItem()
             </p>
             <p id="info2">
                 <strong>Creator Info</strong><br />
-                Name: <a href="Catalog.aspx?creator=<%= HttpUtility.UrlEncode(Item.Creator.Id) %>"><strong><%= Item.Creator.Name %></strong></a><br />
+                Name: <a href="Catalog.aspx?catalog=<%= Request.QueryString["catalog"] %>&amp;creator=<%= HttpUtility.UrlEncode(Item.Creator.Id) %>"><strong><%= Item.Creator.Name %></strong></a><br />
                 Url: <a href="<%= Item.Creator.Url %>" title="<%= Item.Creator.Url %>" target="_blank"><strong><%= Util.Truncate(Item.Creator.Url, 25) %></strong></a><br />
                 <asp:PlaceHolder ID="Email" runat="server">Email: <a href="mailto:<%= Item.Creator.Email %>?subject=<%= Item.Name %>" title="<%= Item.Creator.Email %>"><strong><%= Util.Truncate(Item.Creator.Email, 25) %></strong></a><br /></asp:PlaceHolder>
                 Bio: <%= Util.Truncate(Item.Creator.Bio, 140) %><br />
@@ -69,9 +69,9 @@ function buyItem()
 
     <div class="submit">
         <div id="buttons">
-            <asp:Button ID="InstallButton" runat="server" Text="Install Widget" OnClick="Install_Click" />
-            <asp:Button ID="DownloadButton" runat="server" Text="Download Widget" OnClientClick="downloadItem(); return false;" />
-            <asp:Button ID="BuyButton" runat="server" Text="Buy Widget" OnClientClick="buyItem(); return false;" />
+            <asp:Button ID="InstallButton" runat="server" Text="Install <%= _itemTypeName %>" OnClick="Install_Click" />
+            <asp:Button ID="DownloadButton" runat="server" Text="Download <%= _itemTypeName %>" OnClientClick="downloadItem(); return false;" />
+            <asp:Button ID="BuyButton" runat="server" Text="Buy <%= _itemTypeName %>" OnClientClick="buyItem(); return false;" />
             <asp:HyperLink ID="CancelButton" runat="server" Text="(Cancel)" NavigateUrl="Catalog.aspx" />
         </div>
     </div>

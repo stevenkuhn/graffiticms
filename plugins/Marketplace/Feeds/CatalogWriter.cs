@@ -34,6 +34,7 @@ namespace Graffiti.Marketplace
                 writer.WriteAttributeString("id", category.Id.ToString());
                 writer.WriteElementString("name", category.Name);
                 writer.WriteElementString("description", category.Body);
+                writer.WriteElementString("type", ((Graffiti.Core.Marketplace.CatalogType)category.Type).ToString());
                 writer.WriteEndElement(); // End catalogInfo
             }
 
@@ -46,7 +47,7 @@ namespace Graffiti.Marketplace
             CategoryCollection categories = new CategoryController().GetTopLevelCachedCategories();
             foreach (Category c in categories)
             {
-                if (c.Type == 1)
+                if (c.Type > 0 && System.Enum.IsDefined(typeof(Graffiti.Core.Marketplace.CatalogType), c.Type))
                     yield return c;
             }
         }

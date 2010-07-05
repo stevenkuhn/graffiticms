@@ -32,7 +32,7 @@ function OpenCreateThemeFileModal()
     <span style="padding: 0 4px 0 4px;">|</span>
     <asp:LinkButton Text="Upload Theme" runat="Server" OnClientClick="OpenUploadThemeFileModal();return false;" />
     <span style="padding: 0 4px 0 4px;">|</span>
-    <asp:HyperLink runat="server" NavigateUrl="javascript:Telligent_Modal.Open('Catalog.aspx', 600, 475, refresh);" Text="Search online themes..." />
+    <a href="javascript:Telligent_Modal.Open('<%= new Urls().AdminMarketplace("Themes") %>', 600, 475, refresh);">Search online themes...</a>
     <div style="text-align: center;">
     <asp:DataList runat="Server" ID="Theme_List" RepeatColumns="2" RepeatDirection="Horizontal" style="margin: auto;">
         <ItemTemplate>

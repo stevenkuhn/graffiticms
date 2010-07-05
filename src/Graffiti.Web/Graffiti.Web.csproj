@@ -128,6 +128,13 @@
     <Compile Include="graffiti-admin\comments\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="graffiti-admin\marketplace\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="graffiti-admin\marketplace\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="graffiti-admin\posts\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,18 +163,18 @@
     <Compile Include="graffiti-admin\presentation\navigation\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="graffiti-admin\presentation\themes\Catalog.aspx.cs">
+    <Compile Include="graffiti-admin\marketplace\Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="graffiti-admin\presentation\themes\Catalog.aspx.designer.cs">
+    <Compile Include="graffiti-admin\marketplace\Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
-    <Compile Include="graffiti-admin\presentation\themes\CatalogItem.aspx.cs">
+    <Compile Include="graffiti-admin\marketplace\CatalogItem.aspx.cs">
       <DependentUpon>CatalogItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="graffiti-admin\presentation\themes\CatalogItem.aspx.designer.cs">
+    <Compile Include="graffiti-admin\marketplace\CatalogItem.aspx.designer.cs">
       <DependentUpon>CatalogItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="graffiti-admin\presentation\themes\ConfigureTheme.aspx.cs">
@@ -176,20 +183,6 @@
     </Compile>
     <Compile Include="graffiti-admin\presentation\themes\ConfigureTheme.aspx.designer.cs">
       <DependentUpon>ConfigureTheme.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="graffiti-admin\presentation\widgets\Catalog.aspx.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="graffiti-admin\presentation\widgets\Catalog.aspx.designer.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="graffiti-admin\presentation\widgets\CatalogItem.aspx.cs">
-      <DependentUpon>CatalogItem.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="graffiti-admin\presentation\widgets\CatalogItem.aspx.designer.cs">
-      <DependentUpon>CatalogItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="graffiti-admin\reporting\charts.ashx.cs">
       <DependentUpon>charts.ashx</DependentUpon>
@@ -207,20 +200,6 @@
     </Compile>
     <Compile Include="graffiti-admin\site-options\configuration\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="graffiti-admin\site-options\plug-ins\CatalogItem.aspx.cs">
-      <DependentUpon>CatalogItem.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="graffiti-admin\site-options\plug-ins\CatalogItem.aspx.designer.cs">
-      <DependentUpon>CatalogItem.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="graffiti-admin\site-options\plug-ins\Catalog.aspx.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="graffiti-admin\site-options\plug-ins\Catalog.aspx.designer.cs">
-      <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="graffiti-admin\presentation\widgets\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -443,6 +422,7 @@
     <Content Include="graffiti-admin\Default.aspx" />
     <Content Include="graffiti-admin\loading.htm" />
     <Content Include="graffiti-admin\logout\Default.aspx" />
+    <Content Include="graffiti-admin\marketplace\Default.aspx" />
     <Content Include="graffiti-admin\msg\cannot-write.aspx" />
     <Content Include="graffiti-admin\posts\Default.aspx" />
     <Content Include="graffiti-admin\posts\PostMerge.aspx" />
@@ -451,22 +431,18 @@
     <Content Include="graffiti-admin\presentation\Default.aspx" />
     <Content Include="graffiti-admin\presentation\navigation\Default.aspx" />
     <Content Include="graffiti-admin\presentation\themes\AddFile.aspx" />
-    <Content Include="graffiti-admin\presentation\themes\Catalog.aspx" />
-    <Content Include="graffiti-admin\presentation\themes\CatalogItem.aspx" />
+    <Content Include="graffiti-admin\marketplace\Catalog.aspx" />
+    <Content Include="graffiti-admin\marketplace\CatalogItem.aspx" />
     <Content Include="graffiti-admin\presentation\themes\ConfigureTheme.aspx" />
     <Content Include="graffiti-admin\presentation\themes\UploadFile.aspx" />
     <Content Include="graffiti-admin\presentation\themes\CreateNewTheme.aspx" />
     <Content Include="graffiti-admin\presentation\themes\Default.aspx" />
     <Content Include="graffiti-admin\presentation\themes\EditTheme.aspx" />
     <Content Include="graffiti-admin\presentation\themes\UploadTheme.aspx" />
-    <Content Include="graffiti-admin\presentation\widgets\Catalog.aspx" />
-    <Content Include="graffiti-admin\presentation\widgets\CatalogItem.aspx" />
     <Content Include="graffiti-admin\reporting\Default.aspx" />
     <Content Include="graffiti-admin\site-options\configuration\Default.aspx" />
     <Content Include="graffiti-admin\site-options\packages\Default.aspx" />
     <Content Include="graffiti-admin\site-options\packages\UploadPackage.aspx" />
-    <Content Include="graffiti-admin\site-options\plug-ins\CatalogItem.aspx" />
-    <Content Include="graffiti-admin\site-options\plug-ins\Catalog.aspx" />
     <Content Include="graffiti-admin\presentation\widgets\Default.aspx" />
     <Content Include="graffiti-admin\presentation\widgets\Edit.aspx" />
     <Content Include="graffiti-admin\presentation\widgets\EditCategoryWidget.aspx" />
@@ -745,6 +721,10 @@
     <None Include="__utility\pages\tag.view" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\plugins\Marketplace\Graffiti.Marketplace.csproj">
+      <Project>{55C4F330-6E39-4857-B484-B625380C8614}</Project>
+      <Name>Graffiti.Marketplace</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataBuddy\DataBuddy.csproj">
       <Project>{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}</Project>
       <Name>DataBuddy</Name>

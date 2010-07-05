@@ -71,14 +71,16 @@ namespace Graffiti.Core
             base.Loaded();
         }
 
-
-        public override void Save()
+        protected override void BeforeUpdate()
         {
             Events.Instance().ExecuteUserBeforeUserUpdate(this);
+            base.BeforeUpdate();
+        }
 
-            base.Save();
-
+        protected override void AfterUpdate()
+        {
             Events.Instance().ExecuteAfterUserUpdated(this);
+            base.AfterUpdate();
         }
 
         private static string GenerateSalt()

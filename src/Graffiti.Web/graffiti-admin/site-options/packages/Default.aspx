@@ -61,10 +61,6 @@ function OpenUploadPackageFileModal()
 
 <h3>Installed Packages</h3>
 <asp:HyperLink runat="server" Text="Upload Package" NavigateUrl="javascript:OpenUploadPackageFileModal();" />
-<!--
-<span style="padding: 0 4px 0 4px;">|</span>
-<asp:HyperLink runat="server" NavigateUrl="javascript:Telligent_Modal.Open('Catalog.aspx', 600, 475, refresh);" Text="Search online packages..." />
--->
 <Z:Repeater runat="Server" ShowHeaderFooterOnNone="false" ID="PackageList">
     <NoneTemplate>
         <z:StatusMessage runat="Server" Text="Sorry, there are no packages to manage." Type="Warning" />

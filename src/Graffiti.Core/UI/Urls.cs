@@ -91,6 +91,22 @@ namespace Graffiti.Core
         }
 
         /// <summary>
+        /// The path to the default page of the integrated marketplace, showing a list of collections
+        /// </summary>
+        public string AdminMarketplaceHome
+        {
+            get { return VirtualPathUtility.ToAbsolute("~/graffiti-admin/marketplace/"); }
+        }
+        public string AdminMarketplace(string catalogType)
+        {
+            return string.Format("{0}?catalog={1}", VirtualPathUtility.ToAbsolute("~/graffiti-admin/marketplace/catalog.aspx"), catalogType);
+        }
+        public string AdminMarketplaceItem(string catalogType, int itemID)
+        {
+            return string.Format("{0}?catalog={1}&item={2}", VirtualPathUtility.ToAbsolute("~/graffiti-admin/marketplace/CatalogItem.aspx"), catalogType, itemID);
+        }
+
+        /// <summary>
         /// The path to the users RSS feed. This will return an external feed (feedburner) if setup.
         /// </summary>
         public string Rss

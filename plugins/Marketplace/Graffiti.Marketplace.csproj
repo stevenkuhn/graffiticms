@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataHelper.cs" />
     <Compile Include="DownloadHandler.cs" />
     <Compile Include="DownloadRouteHandler.cs" />
     <Compile Include="Feeds\BaseFeedWriter.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Feeds\CreatorWriter.cs" />
     <Compile Include="Feeds\ItemWriter.cs" />
     <Compile Include="Feeds\MessageWriter.cs" />
+    <Compile Include="ItemStatistics.cs" />
     <Compile Include="MarketplaceChalk.cs" />
     <Compile Include="MarketplacePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

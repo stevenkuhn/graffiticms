@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -47,14 +46,6 @@ namespace Graffiti.Marketplace
 			Context.Response.Cache.SetCacheability(HttpCacheability.Public);
 			Context.Response.Write(feed);
 		}
-
-        /// <summary>
-        /// Write the feed to the response stream
-        /// </summary>
-        protected static SqlConnection CreateMarketplaceConnection()
-        {
-            return new SqlConnection(ConfigurationManager.ConnectionStrings["Graffiti"].ConnectionString);
-        }
 
 		/// <summary>
 		/// Process the request for the feed.

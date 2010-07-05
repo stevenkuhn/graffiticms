@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Text;
 using System.Xml;
 using System.Web;
@@ -23,6 +24,34 @@ namespace Graffiti.Marketplace
             ga.AfterUserUpdate += new UserEventHandler(ga_AfterNewUser);
         }
 
+        public override void EventEnabled()
+        {
+            UrlRouting.Initialize();
+            SetupCustomFields();
+        }
+
+        #region GraffitiEvent Properties
+
+        public override bool IsEditable
+        {
+            get { return false; }
+        }
+
+        public override string Name
+        {
+            get { return "Marketplace Plugin"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return "Adds a Graffiti CMS compatible marketplace to the current Graffiti site. Requires a SQL setup script to be run first.";
+            }
+        }
+
+        #endregion
+
         #region Events
 
         void ga_AfterNewUser(IGraffitiUser user, EventArgs e)
@@ -39,12 +68,7 @@ namespace Graffiti.Marketplace
                 CustomField creatorField = cfs.Fields.Find(field => Util.AreEqualIgnoreCase(field.Name, "Creator"));
                 if (creatorField != null)
                 {
-                    List<ListItemFormElement> listItems = new List<ListItemFormElement>();
-                    foreach (IGraffitiUser u in GraffitiUsers.GetUsers(MarketplaceCreatorsRoleName))
-                    {
-                        listItems.Add(new ListItemFormElement(u.ProperName, u.UniqueId.ToString()));
-                    }
-                    creatorField.ListOptions = listItems;
+                    UpdateCreatorsFieldOptions(creatorField);
                     cfs.Name = "-1";
                     cfs.Save();
                 }
@@ -166,19 +190,21 @@ namespace Graffiti.Marketplace
             nfield.Enabled = true;
             nfield.Id = Guid.NewGuid();
             nfield.FieldType = FieldType.List;
+            UpdateCreatorsFieldOptions(nfield);
+            return nfield;
+        }
 
+        private void UpdateCreatorsFieldOptions(CustomField field)
+        {
             List<ListItemFormElement> listItems = new List<ListItemFormElement>();
             foreach (IGraffitiUser u in GraffitiUsers.GetUsers(MarketplaceCreatorsRoleName))
             {
-                listItems.Add(new ListItemFormElement(u.ProperName, u.UniqueId.ToString()));
+                listItems.Add(new ListItemFormElement(u.ProperName, u.Name));
             }
-            nfield.ListOptions = listItems;
-
-            return nfield;
+            field.ListOptions = listItems;
         }
 
         #endregion
 
-
-	}
+    }
 }

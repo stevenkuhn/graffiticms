@@ -172,7 +172,8 @@ function post_update()
                 <div style="padding-top: 8px;">
                     <Glow:DropDownList ID="AvailableWidgets" runat="Server" onchange="addNewWidget();" Width="160px" SelectListWidth="250" ShowHtmlWhenSelected="false" />
                 </div>
-                <div style="padding-bottom: 8px;"><asp:HyperLink runat="server" NavigateUrl="javascript:Telligent_Modal.Open('Catalog.aspx', 600, 475, refresh);" Text="Search online widgets..." /></div>
+                <div style="padding-bottom: 8px;">
+                    <a href="javascript:Telligent_Modal.Open('<%= new Urls().AdminMarketplace("Widgets") %>', 600, 475, refresh);">Search online widgets...</a>
             </div>
 
             <Glow:OrderedList ID="qbar" runat="server" Width="80%" Height="300px" OnItemAddedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" OnItemMovedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" OnItemRemovedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" DraggableOrderedListIds="lbar,rbar" EnableDeleteButton="false" EnableMoveDownButton="false" EnableMoveUpButton="false" />
