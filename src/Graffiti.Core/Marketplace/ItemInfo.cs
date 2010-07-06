@@ -14,6 +14,7 @@ namespace Graffiti.Core.Marketplace
         private string _description = string.Empty;
         private string _version = string.Empty;
         private string _downloadUrl = string.Empty;
+        private string _fileName = string.Empty;
         private string _screenshotUrl = string.Empty;
         private string _iconUrl = string.Empty;
         private int _worksWithMajorVersion = 0;
@@ -52,6 +53,10 @@ namespace Graffiti.Core.Marketplace
             n = node.Element("downloadUrl");
             if (n != null && n.TryGetValue(out value))
                 _downloadUrl = value;
+
+            n = node.Element("fileName");
+            if (n != null && n.TryGetValue(out value))
+                _fileName = value;
 
             n = node.Element("screenshotUrl");
             if (n != null && n.TryGetValue(out value))
@@ -167,7 +172,8 @@ namespace Graffiti.Core.Marketplace
 
         public string FileName
         {
-            get { return DownloadUrl.Substring(DownloadUrl.LastIndexOf('/') + 1); }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         public string ScreenshotUrl

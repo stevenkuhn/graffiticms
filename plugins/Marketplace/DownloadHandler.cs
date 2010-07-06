@@ -42,14 +42,16 @@ namespace Graffiti.Marketplace
                     string localPath = context.Server.MapPath(downloadFile);
                     if (!string.IsNullOrEmpty(localPath) && File.Exists(localPath))
                     {
+                        // Increment download count for post
+                        DataHelper.UpdateMarketplaceStats(post.Id);
+
                         downloadFile = HttpUtility.UrlEncode(downloadFile).Replace("+", "%20");
                         context.Response.Clear();
                         context.Response.ContentType = "application/octet-stream";
                         context.Response.AddHeader("Content-Disposition", string.Format("attachment; filename=\"{0}\"", downloadFile));
                         context.Response.TransmitFile(localPath);
-
-                        // Increment download count for post
-                        DataHelper.UpdateMarketplaceStats(post.Id);
+                        context.Response.End();
+                        return;
                     }
                 }
             }

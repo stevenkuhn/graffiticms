@@ -50,6 +50,18 @@ namespace Graffiti.Marketplace
                 writer.WriteElementString("description", Util.FullyQualifyRelativeUrls(post.Excerpt("", "", "Read More", 300), SiteSettings.BaseUrl));
                 writer.WriteElementString("version", post.Custom("Version"));
                 writer.WriteElementString("downloadUrl", downloadUrlPrefix + post.Id.ToString());
+                
+                string fileName = post.Custom("FileName");
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    if (fileName.Contains('/'))
+                        fileName = fileName.Substring(fileName.LastIndexOf('/') + 1);
+                    writer.WriteElementString("fileName", fileName);
+                }
+                else
+                    writer.WriteElementString("fileName", post.Name);
+
+
                 if (!string.IsNullOrEmpty(post.Custom("ImageLarge")))
                     writer.WriteElementString("screenshotUrl", macros.FullUrl(post.Custom("ImageLarge")));
                 if (!string.IsNullOrEmpty(post.ImageUrl))
