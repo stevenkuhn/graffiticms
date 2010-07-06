@@ -174,6 +174,7 @@ function post_update()
                 </div>
                 <div style="padding-bottom: 8px;">
                     <a href="javascript:Telligent_Modal.Open('<%= new Urls().AdminMarketplace("Widgets") %>', 600, 475, refresh);">Search online widgets...</a>
+                </div>
             </div>
 
             <Glow:OrderedList ID="qbar" runat="server" Width="80%" Height="300px" OnItemAddedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" OnItemMovedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" OnItemRemovedClientFunction="new Function('list', 'itemAddedOrMoved(\'qbar\',list);')" DraggableOrderedListIds="lbar,rbar" EnableDeleteButton="false" EnableMoveDownButton="false" EnableMoveUpButton="false" />
