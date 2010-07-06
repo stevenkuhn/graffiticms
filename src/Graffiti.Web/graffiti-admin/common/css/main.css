@@ -1221,8 +1221,14 @@ TabPane Styles
 
 #mp_itemlist.div
 {
+    clear: right;
 	background: #cccccc;
 	font-size: smaller;
+}
+
+#mp_itemlist img
+{
+    float:right;
 }
 
 #mp_item

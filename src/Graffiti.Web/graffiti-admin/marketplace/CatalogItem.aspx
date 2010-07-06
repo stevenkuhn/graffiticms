@@ -42,18 +42,17 @@ function buyItem()
 
         <div>
             <p id="info1">
-                <strong><%= _itemTypeName %> Info</strong><br />
-                Tags: <strong><%= Item.Tags %></strong><br />
-                Version: <strong><%= Util.Truncate(Item.Version, 25) %></strong><br />
-                Size: <strong><%= Item.FormattedSize %></strong><br />
-                Minimum Version: <strong>Graffiti <%= Item.WorksWithMajorVersion %>.<%= Item.WorksWithMinorVersion %></strong>
-            </p>
-            <p id="info2">
                 <strong>Creator Info</strong><br />
                 Name: <a href="Catalog.aspx?catalog=<%= Request.QueryString["catalog"] %>&amp;creator=<%= HttpUtility.UrlEncode(Item.Creator.Id) %>"><strong><%= Item.Creator.Name %></strong></a><br />
                 Url: <a href="<%= Item.Creator.Url %>" title="<%= Item.Creator.Url %>" target="_blank"><strong><%= Util.Truncate(Item.Creator.Url, 25) %></strong></a><br />
                 <asp:PlaceHolder ID="Email" runat="server">Email: <a href="mailto:<%= Item.Creator.Email %>?subject=<%= Item.Name %>" title="<%= Item.Creator.Email %>"><strong><%= Util.Truncate(Item.Creator.Email, 25) %></strong></a><br /></asp:PlaceHolder>
-                Bio: <%= Util.Truncate(Item.Creator.Bio, 140) %><br />
+                Bio: <%= Item.Creator.Bio %><br />
+            </p>
+            <p id="info2">
+                <strong><%= _itemTypeName %> Info</strong><br />
+                Tags: <strong><%= Item.Tags %></strong><br />
+                Version: <strong><%= Util.Truncate(Item.Version, 25) %></strong><br />
+                Minimum Version: <strong>Graffiti <%= Item.WorksWithMajorVersion %>.<%= Item.WorksWithMinorVersion %></strong>
             </p>
             <asp:PlaceHolder ID="Statistics" runat="server">
                 <p id="info3">
@@ -69,9 +68,9 @@ function buyItem()
 
     <div class="submit">
         <div id="buttons">
-            <asp:Button ID="InstallButton" runat="server" Text="Install <%= _itemTypeName %>" OnClick="Install_Click" />
-            <asp:Button ID="DownloadButton" runat="server" Text="Download <%= _itemTypeName %>" OnClientClick="downloadItem(); return false;" />
-            <asp:Button ID="BuyButton" runat="server" Text="Buy <%= _itemTypeName %>" OnClientClick="buyItem(); return false;" />
+            <asp:Button ID="InstallButton" runat="server" OnClick="Install_Click" />
+            <asp:Button ID="DownloadButton" runat="server" OnClientClick="downloadItem(); return false;" />
+            <asp:Button ID="BuyButton" runat="server" OnClientClick="buyItem(); return false;" />
             <asp:HyperLink ID="CancelButton" runat="server" Text="(Cancel)" NavigateUrl="Catalog.aspx" />
         </div>
     </div>

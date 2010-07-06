@@ -13,7 +13,6 @@ namespace Graffiti.Core.Marketplace
         private string _name = string.Empty;
         private string _description = string.Empty;
         private string _version = string.Empty;
-        private int _size = 0;
         private string _downloadUrl = string.Empty;
         private string _screenshotUrl = string.Empty;
         private string _iconUrl = string.Empty;
@@ -42,10 +41,6 @@ namespace Graffiti.Core.Marketplace
             if (n != null && n.TryGetValue(out value))
                 _name = value;
 
-            n = node.Element("name");
-            if (n != null && n.TryGetValue(out value))
-                _name = value;
-
             n = node.Element("description");
             if (n != null && n.TryGetValue(out value))
                 _description = value;
@@ -53,10 +48,6 @@ namespace Graffiti.Core.Marketplace
             n = node.Element("version");
             if (n != null && n.TryGetValue(out value))
                 _version = value;
-
-            n = node.Element("size");
-            if (n != null && n.TryGetValue(out value))
-                _size = int.Parse(value);
 
             n = node.Element("downloadUrl");
             if (n != null && n.TryGetValue(out value))
@@ -126,7 +117,12 @@ namespace Graffiti.Core.Marketplace
 
         public CategoryInfo Category
         {
-            get { return Catalog.Categories[CategoryId]; }
+            get 
+            { 
+                if (Catalog.Categories.ContainsKey(CategoryId))
+                    return Catalog.Categories[CategoryId];
+                return null;
+            }
         }
 
         public string CreatorId
@@ -137,7 +133,12 @@ namespace Graffiti.Core.Marketplace
 
         public CreatorInfo Creator
         {
-            get { return Marketplace.Creators[CreatorId]; }
+            get 
+            { 
+                if (Marketplace.Creators.ContainsKey(CreatorId))
+                    return Marketplace.Creators[CreatorId]; 
+                return null;
+            }
         }
 
         public string Name
@@ -156,31 +157,6 @@ namespace Graffiti.Core.Marketplace
         {
             get { return _version; }
             set { _version = value; }
-        }
-
-        public string FormattedSize
-        {
-            get
-            {
-                if (_size < 0)
-                    return string.Empty;
-                else if (_size == 1)
-                    return string.Format("{0} byte", _size);
-                else if (_size < 1000)
-                    return string.Format("{0} bytes", _size);
-                else if (_size < 1000000)
-                    return string.Format("{0:G3} KB", ((double)_size) / 1000.0);
-                else if (_size < 1000000000)
-                    return string.Format("{0:G3} MB", ((double)_size) / 1000000.0);
-                else
-                    return "Huge";
-            }
-        }
-
-        public int Size
-        {
-            get { return _size; }
-            set { _size = value; }
         }
 
         public string DownloadUrl

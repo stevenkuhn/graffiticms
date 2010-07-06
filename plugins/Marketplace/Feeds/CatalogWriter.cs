@@ -32,8 +32,8 @@ namespace Graffiti.Marketplace
             {
                 writer.WriteStartElement("catalogInfo");
                 writer.WriteAttributeString("id", category.Id.ToString());
-                writer.WriteElementString("name", category.Name);
-                writer.WriteElementString("description", category.Body);
+                writer.WriteElementString("name", category.FormattedName);
+                writer.WriteElementString("description", Util.RemoveHtml(category.Body, 300));
                 writer.WriteElementString("type", ((Graffiti.Core.Marketplace.CatalogType)category.Type).ToString());
                 writer.WriteEndElement(); // End catalogInfo
             }

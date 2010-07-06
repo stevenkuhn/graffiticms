@@ -64,7 +64,7 @@ public partial class graffiti_admin_marketplace_CatalogItem : AdminControlPanelP
     {
         AdditionalConfiguration.Visible = Item.RequiresManualIntervention;
 
-        Email.Visible = Item.Creator.DisplayEmail;
+        Email.Visible = (Item.Creator != null) && Item.Creator.DisplayEmail;
 
         Statistics.Visible = (Item.Statistics.ViewCount + Item.Statistics.DownloadCount > 0);
         Views.Visible = (Item.Statistics.ViewCount > 0);
@@ -77,6 +77,10 @@ public partial class graffiti_admin_marketplace_CatalogItem : AdminControlPanelP
             DownloadButton.Visible = true;
         else
             InstallButton.Visible = true;
+
+        InstallButton.Text = "Install " + _itemTypeName;
+        DownloadButton.Text = "Downlaod " + _itemTypeName;
+        BuyButton.Text = "Buy " + _itemTypeName;
     }
 
     protected void Install_Click(object sender, EventArgs e)

@@ -43,7 +43,7 @@ namespace Graffiti.Marketplace
                 writer.WriteStartElement("messageInfo");
                 writer.WriteAttributeString("id", post.Id.ToString());
                 writer.WriteElementString("title", post.Title);
-                writer.WriteElementString("text", post.Body);
+                writer.WriteElementString("text", Util.FullyQualifyRelativeUrls(post.Excerpt("", "", "Read More", 300), SiteSettings.BaseUrl));
                 writer.WriteEndElement(); // End messageInfo
             }
 

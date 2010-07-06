@@ -18,7 +18,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <li>
-                        <a href="?catalog=<%= Request.QueryString["catalog"] %>&amp;category=<%# Eval("Id") %>" title="<%# Eval("Description") %>">
+                    <a href="?catalog=<%= Request.QueryString["catalog"] %>&category=<%# Eval("Id") %>" title="<%# Eval("Description") %>">
                             <%# Eval("Name") %>
                         </a>
                     </li>
@@ -31,14 +31,12 @@
 
         <div>
             <asp:DataList ID="itemList" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
-                <ItemTemplate>
-                    <div id="mp_itemlist">
-                        <a href="CatalogItem.aspx?catalog=<%= Request.QueryString["catalog"] %>&amp;item=<%# Eval("Id") %>" title="<%# Eval("Description") %>">
-                            <img alt="<%# Eval("Description") %>" border="0" src="<%# Eval("IconUrl") %>" height="90" width="120" />
-                            <div><%# Util.Truncate(Eval("Name").ToString(), 15)%></div>
-                        </a>
-                    </div>
-                </ItemTemplate>
+            <ItemTemplate>
+                <div id="mp_itemlist">
+                   <a href="CatalogItem.aspx?catalog=<%= Request.QueryString["catalog"] %>&item=<%# Eval("Id") %>"><%# Eval("Name") %></a>
+                   <%# DisplayIconImage(Container.DataItem as Graffiti.Core.Marketplace.ItemInfo)%>
+                </div>
+            </ItemTemplate>
             </asp:DataList>
         </div>
 

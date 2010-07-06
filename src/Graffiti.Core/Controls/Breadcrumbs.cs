@@ -489,8 +489,11 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = widgets.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Widgets") + "&category=" + categoryInfo.Id.ToString(), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Widgets", itemInfo.Id), false));
+                        if (categoryInfo != null)
+                        {
+                            crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Widgets") + "&category=" + categoryInfo.Id.ToString(), true));
+                            crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Widgets", itemInfo.Id), false));
+                        }
                     }
 
                     break;
@@ -537,8 +540,11 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = themeCatalog.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Themes") + "&category=" + categoryInfo.Id.ToString(), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Themes", itemInfo.Id), false));
+                        if (categoryInfo != null)
+                        {
+                            crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Themes") + "&category=" + categoryInfo.Id.ToString(), true));
+                            crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Themes", itemInfo.Id), false));
+                        }
                     }
 
                     break;
@@ -585,8 +591,11 @@ namespace Graffiti.Core
                     {
                         ItemInfo itemInfo = plugins.Items[itemId];
                         CategoryInfo categoryInfo = itemInfo.Category;
-                        crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Plugins") + "&category=" + categoryInfo.Id.ToString(), true));
-                        crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Plugins", itemInfo.Id), false));
+                        if (categoryInfo != null)
+                        {
+                            crumbs.Append(GetHyperLink(categoryInfo.Name, urls.AdminMarketplace("Plugins") + "&category=" + categoryInfo.Id.ToString(), true));
+                            crumbs.Append(GetHyperLink(itemInfo.Name, urls.AdminMarketplaceItem("Plugins", itemInfo.Id), false));
+                        }
                     }
 
                     break;

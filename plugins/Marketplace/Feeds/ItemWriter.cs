@@ -29,7 +29,8 @@ namespace Graffiti.Marketplace
 
 		protected override string BuildFeed()
 		{
-            string downloadUrlPrefix = VirtualPathUtility.ToAbsolute("~/download/");
+            Macros macros = new Macros();
+            string downloadUrlPrefix = macros.FullUrl(VirtualPathUtility.ToAbsolute("~/download/"));
 
 			StringWriter sw = new StringWriter();
 			sw.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
@@ -45,16 +46,17 @@ namespace Graffiti.Marketplace
                 writer.WriteAttributeString("id", post.Id.ToString());
                 writer.WriteAttributeString("categoryId", post.CategoryId.ToString());
                 writer.WriteAttributeString("creatorId", post.Custom("Creator"));
-                writer.WriteElementString("name", post.Name);
-                writer.WriteElementString("description", Util.FullyQualifyRelativeUrls(post.RenderBody(PostRenderLocation.Feed), SiteSettings.BaseUrl));
+                writer.WriteElementString("name", post.Title);
+                writer.WriteElementString("description", Util.FullyQualifyRelativeUrls(post.Excerpt("", "", "Read More", 300), SiteSettings.BaseUrl));
                 writer.WriteElementString("version", post.Custom("Version"));
-                writer.WriteElementString("size", post.Custom("Size"));
                 writer.WriteElementString("downloadUrl", downloadUrlPrefix + post.Id.ToString());
-                writer.WriteElementString("screenshotUrl", post.Custom("ImageLarge"));
-                writer.WriteElementString("iconUrl", post.ImageUrl);
+                if (!string.IsNullOrEmpty(post.Custom("ImageLarge")))
+                    writer.WriteElementString("screenshotUrl", macros.FullUrl(post.Custom("ImageLarge")));
+                if (!string.IsNullOrEmpty(post.ImageUrl))
+                    writer.WriteElementString("iconUrl", macros.FullUrl(post.ImageUrl));
                 writer.WriteElementString("worksWithMajorVersion", post.Custom("RequiredMajorVersion"));
                 writer.WriteElementString("worksWithMinorVersion", post.Custom("RequiredMinorVersion"));
-                writer.WriteElementString("requiresManualIntervention", post.Custom("RequiresManualIntervention"));
+                writer.WriteElementString("requiresManualIntervention", post.Custom("RequiresManualIntervention") ?? "False" );
                 writer.WriteElementString("isApproved", post.IsPublished.ToString());
                 writer.WriteElementString("dateAdded", post.Published.ToUniversalTime().ToString("u"));
 
@@ -67,8 +69,9 @@ namespace Graffiti.Marketplace
                 writer.WriteEndElement(); // End statisticsInfo
 
                 writer.WriteStartElement("purchaseInfo");
-                writer.WriteElementString("price", post.Custom("Price"));
-                writer.WriteElementString("buyUrl", post.Custom("BuyUrl"));
+                writer.WriteElementString("price", post.Custom("Price") ?? "0.0");
+                if (!string.IsNullOrEmpty(post.Custom("BuyUrl")))
+                    writer.WriteElementString("buyUrl", post.Custom("BuyUrl"));
                 writer.WriteEndElement(); // End purchaseInfo
 
                 writer.WriteStartElement("tags");

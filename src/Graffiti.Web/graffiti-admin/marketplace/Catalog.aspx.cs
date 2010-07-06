@@ -33,6 +33,16 @@ public partial class graffiti_admin_marketplace_Catalog : AdminControlPanelPage
             _creatorId = HttpUtility.UrlDecode(creator);
     }
 
+    protected string DisplayIconImage(ItemInfo item)
+    {
+        if (item != null && !string.IsNullOrEmpty(item.IconUrl))
+        {
+            return string.Format("<img alt=\"{1}\" border=\"0\" src=\"{0}\" height=\"90\" width=\"120\" />", item.IconUrl, Util.RemoveHtml(item.Description, 200));
+        }
+        
+        return string.Empty;
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         switch (_catalogType)

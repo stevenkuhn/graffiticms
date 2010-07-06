@@ -109,11 +109,6 @@ namespace Graffiti.Marketplace
                 cfs.Add(CreateCustomField("Version", "Version", FieldType.TextBox));
                 saveNeeded = true;
             }
-            if (!DoesFieldExist(cfs.Fields, "Size"))
-            {
-                cfs.Add(CreateCustomField("Size", "Size", FieldType.TextBox));
-                saveNeeded = true;
-            }
             if (!DoesFieldExist(cfs.Fields, "FileName"))
             {
                 cfs.Add(CreateCustomField("FileName", "Download Url", FieldType.File));

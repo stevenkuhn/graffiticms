@@ -41,7 +41,7 @@ namespace Graffiti.Marketplace
 			    writer.WriteString(user.PublicEmail);
 			    writer.WriteEndElement(); // End email
 
-                writer.WriteElementString("bio", user.Bio ?? string.Empty);
+                writer.WriteElementString("bio", string.IsNullOrEmpty(user.Bio) ? string.Empty : Util.RemoveHtml(user.Bio, 200));
                 writer.WriteElementString("url", user.WebSite ?? string.Empty);
 			    writer.WriteEndElement(); // End creatorInfo
             }

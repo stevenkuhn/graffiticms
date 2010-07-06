@@ -6,7 +6,7 @@
 
     <div id="post_form_container" class="FormBlock abc" style="min-height:300px;min-width:550px;">
 
-        <img id="MarketplaceImage" runat="server" src="../../common/img/marketplace.gif" visible="false" style="padding: 30px;" />
+        <img id="MarketplaceImage" runat="server" src="../common/img/marketplace.gif" visible="false" style="padding: 30px;" />
 
         <div id="mp_categories">
             <asp:Repeater ID="catalogList" runat="server">
@@ -16,7 +16,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <li>
-                        <a href="?catalog=<%# Eval("Type") %>>" title="<%# Eval("Description") %>">
+                        <a href="catalog.aspx?catalog=<%# Eval("Type") %>" title="<%# Eval("Description") %>">
                             <%# Eval("Name") %>
                         </a>
                     </li>
