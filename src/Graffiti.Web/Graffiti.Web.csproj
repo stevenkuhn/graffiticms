@@ -721,10 +721,6 @@
     <None Include="__utility\pages\tag.view" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\plugins\Marketplace\Graffiti.Marketplace.csproj">
-      <Project>{55C4F330-6E39-4857-B484-B625380C8614}</Project>
-      <Name>Graffiti.Marketplace</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataBuddy\DataBuddy.csproj">
       <Project>{D1137CEB-9B3D-4774-B4F0-9BC0C272B8B8}</Project>
       <Name>DataBuddy</Name>

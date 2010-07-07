@@ -18,7 +18,7 @@ namespace Graffiti.BlogExtensions
 
 		#region Properties
 
-		private readonly string _geoRSSCustomFieldName = "GeoRSS Location";
+		private const string _geoRSSCustomFieldName = "GeoRSS Location";
 
 		private bool _enableCommentRSS = false;
 		public bool EnableCommentRSS

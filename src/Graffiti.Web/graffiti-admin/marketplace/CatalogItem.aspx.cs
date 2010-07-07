@@ -92,24 +92,24 @@ public partial class graffiti_admin_marketplace_CatalogItem : AdminControlPanelP
 
             switch (_catalogType)
             {
+                case CatalogType.Plugins:
                 case CatalogType.Widgets:
-                    string widgetFileName = string.Format("{0}/{1}", Server.MapPath("~/bin"), Item.FileName).Replace(".zip", ".dll");
-                    new WebClient().DownloadFile(Item.DownloadUrl, widgetFileName);
+                    string fileName = Item.FileName;
+                    if (fileName.EndsWith(".zip"))
+                        fileName = fileName.Replace(".zip", ".dll");
+                    if (!fileName.EndsWith(".dll"))
+                        fileName = fileName + ".dll";
+                    new WebClient().DownloadFile(Item.DownloadUrl, Path.Combine(Server.MapPath("~/bin"), fileName));
                     break;
                 case CatalogType.Themes:
-                    string themeFilename = string.Format("{0}/{1}", Server.MapPath("~/files/themes"), Item.FileName);
+                    string themeFilename = Path.Combine(Server.MapPath("~/files/themes"), Item.FileName);
                     new WebClient().DownloadFile(Item.DownloadUrl, themeFilename);
                     UTF8Encoding utf = new UTF8Encoding();
                     string encodedFile = utf.GetString(File.ReadAllBytes(themeFilename));
                     ThemeConverter.ToDisk(encodedFile, Server.MapPath("~/files/themes/"), true, Item.Name);
                     File.Delete(themeFilename);
                     break;
-                case CatalogType.Plugins:
-                    string pluginFilename = string.Format("{0}/{1}", Server.MapPath("~/bin"), Item.FileName).Replace(".zip", ".dll");
-                    new WebClient().DownloadFile(Item.DownloadUrl, pluginFilename);
-                    break;
             }
-
 
             success = true;
         }
