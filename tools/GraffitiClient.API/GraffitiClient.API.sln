@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraffitiClient.API", "GraffitiClient.API.csproj", "{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release_Obfuscate|Any CPU = Release_Obfuscate|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Release_Obfuscate|Any CPU.ActiveCfg = Release_Obfuscate|Any CPU
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Release_Obfuscate|Any CPU.Build.0 = Release_Obfuscate|Any CPU
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF2E81A-8FCB-4EE2-9923-FB9F278D4C67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
