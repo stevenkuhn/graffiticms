@@ -266,8 +266,8 @@ Posts.permanentDeletePost = function(url, id) {
         success: function(transport) {
             $.each(itemToRemove, function() { $("#" + this).hide(); });
 
-            var response = transport || "no response text";
-            Comments.statusMessage("Post at " + response + " has been permenantly deleted!", false);
+            var response = transport || "unknown";
+            Comments.statusMessage("Post " + response + " has been permenantly deleted!", false);
         },
 
         error: function() {

@@ -150,7 +150,7 @@ namespace Graffiti.Core
             }
 
             if (string.IsNullOrEmpty(UserName))
-                throw new Exception("Cannot save a post withou a username");
+                throw new Exception("Cannot save a post without a username");
 
             //Check for reserved words
             if (!Util.IsValidFileName(Name))
@@ -189,7 +189,6 @@ namespace Graffiti.Core
             }
             
         }
-
 
 
         protected override void AfterCommit()
@@ -515,6 +514,24 @@ namespace Graffiti.Core
         public static void DestroyDeletedPost(int postid)
         {
             Post p = new Post(postid);
+
+            // Check if post is featured in it's category before deletion
+            Core.Category c = p.Category;
+            if (p.Id == c.FeaturedId)
+            {
+                c.FeaturedId = 0;
+                c.Save();
+            }
+
+            // Check site featured post
+            SiteSettings settings = SiteSettings.Get();
+            if (p.Id == settings.FeaturedId)
+            {
+                settings.FeaturedId = 0;
+                settings.Save();
+            }
+
+
             PostStatistic.Destroy(PostStatistic.Columns.PostId, postid);
             Tag.Destroy(Tag.Columns.PostId, postid);
             Comment.Destroy(Comment.Columns.PostId, postid);

@@ -115,11 +115,7 @@ namespace Graffiti.Web
 				case "permanentDeletePost":
 					Post tempPost = new Post(context.Request.Form["postid"]);
 					Post.DestroyDeletedPost(tempPost.Id);
-
-					string url = VirtualPathUtility.ToAbsolute("~/graffiti-admin/posts/") + "?status=-1&dstry=" +
-									 context.Server.UrlEncode(tempPost.Title);
-
-					context.Response.Write(url);
+					context.Response.Write(tempPost.Title);
 					break;
 
 				case "createdWidget":
