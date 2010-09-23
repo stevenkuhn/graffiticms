@@ -73,7 +73,7 @@ namespace Graffiti.Core
 
             Post post = Post.GetCachedPost(PostId);
 
-            if (post.IsDeleted || (!post.IsPublished && GraffitiUsers.Current != null))
+            if (post.IsDeleted || (!post.IsPublished && GraffitiUsers.Current == null))
             {
                 RedirectTo(new Urls().Home);
             }
