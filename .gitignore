@@ -12,5 +12,5 @@ Deployment
 *.swp
 *.Publish.xml
 /src/Graffiti.Web/App_Data/*
-/src/UpgradeLog.XML
+/src/UpgradeLog*.XML
 /src/_UpgradeReport_Files/
