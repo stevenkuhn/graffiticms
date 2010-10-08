@@ -9,6 +9,7 @@ using System.Text;
 using System.Web;
 using DataBuddy;
 using System.Web.UI;
+using System.Linq;
 
 namespace Graffiti.Core
 {
@@ -287,7 +288,7 @@ namespace Graffiti.Core
 
 			List<DynamicNavigationItem> items = NavigationSettings.Get().SafeItems();
 			List<Link> links = new List<Link>();
-			
+
 			// Will hold a reference to the selected item
 			DynamicNavigationItem selectedItem = null;
 
@@ -545,7 +546,7 @@ namespace Graffiti.Core
 							foreach (Post post in posts)
 							{
 								Link link = new Link();
-                                link.IsSelected = (ttp.PostId == post.Id);
+								link.IsSelected = (ttp.PostId == post.Id);
 								link.Text = post.Title;
 								link.CategoryId = post.Id;
 								link.PostId = post.Id;
@@ -780,16 +781,20 @@ namespace Graffiti.Core
 			if (string.IsNullOrEmpty(tags))
 				return string.Empty;
 
-			string[] ta = tags.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
-			string[] theTags = new string[ta.Length];
-			for (int i = 0; i < ta.Length; i++)
+			var tagListHtml = new StringBuilder(desc);
+			var tagList = from tag in tags.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries)
+							  orderby tag ascending
+							  select tag;
+
+			foreach (var tag in tagList)
 			{
-				theTags[i] =
-					 string.Format("<a rel=\"tag\" href=\"{0}\">{1}</a>",
-										VirtualPathUtility.ToAbsolute("~/tags/" + Util.CleanForUrl(ta[i]) + "/"), ta[i]);
+				tagListHtml.AppendFormat("<a rel=\"tag\" href=\"{0}\">{1}</a>, ",
+					VirtualPathUtility.ToAbsolute("~/tags/" + Util.CleanForUrl(tag) + "/"), tag);
 			}
 
-			return desc + string.Join(", ", theTags);
+			tagListHtml.Remove(tagListHtml.Length - 2, 2);
+
+			return tagListHtml.ToString();
 		}
 
 
@@ -879,7 +884,7 @@ namespace Graffiti.Core
 		public string Pager(string cssClass, string previousText, string nextText)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
 			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq, previousText, nextText);
 		}
 
@@ -891,7 +896,7 @@ namespace Graffiti.Core
 		public string Pager(string cssClass)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
 			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq);
 		}
 
@@ -1251,7 +1256,7 @@ namespace Graffiti.Core
 			identicon = HttpUtility.UrlEncode(identicon);
 
 			string hash = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(email.Trim(), "MD5").Trim().ToLower();
-            return string.Format("http://www.gravatar.com/avatar/{0}?amp;r=g&amp;s={2}&amp;d={1}", hash, identicon, size);
+			return string.Format("http://www.gravatar.com/avatar/{0}?amp;r=g&amp;s={2}&amp;d={1}", hash, identicon, size);
 		}
 
 		#endregion
