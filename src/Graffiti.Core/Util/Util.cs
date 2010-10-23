@@ -238,44 +238,41 @@ namespace Graffiti.Core
             return Pager(pageIndex, pageSize, totalRecords, cssClass, qs, "&larr; Older Posts", "Newer Posts &rarr;");
         }
 
-        public static string Pager(int pageIndex, int pageSize, int totalRecords, string cssClass, string qs, string older, string newer)
-        {
-            if (totalRecords <= 0 || totalRecords <= pageSize)
-                return string.Empty;
+		public static string Pager(int pageIndex, int pageSize, int totalRecords, string cssClass, string qs, string older, string newer)
+		{
+			if (totalRecords <= 0 || totalRecords <= pageSize)
+				return string.Empty;
 
-            if (string.IsNullOrEmpty(cssClass))
-                cssClass = "navigation";
+			if (string.IsNullOrEmpty(cssClass))
+				cssClass = "navigation";
 
-            if (qs != null)
-                qs = qs + "&amp;p=";
-            else
-                qs = "?p=";
+			if (!string.IsNullOrEmpty(qs))
+				qs = string.Concat(qs, "&amp;p=");
+			else
+				qs = "?p=";
 
-            int totalPagesAvailable = totalRecords / pageSize;
+			var totalPagesAvailable = totalRecords / pageSize;
+			if ((totalRecords % pageSize) > 0)
+				totalPagesAvailable++;
 
-            if ((totalRecords % pageSize) > 0)
-                totalPagesAvailable++;
+			var sb = new StringBuilder();
+			sb.AppendFormat("<div class = \"{0}\">", cssClass);
 
-            string linkFormat = "<a href = \"{0}{1}\">{2}</a>";
+			var linkFormat = "<div class=\"{0}\"><a href=\"{1}{2}\">{3}</a></div>";
+			if (totalPagesAvailable > pageIndex)
+				sb.AppendFormat(linkFormat, "previous", qs, pageIndex + 1, older);
 
-            StringBuilder sb = new StringBuilder();
+			if (pageIndex > 2)
+				sb.AppendFormat(linkFormat, "next", qs, pageIndex - 1, newer);
+			else if (pageIndex == 2)
+			{
+				if (HttpContext.Current.Request.Path.EndsWith(DEFAULT_PAGE_LOWERED, StringComparison.OrdinalIgnoreCase))
+					sb.AppendFormat(linkFormat, "next", "./", "", newer);
+			}
 
-            sb.AppendFormat("<div class = \"{0}\">", cssClass);
-
-            if (totalPagesAvailable > pageIndex)
-            {
-                sb.AppendFormat("<div class=\"previous\">" + linkFormat + "</div>", qs, pageIndex + 1, older);
-            }
-
-            if (pageIndex > 1)
-            {
-                sb.AppendFormat("<div class=\"next\">" + linkFormat + "</div>", qs, pageIndex - 1, newer);
-            }
-
-            sb.Append("</div>");
-
-            return sb.ToString();
-        }
+			sb.Append("</div>");
+			return sb.ToString();
+		}
 
         public static string UnCleanForUrl(string text)
         {
