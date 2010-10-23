@@ -247,23 +247,31 @@ namespace Graffiti.Core
 			return RolePermissionManager.CanViewControlPanel(user);
 		}
 
+		public string EditLink(Post post, string before, string linkText, string after)
+		{
+			var user = GraffitiUsers.Current;
+			var p = RolePermissionManager.GetPermissions(post.CategoryId, user);
+
+			if (user == null || !p.Edit)
+				return string.Empty;
+			
+			//return string.Format("{0}<a class=\"editlink\" href=\"{1}?id={2}\">{3
+			var sb = new StringBuilder();
+			sb.Append(before);
+			sb.AppendFormat("<a class=\"editlink\" href=\"{0}?id={1}\">", new Urls().Write, post.Id);
+			sb.Append(linkText);
+			sb.Append("</a>");
+			sb.Append(after);
+
+			return sb.ToString();
+		}
+
 		/// <summary>
 		/// Returns an edit link for the post if the current user has edit permissions.
 		/// </summary>
 		public string EditLink(Post post)
 		{
-			IGraffitiUser user = GraffitiUsers.Current;
-			Permission p = RolePermissionManager.GetPermissions(post.CategoryId, user);
-
-			if (user != null && p.Edit)
-			{
-				return
-					 "[<a class=\"editlink\" href=\"" + new Urls().Write + "?id=" + post.Id +
-					 "\">Edit - " + post.Title +
-					 "</a>]";
-			}
-
-			return string.Empty;
+			return EditLink(post, "[", string.Concat("Edit - ", post.Title), "]");
 		}
 
 		/// <summary>
