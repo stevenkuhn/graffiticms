@@ -266,8 +266,12 @@ namespace Graffiti.Core
 				sb.AppendFormat(linkFormat, "next", qs, pageIndex - 1, newer);
 			else if (pageIndex == 2)
 			{
-				if (HttpContext.Current.Request.Path.EndsWith(DEFAULT_PAGE_LOWERED, StringComparison.OrdinalIgnoreCase))
+				var path = HttpContext.Current.Request.Path;
+
+				if (path.EndsWith(DEFAULT_PAGE_LOWERED, StringComparison.OrdinalIgnoreCase))
 					sb.AppendFormat(linkFormat, "next", "./", "", newer);
+				else
+					sb.AppendFormat(linkFormat, "next", path, "", newer);
 			}
 
 			sb.Append("</div>");
