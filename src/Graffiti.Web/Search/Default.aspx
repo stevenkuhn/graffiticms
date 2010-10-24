@@ -16,7 +16,7 @@
 
             IsIndexable = false;
 
-            if (Request.QueryString["q"] == null)
+            if (string.IsNullOrEmpty(Request.QueryString["q"]))
             {
                 Response.Redirect("~/");
                 Response.End();

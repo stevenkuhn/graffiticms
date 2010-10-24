@@ -247,7 +247,7 @@ namespace Graffiti.Core
 				cssClass = "navigation";
 
 			if (!string.IsNullOrEmpty(qs))
-				qs = string.Concat(qs, "&amp;p=");
+				qs = string.Concat(qs, "&p=");
 			else
 				qs = "?p=";
 
@@ -269,9 +269,9 @@ namespace Graffiti.Core
 				var path = HttpContext.Current.Request.Path;
 
 				if (path.EndsWith(DEFAULT_PAGE_LOWERED, StringComparison.OrdinalIgnoreCase))
-					sb.AppendFormat(linkFormat, "next", "./", "", newer);
+					sb.AppendFormat(linkFormat, "next", "./", qs.Substring(0, qs.Length - 3), newer);
 				else
-					sb.AppendFormat(linkFormat, "next", path, "", newer);
+					sb.AppendFormat(linkFormat, "next", path, qs.Substring(0, qs.Length - 3), newer);
 			}
 
 			sb.Append("</div>");
