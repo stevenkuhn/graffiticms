@@ -46,6 +46,8 @@
         <h2><asp:CheckBox ID="chkIncludeChildPosts" Text="Include Child Posts with Parent List" runat="Server" /> <span class="form_tip">If checked, displays child category posts with the parent categories lists.</span></h2>
         <h2>Page Size: <span class="form_tip">Determines how many posts to display in a single list (before a pager is used for example).</span></h2>
         <asp:TextBox CssClass = "large" runat="Server" id="txtPageSize" style="width: 75px;" />
+		  <h2>Search Page Size: <span class="form_tip">Determines how many posts to display on the search list (before a pager is used for example).</span></h2>
+        <asp:TextBox CssClass = "large" runat="Server" id="txtSearchPageSize" style="width: 75px;" />
     </div>
     
     <div class="submit">
