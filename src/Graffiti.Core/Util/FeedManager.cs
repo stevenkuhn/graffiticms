@@ -65,6 +65,21 @@ namespace Graffiti.Core
             ZCache.RemoveCache("Feed-Objects");
         }
 
+        public static void RemoveFeedData()
+        {
+                ObjectStoreCollection osc = new ObjectStoreCollection();
+                Query q = ObjectStore.CreateQuery();
+                q.AndWhere(ObjectStore.Columns.ContentType, "feed/xml");
+                osc.LoadAndCloseReader(q.ExecuteReader());
+                
+                foreach (ObjectStore os in osc)
+                {
+                    ObjectStore.Destroy(os.Id);                    
+                }
+
+                ZCache.RemoveCache("Feed-Objects");
+        }
+
         public static Dictionary<Guid,Feed> GetFeeds()
         {
             Dictionary<Guid, Feed> feeds = ZCache.Get<Dictionary<Guid, Feed>>("Feed-Objects");

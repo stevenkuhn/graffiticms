@@ -23,6 +23,10 @@ namespace DataBuddy
         protected string _VariablePrefix = "@";
         protected string _SqlCountFunctionFormatString = "count({0})";
 
+        protected string _SqlYearFunctionFormatString = "year({0})";
+        protected string _SqlMonthFunctionFormatString = "month({0})";
+        protected string _SqlDayFunctionFormatString = "day({0})";
+
         #endregion
 
         #region Insert
@@ -283,6 +287,25 @@ namespace DataBuddy
         public virtual string SqlCountFunction(string expression)
         {
             return string.Format( _SqlCountFunctionFormatString, expression );
+        }
+
+        #endregion
+
+        #region SqlDateTimeFunction(...) overloads
+
+        public virtual string SqlYearFunction(string expression)
+        {
+            return string.Format(_SqlYearFunctionFormatString, expression);
+        }
+
+        public virtual string SqlMonthFunction(string expression)
+        {
+            return string.Format(_SqlMonthFunctionFormatString, expression);
+        }
+
+        public virtual string SqlDayFunction(string expression)
+        {
+            return string.Format(_SqlDayFunctionFormatString, expression);
         }
 
         #endregion

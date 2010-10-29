@@ -374,6 +374,18 @@ namespace Graffiti.Web
 
 					break;
 
+                case "removeFeedData":
+                    try
+                    {
+                        FeedManager.RemoveFeedData();
+                        context.Response.Write("Success");
+                    }
+                    catch (Exception ex)
+                    {
+                        context.Response.Write(ex.Message);
+                    }
+                    break;
+
 				case "buildCategoryPages":
 
 					try

@@ -106,8 +106,21 @@ namespace GraffitiClient.API
             writer.WriteElementString("metaKeywords", post.MetaKeywords);
             writer.WriteElementString("isHome", post.IsHome.ToString());
             writer.WriteElementString("enableComments", post.EnableComments.ToString());
+
+            //Write out the customFields
+            writer.WriteStartElement("customFields");
+            foreach (string key in post.CustomFields.AllKeys)
+            {
+                
+                writer.WriteStartElement("customField");
+                writer.WriteAttributeString("key", key);
+                writer.WriteString(post.CustomFields[key]);
+                writer.WriteEndElement();
+            }
             writer.WriteEndElement();
-            
+            //End customFields
+
+            writer.WriteEndElement();
             writer.Close();
             sw.Close();
 

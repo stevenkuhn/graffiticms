@@ -12,9 +12,11 @@ namespace Graffiti.Core
         {
 			DataProvider dp = DataService.Provider;
             QueryCommand cmd = new QueryCommand(@"
-                select
-                    year(ps.DateViewed) as dvYear, month(ps.DateViewed) as dvMonth, day(ps.DateViewed) as dvDay
-                    , " + dp.SqlCountFunction("ps.Id") + @" as IdCount
+                select " +
+                    dp.SqlYearFunction("ps.DateViewed") + " as dvYear, " +
+                    dp.SqlMonthFunction("ps.DateViewed") + " as dvMonth, " +
+                    dp.SqlDayFunction("ps.DateViewed") + " as dvDay, " + 
+                    dp.SqlCountFunction("ps.Id") + @" as IdCount
                 from
                     graffiti_Post_Statistics AS ps
                 left outer join
@@ -22,9 +24,11 @@ namespace Graffiti.Core
                 where
                     ps.DateViewed >= " + dp.SqlVariable("MinDate") + @" and ps.DateViewed < " + dp.SqlVariable("MaxDate") + @"
                     and p.CategoryId in " + RolePermissionManager.GetInClauseForReadPermissions(GraffitiUsers.Current) + @"
-                group by
-                    year(ps.DateViewed), month(ps.DateViewed), day(ps.DateViewed)
-                ");
+                group by " +
+                    dp.SqlYearFunction("ps.DateViewed") + ", " +
+                    dp.SqlMonthFunction("ps.DateViewed") + ", " +
+                    dp.SqlDayFunction("ps.DateViewed")
+            );  
 
 			Parameter pDateViewed = PostStatistic.FindParameter("DateViewed");
 			cmd.Parameters.Add("MinDate", min, pDateViewed.DbType);
@@ -92,17 +96,21 @@ namespace Graffiti.Core
         {
 			DataProvider dp = DataService.Provider;
 			QueryCommand cmd = new QueryCommand(@"
-                select
-                    year(ps.DateViewed) as dvYear, month(ps.DateViewed) as dvMonth, day(ps.DateViewed) as dvDay
-                    , " + dp.SqlCountFunction("ps.Id") + @" as IdCount
+                select " +
+                    dp.SqlYearFunction("ps.DateViewed") + " as dvYear, " +
+                    dp.SqlMonthFunction("ps.DateViewed") + " as dvMonth, " +
+                    dp.SqlDayFunction("ps.DateViewed") + " as dvDay, " + 
+                    dp.SqlCountFunction("ps.Id") + @" as IdCount
                 from
                     graffiti_Post_Statistics AS ps
                 where
                     ps.DateViewed >= " + dp.SqlVariable("MinDate") + @" and ps.DateViewed < " + dp.SqlVariable("MaxDate") + @"
                     and ps.PostId = " + dp.SqlVariable("PostId") + @"
-                group by
-                    year(ps.DateViewed), month(ps.DateViewed), day(ps.DateViewed)
-                ");
+                group by " +
+                    dp.SqlYearFunction("ps.DateViewed") + ", " +
+                    dp.SqlMonthFunction("ps.DateViewed") + ", " +
+                    dp.SqlDayFunction("ps.DateViewed")
+                );
 
 			List<Parameter> parameters = PostStatistic.GenerateParameters();
 			Parameter pDateViewed = PostStatistic.FindParameter(parameters, "DateViewed");
@@ -118,7 +126,7 @@ namespace Graffiti.Core
 			DataProvider dp = DataService.Provider;
 			QueryCommand cmd = new QueryCommand(@"
                 select
-                    " + DataService.Provider.SqlCountFunction("ps.Id") + @" as IdCount
+                    " + dp.SqlCountFunction("ps.Id") + @" as IdCount
                 from
                     graffiti_Post_Statistics AS ps
                 where
@@ -196,18 +204,22 @@ namespace Graffiti.Core
         {
 			DataProvider dp = DataService.Provider;
 			QueryCommand cmd = new QueryCommand(@"
-                select
-	                year(c.Published) as dvYear, month(c.Published) as dvMonth, day(c.Published) as dvDay
-	                , " + dp.SqlCountFunction("c.Id") + @" as IdCount
+                select " +
+                    dp.SqlYearFunction("c.Published") + " as dvYear, " +
+                    dp.SqlMonthFunction("c.Published") + " as dvMonth, " +
+                    dp.SqlDayFunction("c.Published") + " as dvDay, " + 
+	                dp.SqlCountFunction("c.Id") + @" as IdCount
                 from
                     graffiti_Comments AS c
                 where
                     c.Published >= " + dp.SqlVariable("MinDate") + @" and c.Published < " + dp.SqlVariable("MaxDate") + @"
 	                and c.PostId = " + dp.SqlVariable("PostId") + @"
                     and c.IsDeleted = 0
-                group by
-                    year(c.Published), month(c.Published), day(c.Published)
-                ");
+                group by " +
+                    dp.SqlYearFunction("c.Published") + ", " +
+                    dp.SqlMonthFunction("c.Published") + ", " +
+                    dp.SqlDayFunction("c.Published")
+                );
 
 			List<Parameter> parameters = Comment.GenerateParameters();
 			Parameter pPublished = Comment.FindParameter(parameters, "Published");
@@ -246,9 +258,11 @@ namespace Graffiti.Core
         {
 			DataProvider dp = DataService.Provider;
 			QueryCommand cmd = new QueryCommand(@"
-                select
-                    year(c.Published) as dvYear, month(c.Published) as dvMonth, day(c.Published) as dvDay
-                    , " + dp.SqlCountFunction("c.Id") + @" as IdCount
+                select " +
+                    dp.SqlYearFunction("c.Published") + " as dvYear, " +
+                    dp.SqlMonthFunction("c.Published") + " as dvMonth, " +
+                    dp.SqlDayFunction("c.Published") + " as dvDay, " + 
+                    dp.SqlCountFunction("c.Id") + @" as IdCount
                 from
                     graffiti_Comments AS c
                 left outer join
@@ -257,9 +271,11 @@ namespace Graffiti.Core
                     c.Published >= " + dp.SqlVariable("MinDate") + @" and c.Published < " + dp.SqlVariable("MaxDate") + @"
                     and p.CategoryId in " + RolePermissionManager.GetInClauseForReadPermissions(GraffitiUsers.Current) + @"
                     and c.IsDeleted = 0
-                group by
-                    year(c.Published), month(c.Published), day(c.Published)
-                ");
+                group by " +
+                    dp.SqlYearFunction("c.Published") + ", " +
+                    dp.SqlMonthFunction("c.Published") + ", " +
+                    dp.SqlDayFunction("c.Published")
+                );
 
 			Parameter pPublished = Comment.FindParameter("Published");
 			cmd.Parameters.Add("MinDate", min, pPublished.DbType);

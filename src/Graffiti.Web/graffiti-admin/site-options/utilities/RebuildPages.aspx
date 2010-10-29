@@ -29,6 +29,43 @@
 <asp:Content ContentPlaceHolderID="MainRegion" runat="Server">
 
 <script type="text/javascript">
+    var FeedFlusher =
+	{
+	    start: function() {
+	        $$('#btn2').value = 'Flushing';
+	        $$('#btn2').disabled = true;
+	        $$('#Status2').innerHTML = 'Started, Flushing RSS Feeds...';
+
+	        FeedFlusher.removeFeedData();
+	    }
+
+	    , removeFeedData: function() {
+	        $.ajax(
+				{
+				    type: 'POST',
+				    dataType: 'text',
+				    data: "{}",
+				    url: '<%= new Urls().AdminAjax %>?command=removeFeedData',
+				    //parameters:  {t:typeName},
+				    success: function(transport) {
+				        var response = transport || "no response text";
+				        if (response == 'Success') {
+				            $$('#btn2').disabled = false;
+				            $$('#btn2').value = 'Flush RSS Feeds';
+				            $$('#Status2').innerHTML = 'Finished Flushing';
+
+				        }
+				        else {
+				            alert(response);
+				        }
+
+				    },
+				    error: function() { alert('Something went wrong...') }
+				});
+	    } 
+	}
+	
+	
 	var Rebuilder =
 	{
 		start: function() {
@@ -119,27 +156,44 @@
 	}
 	</script>
 
-	<h1>Rebuild Your Site Folders and Pages</h1>
+	<h1>Rebuild Your Site Folders, Pages, and RSS Feeds</h1>
 	<Z:Breadcrumbs runat="server" SectionName="RebuildPages" />
 	<div id="messages_form">
 		<asp:Panel ID="WarningPanel" runat="server" Visible="false" CssClass="infomessage">
 			<asp:Label ID="WarningLabel" runat="server" />
 		</asp:Panel>
-		<asp:PlaceHolder ID="RebuildPagesPanel" runat="server">
+		<asp:PlaceHolder ID="Panels" runat="server">
 			<div id="post_form_container" class="FormBlock">
-				<div style="padding-top: 10px">
-					<p>
-						You can use this utility to rebuild the rebuild the folders for all Posts/Categories/Tags
-						in your site. You may need to do this if there was an error saving/updating a post
-						or if you are moving your site to another server.</p>
-					<p>
-						Once you click the button below, please <strong>do not</strong> refresh the page
-						or navigate away from this page until it is finished.</p>
-					<p>
-						<input type="button" id="btn" value="Start Building" onclick="Rebuilder.start(); return false;" />
-						<span id="Status" style="padding-left: 20px; font-weight: bold"></span>
-					</p>
-				</div>
+				<asp:PlaceHolder ID="RebuildPagesPanel" runat="server">
+				    <div style="padding-top: 10px">
+					    <p>
+						    You can use this utility to rebuild the folders for all Posts/Categories/Tags
+						    in your site. You may need to do this if there was an error saving/updating a post
+						    or if you are moving your site to another server.</p>
+					    <p>
+						    Once you click the button below, please <strong>do not</strong> refresh the page
+						    or navigate away from this page until it is finished.</p>
+					    <p>
+						    <input type="button" id="btn" value="Start Building" onclick="Rebuilder.start(); return false;" />
+						    <span id="Status" style="padding-left: 20px; font-weight: bold"></span>
+					    </p>
+				    </div>
+				</asp:PlaceHolder>
+				<asp:PlaceHolder ID="FlushFeedsPanel" runat="server">
+				    <div style="padding-top: 10px">
+					    <p>
+						    You can remove external RSS feeds from the database including those that may no longer be needed.
+						    You may need to do this if an error is displayed in the log pertaining to a failed RSS feed update,
+						    Or if some external RSS feeds are still being updated that are not used anywhere on your site.</p>
+					    <p>
+						    Once you click the button below, please <strong>do not</strong> refresh the page
+						    or navigate away from this page until it is finished.</p>
+					    <p>
+						    <input type="button" id="btn2" value="Flush RSS Feeds" onclick="FeedFlusher.removeFeedData(); return false;" />
+						    <span id="Status2" style="padding-left: 20px; font-weight: bold"></span>
+					    </p>
+				    </div>
+				</asp:PlaceHolder>
 			</div>
 		</asp:PlaceHolder>
 	</div>

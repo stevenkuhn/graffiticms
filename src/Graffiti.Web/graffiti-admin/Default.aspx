@@ -157,13 +157,23 @@
 			if (GraffitiUsers.IsAdmin(GraffitiUsers.Current))
 				GetWaitingApprovals();
 
-            GraffitiExtensions.DataSource = GetFeedItems("http://extendgraffiti.com/feed");
-            GraffitiExtensions.DataBind();
+            // Marketplace recent items feed
+            string marketplaceFeed = ConfigurationManager.AppSettings["Graffiti:Marketplace:RssUrl"];
+            if (!string.IsNullOrEmpty(marketplaceFeed))
+            {
+                GraffitiExtensions.DataSource = GetFeedItems(marketplaceFeed);
+                GraffitiExtensions.DataBind();
+            }
 
-            GraffitiNews.DataSource = GetFeedItems("http://twitter.com/statuses/user_timeline/graffiticms.rss");
-            GraffitiNews.DataBind();
+            // Marketplace recent items feed
+            string newsFeed = ConfigurationManager.AppSettings["Graffiti:Admin:NewsRssUrl"];
+            if (!string.IsNullOrEmpty(newsFeed))
+            {
+                GraffitiNews.DataSource = GetFeedItems(newsFeed);
+                GraffitiNews.DataBind();
+            }
 
-			if (SiteSettings.UrlRoutingSupported)
+		    if (SiteSettings.UrlRoutingSupported)
 			{
 				if (SiteSettings.Get().GenerateFolders)
 				{
