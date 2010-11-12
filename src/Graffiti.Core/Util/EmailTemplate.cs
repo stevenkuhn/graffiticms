@@ -36,7 +36,14 @@ namespace Graffiti.Core
             get { return _from; }
             set { _from = value; }
         }
-	
+
+        private string _replyto;
+
+        public string ReplyTo
+        {
+            get { return _replyto; }
+            set { _replyto = value; }
+        }
 
         private EmailTemplateToolboxContext _context;
 

@@ -6,6 +6,7 @@
 		<li>Published: $comment.IsPublished</li>
 		<li>Spam Score: $comment.SpamScore</li>
 		<li>Author: $comment.User.ProperName</li>
+		<li>Email: $comment.Email</li>
 		<li>WebSite: $comment.User.WebSite</li>
 	</ul>
 </p>

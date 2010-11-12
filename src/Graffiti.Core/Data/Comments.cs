@@ -98,7 +98,7 @@ namespace Graffiti.Core
                     ef.Subject = "New Comment: " + Post.Title;
                     ef.To = Post.User.Email;
                     ef.TemplateName = "comment.view";
-
+                    ef.ReplyTo = this.Email;
                     Emailer.Send(ef);
                     Log.Info("Comment Sent", "Email sent to {0} ({1}) from the post \"{2}\" ({3}).", Post.User.ProperName, Post.User.Email, Post.Title, Post.Id);
                 }

@@ -19,7 +19,7 @@ namespace Graffiti.Core
                 mm.Subject = template.Subject;
                 mm.IsBodyHtml = template.IsHTML;
                 mm.Body = fileText;
-
+                mm.Headers.Add("Reply-To", template.ReplyTo ?? template.From ?? SiteSettings.Get().EmailFrom);
                 SendMailMessage(mm);
             }
 
