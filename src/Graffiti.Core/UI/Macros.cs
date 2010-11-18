@@ -942,6 +942,15 @@ namespace Graffiti.Core
 			get { return HttpUtility.HtmlEncode(HttpContext.Current.Request.QueryString["q"]); }
 		}
 
+        /// <summary>
+        /// Returns the specified search query string value
+        /// </summary>
+        public string QueryString(string Key)
+        {
+            return HttpUtility.HtmlEncode(HttpContext.Current.Request[Key]);
+            
+        }
+
 		/// <summary>
 		/// Returns the search url from $urls.Search
 		/// </summary>

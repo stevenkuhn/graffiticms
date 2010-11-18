@@ -512,6 +512,24 @@ namespace Graffiti.Core
         }
 
         /// <summary>
+        /// Gets all Sub-Categories by the specified Category Id
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public CategoryCollection GetSubCategories(int categoryId)
+        {
+            CategoryCollection categories = new CategoryCollection();
+            
+            Query q = Category.CreateQuery();
+            q.AndWhere(Category.Columns.ParentId, categoryId);
+            q.OrderByDesc(Category.Columns.Name);
+            
+            categories.LoadAndCloseReader(q.ExecuteReader());
+            
+            return categories;
+        }
+
+        /// <summary>
         /// Gets the last x amount specified of recent comments
         /// </summary>
         /// <param name="numberOfComments"></param>
