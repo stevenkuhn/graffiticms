@@ -9,6 +9,7 @@ using System.Text;
 using System.Web;
 using DataBuddy;
 using System.Web.UI;
+using System.Linq;
 
 namespace Graffiti.Core
 {
@@ -246,23 +247,31 @@ namespace Graffiti.Core
 			return RolePermissionManager.CanViewControlPanel(user);
 		}
 
+		public string EditLink(Post post, string before, string linkText, string after)
+		{
+			var user = GraffitiUsers.Current;
+			var p = RolePermissionManager.GetPermissions(post.CategoryId, user);
+
+			if (user == null || !p.Edit)
+				return string.Empty;
+			
+			//return string.Format("{0}<a class=\"editlink\" href=\"{1}?id={2}\">{3
+			var sb = new StringBuilder();
+			sb.Append(before);
+			sb.AppendFormat("<a class=\"editlink\" href=\"{0}?id={1}\">", new Urls().Write, post.Id);
+			sb.Append(linkText);
+			sb.Append("</a>");
+			sb.Append(after);
+
+			return sb.ToString();
+		}
+
 		/// <summary>
 		/// Returns an edit link for the post if the current user has edit permissions.
 		/// </summary>
 		public string EditLink(Post post)
 		{
-			IGraffitiUser user = GraffitiUsers.Current;
-			Permission p = RolePermissionManager.GetPermissions(post.CategoryId, user);
-
-			if (user != null && p.Edit)
-			{
-				return
-					 "[<a class=\"editlink\" href=\"" + new Urls().Write + "?id=" + post.Id +
-					 "\">Edit - " + post.Title +
-					 "</a>]";
-			}
-
-			return string.Empty;
+			return EditLink(post, "[", string.Concat("Edit - ", post.Title), "]");
 		}
 
 		/// <summary>
@@ -287,7 +296,7 @@ namespace Graffiti.Core
 
 			List<DynamicNavigationItem> items = NavigationSettings.Get().SafeItems();
 			List<Link> links = new List<Link>();
-			
+
 			// Will hold a reference to the selected item
 			DynamicNavigationItem selectedItem = null;
 
@@ -545,7 +554,7 @@ namespace Graffiti.Core
 							foreach (Post post in posts)
 							{
 								Link link = new Link();
-                                link.IsSelected = (ttp.PostId == post.Id);
+								link.IsSelected = (ttp.PostId == post.Id);
 								link.Text = post.Title;
 								link.CategoryId = post.Id;
 								link.PostId = post.Id;
@@ -780,16 +789,20 @@ namespace Graffiti.Core
 			if (string.IsNullOrEmpty(tags))
 				return string.Empty;
 
-			string[] ta = tags.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
-			string[] theTags = new string[ta.Length];
-			for (int i = 0; i < ta.Length; i++)
+			var tagListHtml = new StringBuilder(desc);
+			var tagList = from tag in tags.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries)
+							  orderby tag ascending
+							  select tag;
+
+			foreach (var tag in tagList)
 			{
-				theTags[i] =
-					 string.Format("<a rel=\"tag\" href=\"{0}\">{1}</a>",
-										VirtualPathUtility.ToAbsolute("~/tags/" + Util.CleanForUrl(ta[i]) + "/"), ta[i]);
+				tagListHtml.AppendFormat("<a rel=\"tag\" href=\"{0}\">{1}</a>, ",
+					VirtualPathUtility.ToAbsolute("~/tags/" + Util.CleanForUrl(tag) + "/"), tag);
 			}
 
-			return desc + string.Join(", ", theTags);
+			tagListHtml.Remove(tagListHtml.Length - 2, 2);
+
+			return tagListHtml.ToString();
 		}
 
 
@@ -879,7 +892,7 @@ namespace Graffiti.Core
 		public string Pager(string cssClass, string previousText, string nextText)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
 			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq, previousText, nextText);
 		}
 
@@ -891,7 +904,7 @@ namespace Graffiti.Core
 		public string Pager(string cssClass)
 		{
 			GraffitiContext graffiti = GraffitiContext.Current;
-            string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
+			string sq = (SearchQuery == null) ? null : sq = "?q=" + SearchQuery;
 			return Util.Pager(graffiti.PageIndex, graffiti.PageSize, graffiti.TotalRecords, cssClass, sq);
 		}
 
@@ -1260,7 +1273,7 @@ namespace Graffiti.Core
 			identicon = HttpUtility.UrlEncode(identicon);
 
 			string hash = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(email.Trim(), "MD5").Trim().ToLower();
-            return string.Format("http://www.gravatar.com/avatar/{0}?amp;r=g&amp;s={2}&amp;d={1}", hash, identicon, size);
+			return string.Format("http://www.gravatar.com/avatar/{0}?amp;r=g&amp;s={2}&amp;d={1}", hash, identicon, size);
 		}
 
 		#endregion

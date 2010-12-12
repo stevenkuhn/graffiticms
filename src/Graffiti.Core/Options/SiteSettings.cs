@@ -25,6 +25,7 @@ namespace Graffiti.Core
         private bool? _filterUncategorizedPostsFromLists;
         private bool? _includeChildPosts;
         private int? _pageSize;
+		  private int? _searchPageSize;
 		  private bool _initialSetupCompleted = false;
 
         public bool RequireWWW
@@ -273,6 +274,21 @@ namespace Graffiti.Core
                 _pageSize = value;
             }
         }
+
+		  public int SearchPageSize
+		  {
+			  get
+			  {
+				  if (!_searchPageSize.HasValue)
+					  return PageSize;
+
+				  return _searchPageSize.Value;
+			  }
+			  set
+			  {
+				  _searchPageSize = value;
+			  }
+		  }
 
 
 

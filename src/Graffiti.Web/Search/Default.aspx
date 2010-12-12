@@ -16,7 +16,7 @@
 
             IsIndexable = false;
 
-            if (Request.QueryString["q"] == null)
+            if (string.IsNullOrEmpty(Request.QueryString["q"]))
             {
                 Response.Redirect("~/");
                 Response.End();
@@ -42,7 +42,7 @@
                 SearchIndex si = new SearchIndex();
 
                 SearchQuery sq = new SearchQuery();
-                sq.PageSize = SiteSettings.Get().PageSize;
+                sq.PageSize = SiteSettings.Get().SearchPageSize;
                 sq.PageIndex = PageIndex;
                 sq.QueryText = new Macros().SearchQuery;
 
@@ -57,7 +57,7 @@
 
                 graffitiContext.TotalRecords = posts.TotalRecords;
                 graffitiContext.PageIndex = PageIndex;
-                graffitiContext.PageSize = SiteSettings.Get().PageSize;
+					 graffitiContext.PageSize = SiteSettings.Get().SearchPageSize;
 
                 return filteredPosts;
             }

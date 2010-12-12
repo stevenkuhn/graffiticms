@@ -30,6 +30,7 @@ public partial class graffiti_admin_site_options_configuration_Default : AdminCo
             chkFilterUncategorizedPostsFromLists.Checked = ! settings.FilterUncategorizedPostsFromLists;
             chkIncludeChildPosts.Checked = settings.IncludeChildPosts;
             txtPageSize.Text = settings.PageSize.ToString();
+				txtSearchPageSize.Text = settings.SearchPageSize.ToString();
             chkGenerateFolders.Checked = settings.GenerateFolders;
         }
 
@@ -56,6 +57,7 @@ public partial class graffiti_admin_site_options_configuration_Default : AdminCo
             settings.FilterUncategorizedPostsFromLists = ! chkFilterUncategorizedPostsFromLists.Checked;
             settings.IncludeChildPosts = chkIncludeChildPosts.Checked;
             settings.PageSize = Int32.Parse(txtPageSize.Text);
+				settings.SearchPageSize = Int32.Parse(txtSearchPageSize.Text);
             settings.GenerateFolders = chkGenerateFolders.Checked;
 
             settings.Save();
